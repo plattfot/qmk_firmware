@@ -3,11 +3,11 @@
 #include "action_layer.h"
 #include "version.h"
 
-#define BASE 0 // default layer
-#define GAME 1 // Game friendly layout.
-#define SYMB 2 // symbols
-#define MDIA 3 // media keys
-#define MOUS 4 // mouse keys
+#define BASE 0 // Default layer
+#define GAME 1 // Experimental layer
+#define SYMB 2 // Symbols
+#define MDIA 3 // Media keys
+#define MOUS 4 // Mouse/backlight keys
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -31,20 +31,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   ~    |   1  |   2  |   3  |   4  |   5  | ECS  |           | Meh  |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Del    |   Q  |   W  |   E  |   R  |   T  | ~L2  |           |  =   |   Y  |   U  |   I  |   O  |   P  |   [    |
+ * |   \    |   Q  |   W  |   E  |   R  |   T  | ^L2  |           |  =   |   Y  |   U  |   I  |   O  |   P  |   [    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | BkSp   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
  * |--------+------+------+------+------+------| Hyper|           |Insert|------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           '-------------+------+------+------+------+--------'
- *   | ~L4  |   ]  |  </> | LGUI | LCTL |                                       |  L3  | RCTRL| RGUI | ~L1  | ~L4  |
+ *   | ~L4  |   ]  |  </> | LGUI | LCTL |                                       |  L3  | C-M  | RGUI | ~L1  | ~L4  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        | Del  |ScLock|       | PgUp |  PgDn  |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | Home |       | End  |        |      |
  *                                 | Space| LALT |------|       |------| ENTER  | Back |
- *                                 |      |      | L2   |       | RCTL |        | Space|
+ *                                 |      |      | L2   |       | RALT |        | Space|
  *                                 `--------------------'       `----------------------'
  */ 
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,   KC_5,    KC_ESC,
-        KC_BSLS, KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    TG(SYMB),
+        KC_BSLS, KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    OSL(SYMB),
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,   KC_G,
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,    ALL_T(KC_NO),
         TG(MOUS),KC_RBRC, KC_NUBS, KC_LGUI, KC_LCTL,
@@ -64,10 +64,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EQL,      KC_Y,   KC_U,      KC_I,    KC_O,    KC_P,    KC_LBRC,
                      KC_H,   KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_INS,      KC_N,   KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                             MO(MDIA),  KC_RCTL, KC_RGUI, TG(GAME),TG(MOUS),
+                             MO(MDIA),  LALT(KC_RCTL), KC_RGUI, TG(GAME),TG(MOUS),
         KC_PGUP,     KC_PGDN,
         KC_END,
-        KC_RCTL,     KC_ENT, KC_BSPC
+        KC_RALT,     KC_ENT, KC_BSPC
     ),
 /* Keymap 1: Game keys
  *
@@ -86,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
- *                                 |Space/|      |------|       |------|Enter/|      |
- *                                 |Ctrl  |      |      |       |      |Alt   |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
 // Game layout
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, _______, _______, _______, _______,
                                            _______, _______,
                                                     _______,
-                                  KC_SPC,  _______, _______,
+                                  _______, _______, _______,
     // right hand
        _______, _______, _______, _______, _______, _______, _______,
        _______, _______, _______, _______, _______, _______, _______,
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______, _______, _______, _______, _______,
        _______, _______,
        _______,
-       _______, KC_ENT,  _______
+       _______, _______, _______
 ),
 
 /* Keymap 2: Symbol Layer
