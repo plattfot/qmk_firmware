@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 | Space| LALT |------|       |------| ENTER  | Back |
  *                                 |      |      | L2   |       | RALT |        | Space|
  *                                 `--------------------'       `----------------------'
- */ 
+ */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
 // Otherwise, it needs KC_*
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                              KC_HOME,
                                             KC_SPC, KC_LALT, MO(SYMB),
         // right hand
-        MEH_T(KC_NO),KC_6,   KC_7,      KC_8,    KC_9,    KC_0,    KC_MINS,
+        KC_ENT,      KC_6,   KC_7,      KC_8,    KC_9,    KC_0,    KC_MINS,
         KC_EQL,      KC_Y,   KC_U,      KC_I,    KC_O,    KC_P,    KC_LBRC,
                      KC_H,   KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_INS,      KC_N,   KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
@@ -135,18 +135,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // SYMBOLS
 [SYMB] = LAYOUT_ergodox(
        // left hand
-       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11, 
+       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,
        _______, _______, M_LRBRC, M_LRPRN, M_LRCBR, _______, _______,
-       _______, KC_LPRN, KC_RPRN, KC_BSLS, KC_MINS, M_LRABR,    
-       _______, _______, _______, _______, _______, _______, _______,
-       _______, _______, _______, _______, _______, 
+       _______, KC_LPRN, KC_RPRN, KC_BSLS, KC_MINS, M_LRABR,
+       _______, _______, M_LRBRC, M_LRPRN, M_LRCBR, _______, _______,
+       _______, _______, _______, _______, _______,
                                                     _______, _______,
                                                              _______,
                                            _______, _______, _______,
        // right hand
        KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
        _______, _______, _______, _______, _______, _______, _______,
-                M_DQOUT, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,  
+                M_DQOUT, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,
        _______, _______, _______, _______, _______, _______, _______,
                          _______, _______, _______, _______, _______,
        _______, _______,
@@ -174,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      |      |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
-// MEDIA 
+// MEDIA
 [MDIA] = LAYOUT_ergodox(
        VRSN,    _______, _______, _______, _______, _______, _______,
        KC_PSCR, _______, _______, _______, _______, _______, _______,
@@ -244,7 +244,6 @@ const uint16_t PROGMEM fn_actions[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-
     switch (keycode) {
       // dynamically generate these.
     case EPRM:
@@ -252,6 +251,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case VRSN:
       SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     case RGB_SLD:
 #ifdef RGBLIGHT_ENABLE
@@ -260,18 +260,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case M_LRPRN:
       SEND_STRING("()"SS_TAP(X_LEFT));
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     case M_LRCBR:
       SEND_STRING("{}"SS_TAP(X_LEFT));
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     case M_LRBRC:
       SEND_STRING("[]"SS_TAP(X_LEFT));
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     case M_LRABR:
       SEND_STRING("<>"SS_TAP(X_LEFT));
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     case M_DQOUT:
       SEND_STRING("\"\""SS_TAP(X_LEFT));
+      clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
       return false;
     }
   }
