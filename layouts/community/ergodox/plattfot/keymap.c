@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| Hyper|           |Insert|------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           '-------------+------+------+------+------+--------'
- *   | LCTL |   ]  |  </> | LGUI | LCTL |                                       |  L3  | RCTRL| RGUI | ~L1  | ~L3  |
+ *   | ~L4  |   ]  |  </> | LGUI | LCTL |                                       |  L3  | RCTRL| RGUI | ~L1  | ~L4  |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        | Del  |ScLock|       | PgUp |  PgDn  |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | Home |       | End  |        |      |
  *                                 | Space| LALT |------|       |------| ENTER  | Back |
- *                                 | /Ctrl|      | L2   |       | RCTL | /Alt   | Space|
+ *                                 |      |      | L2   |       | RCTL |        | Space|
  *                                 `--------------------'       `----------------------'
  */ 
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_EQL,      KC_Y,   KC_U,      KC_I,    KC_O,    KC_P,    KC_LBRC,
                      KC_H,   KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_INS,      KC_N,   KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                             MO(MDIA),  KC_RCTL, KC_RGUI, TG(GAME),TG(MDIA),
+                             MO(MDIA),  KC_RCTL, KC_RGUI, TG(GAME),TG(MOUS),
         KC_PGUP,     KC_PGDN,
         KC_END,
         KC_RCTL,     KC_ENT, KC_BSPC
@@ -86,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      |      |       |      |      |      |
- *                                 |Space |      |------|       |------|Enter |      |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |Space/|      |------|       |------|Enter/|      |
+ *                                 |Ctrl  |      |      |       |      |Alt   |      |
  *                                 `--------------------'       `--------------------'
  */
 // Game layout
@@ -220,7 +220,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        _______, _______, _______, _______, _______, _______, EPRM,
        _______, _______, _______, KC_MS_U, _______, _______, _______,
        _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______,
-       _______, _______, _______, _______, _______, _______, _______,
+       _______, _______, BL_INC,  BL_DEC,  BL_TOGG,  _______, _______,
        _______, _______, _______, _______, _______,
                                            _______, _______,
                                                     _______,
