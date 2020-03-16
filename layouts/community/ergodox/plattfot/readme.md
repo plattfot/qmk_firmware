@@ -13,10 +13,12 @@
   * Media layer also can move the mouse
   
 Main layer
-![Default](https://imgur.com/hwKrtRd)
+![Default](https://imgur.com/hwKrtRd.png)
 Game layer
-![Game](https://imgur.com/UHSmmNL)
+![Game](https://imgur.com/UHSmmNL.png)
 Symbol layer
-![Symbol](https://imgur.com/uhAdCRk)
+![Symbol](https://imgur.com/FjB6yuD.png)
 Media layer
-![Symbol](https://imgur.com/FjB6yuD)
+![Symbol](https://imgur.com/O747NWJ.png)
+Mouse layer
+![Symbol](https://imgur.com/U3srcC3.png)

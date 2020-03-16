@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_INS,      KC_N,   KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                              MO(MDIA),  KC_RCTL, KC_RGUI, TG(GAME),TG(MDIA),
         KC_PGUP,     KC_PGDN,
-        KC_END,   
+        KC_END,
         KC_RCTL,     KC_ENT, KC_BSPC
     ),
 /* Keymap 1: Game keys
@@ -177,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // MEDIA 
 [MDIA] = LAYOUT_ergodox(
        VRSN,    _______, _______, _______, _______, _______, _______,
-       KC_PSCR, _______, BL_TOGG, BL_INC,  BL_DEC, _______, _______,
+       KC_PSCR, _______, _______, _______, _______, _______, _______,
        _______, _______, _______, _______, _______, _______,
        _______, _______, _______, _______, _______, _______, _______,
        _______, _______, _______, _______, _______,
@@ -227,7 +227,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_BTN1, KC_BTN2, _______,
     // right hand
        _______, _______, _______, _______, _______, _______, _______,
-       _______, _______, _______, _______, _______, _______, _______,
+       _______, _______, BL_TOGG, BL_DEC,  BL_INC,  _______, _______,
                 _______, _______, _______, _______, _______, _______,
        _______, _______, _______, _______, _______, _______, _______,
                          _______, _______, _______, _______, _______,
