@@ -1,5 +1,10 @@
 # ErgoDox plattfot configuration
 
+Ergodox slightly modified qwerty layout. Most modifiers moved to the
+thumb cluster or where the thumb can reach. Geared towards programming;
+"()\- {}[]" is on the home row for example. Layed out to support
+typing in both english and swedish.
+
 ## Changelog
 * v4 [Nov 2017]: 
   * Fn changed to one shot layer key
