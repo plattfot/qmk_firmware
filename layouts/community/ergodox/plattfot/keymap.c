@@ -282,33 +282,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /* void matrix_init_user(void) { */
 
 /* }; */
+#ifdef KEYBOARD_ergodox_ez
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
 
-/* // Runs constantly in the background, in a loop. */
-/* void matrix_scan_user(void) { */
+    uint8_t layer = biton32(layer_state);
 
-/*     uint8_t layer = biton32(layer_state); */
-
-/*     ergodox_board_led_off(); */
-/*     ergodox_right_led_1_off(); */
-/*     ergodox_right_led_2_off(); */
-/*     ergodox_right_led_3_off(); */
-/*     switch (layer) { */
-/*       // TODO: Make this relevant to the ErgoDox EZ. */
-/*         case 1: */
-/*             ergodox_right_led_1_on(); */
-/*             break; */
-/*         case 2: */
-/*             ergodox_right_led_2_on(); */
-/*             break; */
-/*         case 3: */
-/*             ergodox_right_led_3_on(); */
-/*             break; */
-/*         case 4: */
-/*             ergodox_right_led_1_on(); */
-/*             ergodox_right_led_2_on(); */
-/*             break; */
-/*         default: */
-/*             // none */
-/*             break; */
-/*     } */
-/* }; */
+    ergodox_board_led_off();
+    ergodox_right_led_1_off();
+    ergodox_right_led_2_off();
+    ergodox_right_led_3_off();
+    switch (layer) {
+      // TODO: Make this relevant to the ErgoDox EZ.
+        case 1:
+            ergodox_right_led_1_on();
+            break;
+        case 2:
+            ergodox_right_led_2_on();
+            break;
+        case 3:
+            ergodox_right_led_3_on();
+            break;
+        case 4:
+            ergodox_right_led_1_on();
+            ergodox_right_led_2_on();
+            break;
+        default:
+            // none
+            break;
+    }
+};
+#endif
