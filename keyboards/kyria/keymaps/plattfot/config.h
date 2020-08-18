@@ -37,5 +37,7 @@
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 350
 
-#define TAPPING_TERM 200
+// Remove the delay for the OSL keys. Not using any other tap keys.
+// Otherwise TAPPING_TERM_PER_KEY would be the way to go.
+#define TAPPING_TERM 0
 
