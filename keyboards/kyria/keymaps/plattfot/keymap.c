@@ -71,17 +71,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |   ''   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  []  |  {}  |  ()  |  <>  |      |      |      |  |      |      |      |      |  <   |  >   |  ?   |        |
+ * |        |  []  |  {}  |  ()  |  <>  |      |      |ADJUST|  |      |      |      |      |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Mute |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LOWER] = LAYOUT(
-      KC_TILDE,KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, M_DQUOT,
-      _______, M_LRBRC, M_LRCBR, M_LRPRN, M_LRABR, _______, _______, _______, _______, _______, _______, _______, KC_LT,   KC_GT,   KC_QUES, _______,
-                                 KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      KC_TILDE,KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
+      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                        KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, M_DQUOT,
+      _______, M_LRBRC, M_LRCBR, M_LRPRN, M_LRABR, _______, _______,MO(_ADJUST), _______, _______, _______, _______, KC_LT,   KC_GT,   KC_QUES, _______,
+                                 KC_MUTE, _______, _______, _______, _______,    _______, _______, _______, _______, _______
     ),
 /*
  * Raise Layer: Function keys
@@ -91,17 +91,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |ScLock|      |  |      | Ins  |      |      |      |      |      |CapsLock|
+ * |        |      |      |      |      |      |ScLock|      |  |ADJUST| Ins  |      |      |      |      |      |CapsLock|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      | RAlt |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_RAISE] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, _______, _______, _______, _______, KC_F11,                                      KC_F12,  _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, KC_SLCK, _______, _______, KC_INS,  _______, _______, _______, _______, _______, KC_CAPS,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, KC_RALT, _______
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      _______, _______, _______, _______, _______, KC_F11,                                          KC_F12,  _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, KC_SLCK, _______, MO(_ADJUST), KC_INS,  _______, _______, _______, _______, _______, KC_CAPS,
+                                 _______, _______, _______, _______, _______,     _______, _______, _______, KC_RALT, _______
 
     ),
 /*
@@ -214,7 +214,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
+//layer_state_t layer_state_set_user(layer_state_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_180; }
