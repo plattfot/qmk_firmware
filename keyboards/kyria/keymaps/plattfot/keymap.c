@@ -316,6 +316,16 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 }
                 break;
+            case _NAV:
+                // Brightness control
+                if (clockwise) {
+                    tap_code(KC_BRIU);
+                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+                } else {
+                    tap_code(KC_BRID);
+                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+                }
+                break;
             default:
                 // Volume control
                 if (clockwise) {
