@@ -340,13 +340,12 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _RAISE:
-                // Credit to Thomas Baart for this
-                // See https://docs.splitkb.com/hc/en-us/articles/360010513760-How-can-I-use-a-rotary-encoder-
+                // Scroll through the workspaces
                 if (clockwise) {
-                    tap_code16(C(KC_TAB));
+                    tap_code16(G(KC_GT));
                     clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 } else {
-                    tap_code16(S(C(KC_TAB)));
+                    tap_code16(G(KC_LT));
                     clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 }
                 break;
