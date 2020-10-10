@@ -74,8 +74,8 @@ but more comfortable to type double keys, for example `--` and `&&`.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |  []  |  {}  |  ()  |  <>  |      |      |      |  |      |      |      |      |  <   |  >   |  ?   |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | Mute |      |      |      |      |  |      |      |      |      |      |
- //                        |      |      |      |      |      |  |      |      |      |      |      |
+ //                        | Mute |      |      |      |      |  |      |      |      |      |Focus |
+ //                        |      |      |      |      |      |  |      |      |      |      | Emacs|
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -88,6 +88,9 @@ forward slash.
 Left rotary encoder
 - Press: mute
 - Rotate: Skip next/previous song
+
+Right rotary encoder
+- Press: Jump to window with the `Emacs` mark.
 
 The left letter bottom row contains macros to quickly type the
 different types of brackets and move the cursor to be inside. For
@@ -104,8 +107,8 @@ programming, and it is editor agnostic.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |      |      |      |      |      |ScLock|      |  |      | Ins  |      |      |      |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      | RAlt |      |
- //                        |      |      |      |      |      |  |      |      |      |      |      |
+ //                        |      |      |      |      |      |  |      |      |      | RAlt |Focus |
+ //                        |      |      |      |      |      |  |      |      |      |      | Mark |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -120,10 +123,7 @@ Scroll Lock is used to toggle between English and Swedish.
 ## Notable features on this layer
 
 Right rotary encoder
-- Press: Right Alt, rarely use this, but it is needed for the Swedish
-         layout to type some symbols. But I find I mostly switch back
-         to the English layout if I need to type symbols. Might change
-         this in the future.
+- Press: Jump to window with the `Mark` mark.
 - Rotate: Scrolling between workspaces in `sway`.
 
 # Navigation Layer: Number keys, navigation
