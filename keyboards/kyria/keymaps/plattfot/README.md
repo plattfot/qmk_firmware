@@ -21,8 +21,8 @@ thumb keys to make it work without them.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|DBLTAP|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|BSpace| NAV  | LCTL+|Worksp|
- //                        |      |      |      |      |      |  |      |      |      | LALT |toggle|
+ //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|BSpace| NAV  | LCTL+|Focus |
+ //                        |      |      |      |      |      |  |      |      |      | LALT | Web  |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -41,9 +41,8 @@ Left rotary encoder
 - Rotate: Volume control
 
 Right rotary encoder
-- Press: Call keybinding that toggles between two recent workspaces.
-         For [sway](https://swaywm.org/) that is `workspace
-         back_and_forth`
+- Press: Call keybinding that jump to the window with the `Web` mark.
+
 - Rotate: Page up/Page down. Used mouse scrolling at first. But
           scrolling only works in the window where the mouse pointer
           is. Which kind of defeated the purpose of having the scroll
@@ -125,8 +124,7 @@ Right rotary encoder
          layout to type some symbols. But I find I mostly switch back
          to the English layout if I need to type symbols. Might change
          this in the future.
-- Rotate: Moving between tabs in the browser, as described in this
-          [blog post](https://docs.splitkb.com/hc/en-us/articles/360010513760-How-can-I-use-a-rotary-encoder-).
+- Rotate: Scrolling between workspaces in `sway`.
 
 # Navigation Layer: Number keys, navigation
 ```
