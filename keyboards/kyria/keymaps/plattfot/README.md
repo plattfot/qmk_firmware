@@ -21,8 +21,8 @@ thumb keys to make it work without them.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|DBLTAP|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|BSpace| NAV  | LCTL+|Focus |
- //                        |      |      |      |      |      |  |      |      |      | LALT | Web  |
+ //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|BSpace| NAV  | LCTL+|Scroll|
+ //                        |      |      |      |      |      |  |      |      |      | LALT | lock |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -41,7 +41,8 @@ Left rotary encoder
 - Rotate: Volume control
 
 Right rotary encoder
-- Press: Call keybinding that jump to the window with the `Web` mark.
+- Press: Scroll lock. Which for me toggles keyboard layout between
+         English and Swedish.
 
 - Rotate: Page up/Page down. Used mouse scrolling at first. But
           scrolling only works in the window where the mouse pointer
@@ -74,8 +75,8 @@ but more comfortable to type double keys, for example `--` and `&&`.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |  []  |  {}  |  ()  |  <>  |      |      |      |  |      |      |      |      |  <   |  >   |  ?   |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | Mute |      |      |      |      |  |      |      |      |      |Focus |
- //                        |      |      |      |      |      |  |      |      |      |      | Emacs|
+ //                        | Mute |      |      |      |      |  |      |      |      |      |      |
+ //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -88,9 +89,6 @@ forward slash.
 Left rotary encoder
 - Press: mute
 - Rotate: Skip next/previous song
-
-Right rotary encoder
-- Press: Jump to window with the `Emacs` mark.
 
 The left letter bottom row contains macros to quickly type the
 different types of brackets and move the cursor to be inside. For
@@ -105,25 +103,22 @@ programming, and it is editor agnostic.
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  // |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |ScLock|      |  |      | Ins  |      |      |      |      |      |CapsLock|
+ // |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      | RAlt |Focus |
- //                        |      |      |      |      |      |  |      |      |      |      | Mark |
+ //                        |      |      |      |      |      |  |      |      |      | RAlt |Insert|
+ //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
 Access to the functional keys, which I mostly use to run `emacs`
 compilation mode.
 
-This layer also includes key that changes the state, like insert and
-caps lock.
-
-Scroll Lock is used to toggle between English and Swedish.
+This layer also includes caps lock.
 
 ## Notable features on this layer
 
 Right rotary encoder
-- Press: Jump to window with the `Mark` mark.
+- Press: Toggle insert mode
 - Rotate: Scrolling between workspaces in `sway`.
 
 # Navigation Layer: Number keys, navigation
