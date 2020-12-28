@@ -19,9 +19,9 @@ thumb keys to make it work without them.
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|DBLTAP|   N  |   M  | ,  < | . >  | /  ? | RShift |
+ // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|BSpace| NAV  | LCTL+|Scroll|
+ //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  | LCTL+|Scroll|
  //                        |      |      |      |      |      |  |      |      |      | LALT | lock |
  //                        `----------------------------------'  `----------------------------------'
 ```
@@ -57,14 +57,6 @@ between 1-5 with just the left hand. The right rotary encoder also
 helps jumping back and forth between two workspaces by just pressing
 down my right palm.
 
-The double tap key, which I based on a code snippet from a
-[reddit post](https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8).
-When pressed, it will repeat the next key twice. Reason for this is
-that I found it a bit awkward to hold down the lower key when I need
-to type a symbol twice. Which happens a lot when programming or
-running commands on the command line. Does not save me any key presses
-but more comfortable to type double keys, for example `--` and `&&`.
-
 # Lower Layer: Symbols
 ```
  //
@@ -75,8 +67,8 @@ but more comfortable to type double keys, for example `--` and `&&`.
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |  []  |  {}  |  ()  |  <>  |      |      |      |  |      |      |      |      |  <   |  >   |  ?   |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | Mute |      |      |      |      |  |      |      |      |      |      |
- //                        |      |      |      |      |      |  |      |      |      |      |      |
+ //                        | Mute |      |      |      |      |  |      |      |      |      | LCTL+|
+ //                        |      |      |      |      |      |  |      |      |      |      | Space|
  //                        `----------------------------------'  `----------------------------------'
 ```
 
@@ -96,6 +88,10 @@ example lower+c will type `()←`, where `←` is pressing the left arrow.
 Same principle for the `''` macro. Really nice to have when
 programming, and it is editor agnostic.
 
+Right hand side contains a combo key for pressing `C-SPC`, which is
+used heavily in emacs to mark regions, and is a bit awkward to use
+on this layout otherwise.
+
 # Raise Layer: Function keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
@@ -103,9 +99,9 @@ programming, and it is editor agnostic.
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  // |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |CapsLock|
+ // |        |      |      |      |      |      |      |      |  |ADJUST| Del  |      |      |      |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      | RAlt |Insert|
+ //                        |      |      | RCtrl|      | RAlt |  | Esc  |      |      |      |Insert|
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
@@ -113,7 +109,10 @@ programming, and it is editor agnostic.
 Access to the functional keys, which I mostly use to run `emacs`
 compilation mode.
 
-This layer also includes caps lock.
+This layer also includes caps lock, the right alternatives to the ctrl
+and alt modifiers. Esc and delete is also on this layer. This are not
+heavily used in my day to day workflow.
+
 
 ## Notable features on this layer
 
@@ -126,11 +125,11 @@ Right rotary encoder
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      | ESC  |  DEL |      |      |                              |      | Left | Up   | Down | Right|        |
+ // |        |      |      |      |      |      |                              |      | Left | Up   | Down | Right|        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+ // |        |      |      |      |      |      |      |ADJUST|  |      |      |      |      |      |      |      |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      | RCtrl|      |
+ //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
@@ -139,9 +138,6 @@ Access to the number as well as the arrow keys. Got use to the number
 row after using [ErgoDox](https://www.ergodox.io/) keyboards for a few
 years. Do not feel I need a numpad layer, which seems to be quite
 common with small keyboards like this.
-
-Esc and Delete is also on this layer as they are easy to reach and they
-only need to be chord with the modifiers.
 
 # Adjust Layer: RGB
 ```
@@ -158,4 +154,5 @@ only need to be chord with the modifiers.
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Right now it only contains adjustment to the underglow.
+Right now it only contains adjustment to the underglow. Activated by
+holding down `RAISE` and `LOWER` at the same time.
