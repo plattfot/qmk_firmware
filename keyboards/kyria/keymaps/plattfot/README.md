@@ -15,24 +15,31 @@ thumb keys to make it work without them.
 # Base Layer: Default
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |   `    |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |   Å    |
+ // |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | RCtl   |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  | LCTL+|Scroll|
- //                        |      |      |      |      |      |  |      |      |      | LALT | lock |
+ //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  | AltGr|LCTL+ |
+ //                        |      |      |      |      |      |  |      |      |      |      | Space|
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Setup for typing in both English and Swedish (hence the Å in the top
-right corner, which is just [ on an US layout).
+Setup for using the
+[EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout. As
+it's annoying to have to toggle us and swedish layout.
 
 Modifiers are mostly on the left hand, to make it comfortable when
 require keyboard and mouse. For example working in a DCC (Digital
 Content Creation tool) like [Houdini](https://www.sidefx.com/) and
 [Maya](https://www.autodesk.com/products/maya/overview).
+
+Right control key is on the right pinky, to make less awkward to use
+key-combinations that involves pressing ctrl and alt.
+
+AltGr is used to access the extra keys in the
+[EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout.
 
 ## Notable features on this layer
 
@@ -41,8 +48,9 @@ Left rotary encoder
 - Rotate: Volume control
 
 Right rotary encoder
-- Press: Scroll lock. Which for me toggles keyboard layout between
-         English and Swedish.
+- Press: Ctrl + Space: which is used to activate a region in emacs.
+  It's not super awkward to press with the left hand, but this makes
+  it a lot easier.
 
 - Rotate: Page up/Page down. Used mouse scrolling at first. But
           scrolling only works in the window where the mouse pointer
@@ -59,49 +67,37 @@ down my right palm.
 
 # Lower Layer: Symbols
 ```
- //
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |   ~    |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  (   |  )   |        |
+ // |        |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |      |      |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |   ''   |
+ // |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |  []  |  {}  |  ()  |  <>  |      |      |      |  |      |      |      |      |  <   |  >   |  ?   |        |
+ // |        |  ~   |      |  `   |  (   |  '   |      |ADJUST|  |      |      |   "  |  )   |  <   |  >   |  ?   |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | Mute |      |      |      |      |  |      |      |      |      | LCTL+|
- //                        |      |      |      |      |      |  |      |      |      |      | Space|
+ //                        |      |      |      |      |      |  |      |      |      |      |      |
+ //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
 Contains most of the symbols, only exceptions are those that are
-already on the default US base layer i.e. quotes, punctuation and
-forward slash.
+already on the default US base layer e.g. punctuation and forward
+slash.
 
 ## Notable features on this layer
 
 Left rotary encoder
-- Press: mute
 - Rotate: Skip next/previous song
-
-The left letter bottom row contains macros to quickly type the
-different types of brackets and move the cursor to be inside. For
-example lower+c will type `()←`, where `←` is pressing the left arrow.
-Same principle for the `''` macro. Really nice to have when
-programming, and it is editor agnostic.
-
-Right hand side contains a combo key for pressing `C-SPC`, which is
-used heavily in emacs to mark regions, and is a bit awkward to use
-on this layout otherwise.
 
 # Raise Layer: Function keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
+ // |        |      |      |      |      | F11  |                              | F12  |  {}  |      |  []  |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |      |  |ADJUST| Del  |      |      |      |      |      |CapsLock|
+ // |        |      |      |      |  ()  |  ''  |      |      |  |ADJUST|      |  ""  |      |  <>  |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      | RCtrl|      | RAlt |  | Esc  |      |      |      |Insert|
+ //                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
@@ -109,16 +105,23 @@ on this layout otherwise.
 Access to the functional keys, which I mostly use to run `emacs`
 compilation mode.
 
-This layer also includes caps lock, the right alternatives to the ctrl
-and alt modifiers. Esc and delete is also on this layer. This are not
-heavily used in my day to day workflow.
+This layer also includes caps lock and insert. They are not heavily
+used in my day to day workflow.
 
 
 ## Notable features on this layer
 
+Left rotary encoder
+- Press: mute
+
 Right rotary encoder
 - Press: Toggle insert mode
 - Rotate: Scrolling between workspaces in `sway`.
+
+Contains macros to quickly type the different types of brackets and
+move the cursor to be inside. For example raise+v will type `()←`,
+where `←` is pressing the left arrow. Really nice to have when
+programming, and it is editor agnostic.
 
 # Navigation Layer: Number keys, navigation
 ```

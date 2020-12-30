@@ -24,6 +24,7 @@ enum custom_keycodes {
     M_LRPRN,  // (|)
     M_LRABR,  // <|>
     M_DQUOT,  // '|'
+    M_DDQUO,  // "|"
     // New keys
     DBL_TAP,  // Repeat next key
 };
@@ -40,68 +41,72 @@ enum layers {
     _ADJUST,
 };
 
+#define MO_ADJT MO(_ADJUST)
+#define L_RAISE OSL(_RAISE)
+#define L_LOWER OSL(_LOWER)
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
  * Base Layer: Default
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |   `    |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |   Å    |
+ * |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | RCtrl  |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  |LCTL+ |Scroll|
- *                        |      |      |      |      |      |  |      |      |      |LALT  | Lock |
+ *                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  | RALT |RCTL+ |
+ *                        |      |      |      |      |      |  |      |      |      |      | Space|
  *                        `----------------------------------'  `----------------------------------'
  */
     [_DEFAULT] = LAYOUT(
-      KC_GRV,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                                       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC,
-      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                                       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    KC_LEAD,  OSL(_RAISE),       OSL(_LOWER), KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                             KC_MPLY, KC_LGUI, KC_LCTL, KC_SPACE, KC_LALT,               KC_ENT,  KC_RSFT, MO(_NAV), LCTL(KC_LALT), KC_SLCK
+      KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
+      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_RCTL,
+      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    KC_LEAD,  L_RAISE, L_LOWER, KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                               KC_MPLY,KC_LGUI,KC_LCTL, KC_SPACE, KC_LALT, KC_ENT,  KC_RSFT, MO(_NAV),KC_RALT, RCTL(KC_SPACE)
     ),
 
 /*
  * Lower Layer: Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |   ~    |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  (   |  )   |        |
+ * |        |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |   ''   |
+ * |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  []  |  {}  |  ()  |  <>  |      |      |ADJUST|  |      |      |      |      |  <   |  >   |  ?   |        |
+ * |        |  ~   |      |  `   |  (   |  '   |      |ADJUST|  |      |      |   "  |  )   |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | Mute |      |      |      |      |  |      |      |      |      |LCTL+ |
- *                        |      |      |      |      |      |  |      |      |      |      | Space|
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LOWER] = LAYOUT(
-      KC_TILDE,KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                        KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, M_DQUOT,
-      _______, M_LRBRC, M_LRCBR, M_LRPRN, M_LRABR, _______, _______,MO(_ADJUST), _______, _______, _______, _______, KC_LT,   KC_GT,   KC_QUES, _______,
-                                 KC_MUTE, _______, _______, _______, _______,    _______, _______, _______, _______, LCTL(KC_SPACE)
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, _______,
+      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,
+      _______, KC_TILDE,_______, KC_GRV,  KC_LPRN, KC_QUOT, _______, MO_ADJT, _______, _______, KC_DQUO, KC_RPRN, KC_LT,   KC_GT,   KC_QUES, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
- * Raise Layer: Function keys, Other modifiers
+ * Raise Layer: Function keys, macros and other states
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
+ * |        |      |      |      |      | F11  |                              | F12  |  {}  |      |  []  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |ADJUST| Del  |      |      |      |      |      |CapsLock|
+ * |        |      |      |      |  ()  |  ''  |      |      |  |ADJUST|      |  ""  |      |  <>  |      |      |CapsLock|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |      |      | RCtrl|      | RAlt |  | Esc  |      |      |      |Insert|
+ *                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_RAISE] = LAYOUT(
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, _______, _______, _______, _______, KC_F11,                                          KC_F12,  _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, MO(_ADJUST),  KC_DEL, _______, _______, _______, _______, _______, KC_CAPS,
-                                 _______, _______, KC_RCTL, _______, KC_RALT,      KC_ESC, _______, _______, _______, KC_INS
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      _______, _______, _______, _______, _______, KC_F11,                                      KC_F12,  M_LRCBR, _______, M_LRBRC, _______, _______,
+      _______, _______, _______, _______, M_LRPRN, M_DQUOT, _______, _______, MO_ADJT, _______, M_DDQUO, _______, M_LRABR, _______, _______, KC_CAPS,
+                                 KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS
 
     ),
 /*
@@ -194,6 +199,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 double_tap_it = false;
                 SEND_STRING("''" SS_TAP(X_LEFT));
                 return false;
+            case M_DDQUO:
+                double_tap_it = false;
+                SEND_STRING("\"\"" SS_TAP(X_LEFT));
+                return false;
             case DBL_TAP:
                 double_tap_it = !double_tap_it;
                 return false;
@@ -260,7 +269,7 @@ static void render_status(void) {
             oled_write_P(PSTR("symbols\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("function/mods\n"), false);
+            oled_write_P(PSTR("func/macro\n"), false);
             break;
         case _NAV:
             oled_write_P(PSTR("numbers/navi\n"), false);
