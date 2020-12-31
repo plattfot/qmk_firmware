@@ -25,6 +25,7 @@ enum custom_keycodes {
     M_LRABR,  // <|>
     M_DQUOT,  // '|'
     M_DDQUO,  // "|"
+    M_DCOLN,  // :|:
     // New keys
     DBL_TAP,  // Repeat next key
 };
@@ -72,20 +73,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Lower Layer: Symbols
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |      |      |        |
+ * |        |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  ~   |      |  `   |  (   |  '   |      |ADJUST|  |      |      |   "  |  )   |  <   |  >   |  ?   |        |
+ * |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |   "  |  '   |  <   |  >   |  /   |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_LOWER] = LAYOUT(
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, _______, _______, _______,
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_QUES, _______,
       _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,
-      _______, KC_TILDE,_______, KC_GRV,  KC_LPRN, KC_QUOT, _______, MO_ADJT, _______, _______, KC_DQUO, KC_RPRN, KC_LT,   KC_GT,   KC_QUES, _______,
+      _______, _______, KC_COLN, KC_LPRN, KC_RPRN, KC_GRV,  _______, MO_ADJT, _______, _______, KC_DQUO, KC_QUOT, KC_LT,   KC_GT,   _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
@@ -96,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |      |      |      |      | F11  |                              | F12  |  {}  |      |  []  |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |  ()  |  ''  |      |      |  |ADJUST|      |  ""  |      |  <>  |      |      |CapsLock|
+ * |        |      |  ::  |  ()  |      |      |      |      |  |ADJUST|      |  ""  |  ''  |  <>  |      |      |CapsLock|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -105,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, _______, _______, _______, _______, KC_F11,                                      KC_F12,  M_LRCBR, _______, M_LRBRC, _______, _______,
-      _______, _______, _______, _______, M_LRPRN, M_DQUOT, _______, _______, MO_ADJT, _______, M_DDQUO, _______, M_LRABR, _______, _______, KC_CAPS,
+      _______, _______, M_DCOLN, M_LRPRN, _______, _______, _______, _______, MO_ADJT, _______, M_DQUOT, M_DDQUO, M_LRABR, _______, _______, KC_CAPS,
                                  KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS
 
     ),
@@ -202,6 +203,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case M_DDQUO:
                 double_tap_it = false;
                 SEND_STRING("\"\"" SS_TAP(X_LEFT));
+                return false;
+            case M_DCOLN:
+                double_tap_it = false;
+                SEND_STRING("::" SS_TAP(X_LEFT));
                 return false;
             case DBL_TAP:
                 double_tap_it = !double_tap_it;
