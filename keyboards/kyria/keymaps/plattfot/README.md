@@ -88,12 +88,12 @@ forward slash.
 Left rotary encoder
 - Rotate: Skip next/previous song
 
-# Raise Layer: Function keys
+# Raise Layer: State keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
+ // |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
+ // |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |      |      |      |      |      |      |      |  |ADJUST|      |      |      |      |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -102,11 +102,8 @@ Left rotary encoder
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Access to the functional keys.
-
-This layer also includes caps lock and insert. They are not heavily
+This layer includes caps lock and insert. They are not heavily
 used in my day to day workflow.
-
 
 ## Notable features on this layer
 
@@ -119,22 +116,23 @@ Right rotary encoder
 
 # Navigation Layer: Number keys, navigation
 ```
+ //
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      |      |                              |      | Left | Up   | Down | Right|        |
+ // |        |      |      |      |      | F11  |                              | F12  | Left | Up   | Down | Right|        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |ADJUST|  |      |      |      |      |      |      |      |        |
+ // |        |  F1  | F2   | F3   | F4   | F5   |      |      |  |      |      | F6   | F7   | F8   | F9   | F10  |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Access to the number as well as the arrow keys. Got use to the number
-row after using [ErgoDox](https://www.ergodox.io/) keyboards for a few
-years. Do not feel I need a numpad layer, which seems to be quite
-common with small keyboards like this.
+Access to the number and function as well as the arrow keys. Got use
+to the number row after using [ErgoDox](https://www.ergodox.io/)
+keyboards for a few years. Do not feel I need a numpad layer, which
+seems to be quite common with small keyboards like this.
 
 # Adjust Layer: RGB
 ```
