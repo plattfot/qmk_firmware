@@ -17,7 +17,7 @@ thumb keys to make it work without them.
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | Dbltap |
+ // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | Clotap |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -56,13 +56,14 @@ for jumping between workspaces. Otherwise I would need to use both
 hands everytime I need to switch. With the leader key I can jump
 between 1-5 with just the left hand.
 
-The double tap key, which I based on a code snippet from a
+The close tap (Clotap) key, which I based on a code snippet from a
 [reddit post](https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8).
-When pressed, it will repeat the next key twice. Reason for this is
-that I found it a bit awkward to hold down the lower key when I need
-to type a symbol twice. Which happens a lot when programming or
-running commands on the command line. Does not save me any key presses
-but more comfortable to type double keys, for example `--` and `&&`.
+When pressed, it will insert the closing equivivalent key and press
+`←` (left arrow). For example tapping Clotap then press `(` will
+result in the keypresses `()←`, if pressing `"` will result in `""←`.
+Really nice to have when programming, it is editor agnostic and saves
+me two keypresses (need to press NAV+j for `←`). It also removes the
+need for having specific macros for these as I had before.
 
 # Lower Layer: Symbols
 ```
@@ -92,9 +93,9 @@ Left rotary encoder
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      | F11  |                              | F12  |  {}  |      |  []  |      |        |
+ // |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |  ::  |  ()  |      |      |      |      |  |ADJUST|      |  ""  |  ''  |  <>  |      |      |CapsLock|
+ // |        |      |      |      |      |      |      |      |  |ADJUST|      |      |      |      |      |      |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  //                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  //                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -115,11 +116,6 @@ Left rotary encoder
 Right rotary encoder
 - Press: Toggle insert mode
 - Rotate: Scrolling between workspaces in `sway`.
-
-Contains macros to quickly type the different types of brackets and
-move the cursor to be inside. For example raise+v will type `()←`,
-where `←` is pressing the left arrow. Really nice to have when
-programming, and it is editor agnostic.
 
 # Navigation Layer: Number keys, navigation
 ```

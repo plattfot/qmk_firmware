@@ -18,21 +18,17 @@
 
 enum custom_keycodes {
     PLACEHOLDER = SAFE_RANGE,  // can always be here
-    // Macros, where | is the cursor
-    M_LRBRC,  // [|]
-    M_LRCBR,  // {|}
-    M_LRPRN,  // (|)
-    M_LRABR,  // <|>
-    M_DQUOT,  // '|'
-    M_DDQUO,  // "|"
-    M_DCOLN,  // :|:
     // New keys
-    DBL_TAP,  // Repeat next key
+    CLO_TAP,  // Close the next key press
 };
 
-// Double Tap feature based on a post from drashna
+// Close tap feature based on a post from drashna
 // https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8/
-static bool double_tap_it = false;
+// Will insert the closing equivalent key and move the cursor inside.
+// For example clo_tap and then ( will result in (|), where | is the
+// cursor. For " it will be "|" as the close equivalent key is the
+// same key.
+static bool close_tap_it = false;
 
 enum layers {
     _DEFAULT,
@@ -54,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | DBLTAP |
+ * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | CLOTAP |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -64,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_DEFAULT] = LAYOUT(
       KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
-      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, DBL_TAP,
+      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CLO_TAP,
       KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    KC_LEAD,  L_RAISE, L_LOWER, KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                KC_MPLY,KC_LGUI,KC_LCTL, KC_SPACE, KC_LALT, KC_RCTL,  KC_ENT, MO(_NAV),KC_RALT, LCTL(KC_SPACE)
     ),
@@ -95,9 +91,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |      |      | F11  |                              | F12  |  {}  |      |  []  |      |        |
+ * |        |      |      |      |      | F11  |                              | F12  |      |      |      |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |  ::  |  ()  |      |      |      |      |  |ADJUST|      |  ""  |  ''  |  <>  |      |      |CapsLock|
+ * |        |      |      |      |      |      |      |      |  |ADJUST|      |      |      |      |      |      |CapsLock|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -105,8 +101,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_RAISE] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-      _______, _______, _______, _______, _______, KC_F11,                                      KC_F12,  M_LRCBR, _______, M_LRBRC, _______, _______,
-      _______, _______, M_DCOLN, M_LRPRN, _______, _______, _______, _______, MO_ADJT, _______, M_DDQUO, M_DQUOT, M_LRABR, _______, _______, KC_CAPS,
+      _______, _______, _______, _______, _______, KC_F11,                                      KC_F12,  _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, MO_ADJT, _______, _______, _______, _______, _______, _______, KC_CAPS,
                                  KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS
 
     ),
@@ -179,50 +175,59 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
-            case M_LRPRN:
-                // Double tap gets messed up with macros, turning it off
-                double_tap_it = false;
-                SEND_STRING("()" SS_TAP(X_LEFT));
-                return false;
-            case M_LRCBR:
-                double_tap_it = false;
-                SEND_STRING("{}" SS_TAP(X_LEFT));
-                return false;
-            case M_LRBRC:
-                double_tap_it = false;
-                SEND_STRING("[]" SS_TAP(X_LEFT));
-                return false;
-            case M_LRABR:
-                double_tap_it = false;
-                SEND_STRING("<>" SS_TAP(X_LEFT));
-                return false;
-            case M_DQUOT:
-                double_tap_it = false;
-                SEND_STRING("''" SS_TAP(X_LEFT));
-                return false;
-            case M_DDQUO:
-                double_tap_it = false;
-                SEND_STRING("\"\"" SS_TAP(X_LEFT));
-                return false;
-            case M_DCOLN:
-                double_tap_it = false;
-                SEND_STRING("::" SS_TAP(X_LEFT));
-                return false;
-            case DBL_TAP:
-                double_tap_it = !double_tap_it;
+            case CLO_TAP:
+                close_tap_it = !close_tap_it;
                 return false;
             case KC_LEAD:
-                double_tap_it = false;
+                close_tap_it = false;
                 return true;
         }
 
-    } else if (double_tap_it &&
-               keycode != DBL_TAP &&
+    } else if (close_tap_it &&
+               keycode != CLO_TAP &&
                keycode != OSL(_RAISE) &&
                keycode != OSL(_LOWER) &&
                keycode != MO(_NAV)) {
-        double_tap_it = false;
-        tap_code16(keycode);
+        close_tap_it = false;
+        switch(keycode)
+        {
+        case KC_LPRN:
+          tap_code16(KC_RPRN);
+          tap_code16(KC_LEFT);
+          break;
+        case KC_RPRN:
+          tap_code16(KC_LEFT);
+          tap_code16(KC_LPRN);
+          break;
+        case KC_LCBR:
+          tap_code16(KC_RCBR);
+          tap_code16(KC_LEFT);
+          break;
+        case KC_RCBR:
+          tap_code16(KC_LEFT);
+          tap_code16(KC_LCBR);
+          break;
+        case KC_LBRC:
+          tap_code16(KC_RBRC);
+          tap_code16(KC_LEFT);
+          break;
+        case KC_RBRC:
+          tap_code16(KC_LEFT);
+          tap_code16(KC_LBRC);
+          break;
+        case KC_LT:
+          tap_code16(KC_GT);
+          tap_code16(KC_LEFT);
+          break;
+        case KC_GT:
+          tap_code16(KC_LEFT);
+          tap_code16(KC_LT);
+          break;
+        default:
+          tap_code16(keycode);
+          tap_code16(KC_LEFT);
+          break;
+        }
     }
 
     return true;
@@ -274,7 +279,7 @@ static void render_status(void) {
             oled_write_P(PSTR("symbols\n"), false);
             break;
         case _RAISE:
-            oled_write_P(PSTR("func/macro\n"), false);
+            oled_write_P(PSTR("functions\n"), false);
             break;
         case _NAV:
             oled_write_P(PSTR("numbers/navi\n"), false);
@@ -290,15 +295,15 @@ static void render_status(void) {
     led_t led_state = host_keyboard_led_state();
     if (led_state.num_lock) {
         oled_write_P(PSTR("NUMLCK "), false);
-    } else if (double_tap_it) {
-        oled_write_P(PSTR("Double "), false);
+    } else if (close_tap_it) {
+        oled_write_P(PSTR("Close  "), false);
     } else {
         oled_write_P(PSTR("       "), false);
     }
 
     if (led_state.caps_lock) {
         oled_write_P(PSTR("CAPLCK "), false);
-    } else if (double_tap_it) {
+    } else if (close_tap_it) {
         oled_write_P(PSTR("Tap    "), false);
     } else {
         oled_write_P(PSTR("       "), false);
