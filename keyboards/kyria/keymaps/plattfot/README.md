@@ -11,6 +11,10 @@ This keymap avoids [Mod-tap](https://docs.qmk.fm/#/mod_tap) as they do
 not work for me. [Kyria](https://github.com/splitkb/kyria) has enough
 thumb keys to make it work without them.
 
+The symbols are split into two layers, one for each hand. Then the
+layers are activated by the opposite thumb. Found that having all
+symbols on one layer then have one thumb activate them made it awkward
+to press keys with the index finger on the same hand.
 
 # Base Layer: Default
 ```
@@ -65,45 +69,44 @@ Really nice to have when programming, it is editor agnostic and saves
 me two keypresses (need to press NAV+j for `←`). It also removes the
 need for having specific macros for these as I had before.
 
-# Lower Layer: Symbols
+# Lower Layer: Left symbols
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |  !   |  @   |  #   |  $   |  %   |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
+ // |        |  !   |  @   |  #   |  $   |  %   |                              |      |      |      |      |      |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |  |   |  _   |  \   |  -   |  +   |                              |   =  |  {   |  }   |  [   |  ]   |        |
+ // |        |  |   |  _   |  \   |  -   |  +   |                              |      |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |   "  |  '   |  <   |  >   |  /   |        |
+ // |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |      |      |      |      |      |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Contains most of the symbols, only exceptions are those that are
-already on the default US base layer, colon, punctuation, comma and
-forward slash.
+Symbols for the left hand. 
 
 ## Notable features on this layer
 
 Left rotary encoder
 - Rotate: Skip next/previous song
 
-# Raise Layer: State keys
+# Raise Layer: Right symbols + state keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ // |        |      |      |      |      |      |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ // |        |      |      |      |      |      |                              |   =  |  {   |  }   |  [   |  ]   |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |      |  |ADJUST|      |      |      |      |      |      |CapsLock|
+ // |        |      |      |      |      |      |      |      |  |ADJUST|      |   "  |  '   |  <   |  >   |  /   |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  //                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-This layer includes caps lock and insert. They are not heavily
-used in my day to day workflow.
+Symbols for the right hand.
+
+This layer also includes caps lock and insert.
 
 ## Notable features on this layer
 
