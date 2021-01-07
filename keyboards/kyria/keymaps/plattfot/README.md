@@ -17,26 +17,19 @@ thumb keys to make it work without them.
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | RCtl   |
+ // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | Dbltap |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | Enter|RShift| NAV  | AltGr|LCTL+ |
+ //                        | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | AltGr|LCtrl+|
  //                        |      |      |      |      |      |  |      |      |      |      | Space|
  //                        `----------------------------------'  `----------------------------------'
 ```
 
 Setup for using the
 [EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout. As
-it's annoying to have to toggle us and swedish layout.
-
-Modifiers are mostly on the left hand, to make it comfortable when
-require keyboard and mouse. For example working in a DCC (Digital
-Content Creation tool) like [Houdini](https://www.sidefx.com/) and
-[Maya](https://www.autodesk.com/products/maya/overview).
-
-Right control key is on the right pinky, to make less awkward to use
-key-combinations that involves pressing ctrl and alt.
+it's annoying to have to toggle us and swedish layout which shifts
+symbols around.
 
 AltGr is used to access the extra keys in the
 [EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout.
@@ -50,7 +43,7 @@ Left rotary encoder
 Right rotary encoder
 - Press: Ctrl + Space: which is used to activate a region in emacs.
   It's not super awkward to press with the left hand, but this makes
-  it a lot easier.
+  it a bit easier.
 
 - Rotate: Page up/Page down. Used mouse scrolling at first. But
           scrolling only works in the window where the mouse pointer
@@ -61,9 +54,15 @@ Right rotary encoder
 [Leader key](https://docs.qmk.fm/#/feature_leader_key) is mainly used
 for jumping between workspaces. Otherwise I would need to use both
 hands everytime I need to switch. With the leader key I can jump
-between 1-5 with just the left hand. The right rotary encoder also
-helps jumping back and forth between two workspaces by just pressing
-down my right palm.
+between 1-5 with just the left hand.
+
+The double tap key, which I based on a code snippet from a
+[reddit post](https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8).
+When pressed, it will repeat the next key twice. Reason for this is
+that I found it a bit awkward to hold down the lower key when I need
+to type a symbol twice. Which happens a lot when programming or
+running commands on the command line. Does not save me any key presses
+but more comfortable to type double keys, for example `--` and `&&`.
 
 # Lower Layer: Symbols
 ```
@@ -80,8 +79,8 @@ down my right palm.
 ```
 
 Contains most of the symbols, only exceptions are those that are
-already on the default US base layer e.g. punctuation and forward
-slash.
+already on the default US base layer, colon, punctuation, comma and
+forward slash.
 
 ## Notable features on this layer
 
@@ -102,8 +101,7 @@ Left rotary encoder
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Access to the functional keys, which I mostly use to run `emacs`
-compilation mode.
+Access to the functional keys.
 
 This layer also includes caps lock and insert. They are not heavily
 used in my day to day workflow.
