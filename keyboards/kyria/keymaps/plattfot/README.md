@@ -69,12 +69,12 @@ Really nice to have when programming, it is editor agnostic and saves
 me two keypresses (need to press NAV+j for `←`). It also removes the
 need for having specific macros for these as I had before.
 
-# Lower Layer: Left symbols
+# Lower Layer: Left symbols/Right function keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |  !   |  @   |  #   |  $   |  %   |                              |      |      |      |      |      |        |
+ // |        |  !   |  @   |  #   |  $   |  %   |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |  |   |  _   |  \   |  -   |  +   |                              |      |      |      |      |      |        |
+ // |        |  |   |  _   |  \   |  -   |  +   |                              | F12  |      |      |      |      |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |      |      |      |      |      |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -83,19 +83,29 @@ need for having specific macros for these as I had before.
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Symbols for the left hand. 
+Symbols for the left hand, function keys for the right hand.
+
+I had the function keys at the bottom on the navigation layer. But it
+was annoying when typing version strings. Hitting f1-5+f11 involved
+both hands. And it turned out that my keybinding for closing a window
+(Super+Shift+c) and rebooting my machine (Super+Shift+f3) ended up on
+the same physical keys.
+
+Splitting them up like this allows me to hit all the function keys
+with just one hand and I wont accidentally reboot my machine when
+trying to close a window.
 
 ## Notable features on this layer
 
 Left rotary encoder
 - Rotate: Skip next/previous song
 
-# Raise Layer: Right symbols + state keys
+# Raise Layer: Left function/Right symbols + state keys
 ```
  // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |      |      |      |      |      |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
+ // |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |   ^  |  &   |  //   |  ~   |  ?   |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      |      |                              |   =  |  {   |  }   |  [   |  ]   |        |
+ // |        |      |      |      |      | F11  |                              |   =  |  {   |  }   |  [   |  ]   |        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  // |        |      |      |      |      |      |      |      |  |ADJUST|      |   "  |  '   |  <   |  >   |  /   |CapsLock|
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
@@ -104,7 +114,7 @@ Left rotary encoder
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Symbols for the right hand.
+Function keys for the left hand, symbols for the right hand. 
 
 This layer also includes caps lock and insert.
 
@@ -123,19 +133,19 @@ Right rotary encoder
  // ,-------------------------------------------.                              ,-------------------------------------------.
  // |        |   1  |  2   |  3   |  4   |  5   |                              |  6   |  7   |  8   |  9   |  0   |        |
  // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      | F11  |                              | F12  | Left | Up   | Down | Right|        |
+ // |        |      |      |      |      |      |                              |      | Left | Up   | Down | Right|        |
  // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |  F1  | F2   | F3   | F4   | F5   |      |      |  |      |      | F6   | F7   | F8   | F9   | F10  |        |
+ // |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
  // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        |      |      |      |      |      |  |      |      |      |      |      |
  //                        `----------------------------------'  `----------------------------------'
 ```
 
-Access to the number and function as well as the arrow keys. Got use
-to the number row after using [ErgoDox](https://www.ergodox.io/)
-keyboards for a few years. Do not feel I need a numpad layer, which
-seems to be quite common with small keyboards like this.
+Access to the number and the arrow keys. Got use to the number row
+after using [ErgoDox](https://www.ergodox.io/) keyboards for a few
+years. Do not feel I need a numpad layer, which seems to be quite
+common with small keyboards like this.
 
 # Adjust Layer: RGB
 ```
