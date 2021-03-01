@@ -286,7 +286,7 @@ static void render_status(void) {
             oled_write_P(PSTR("<-fun/sym->\n"), false);
             break;
         case _NAV:
-            oled_write_P(PSTR("num/fun/nav\n"), false);
+            oled_write_P(PSTR("num/nav\n"), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("adjust\n"), false);
