@@ -16,18 +16,30 @@ layers are activated by the opposite thumb. Found that having all
 symbols on one layer then have one thumb activate them made it awkward
 to press keys with the index finger on the same hand.
 
+Custom feature I call the close tap (Clotap) key, I based on a code
+snippet from a
+[reddit post](https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8).
+When pressed, it will insert the closing equivivalent key and press
+`←` (left arrow). For example tapping Clotap then press `(` will
+result in the keypresses `()←`, if pressing `"` will result in `""←`,
+if pressing `)` will result in `)←(`. Really nice to have when
+programming, it is editor agnostic and saves me two keypresses (need
+to press NAV+j for `←`). It also removes the need for having specific
+macros for these as I had before.
+
+
 # Base Layer: Default
 ```
- // ,-------------------------------------------.                              ,-------------------------------------------.
- // |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
- // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | Clotap |
- // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
- // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | AltGr|LCtrl+|
- //                        |      |      |      |      |      |  |      |      |      |      | Space|
- //                        `----------------------------------'  `----------------------------------'
+//  ,-------------------------------------------.                              ,-------------------------------------------.
+//  |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  Del   |
+//  |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+//  |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  |   ;  |   '    |
+//  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+//  | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  |   ,  |   .  |   /  | RShift |
+//  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+//                         | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | RALT |LCTL+ |
+//                         |      |      |      |      |      |  |      |      |      |      | Space|
+//                         `----------------------------------'  `----------------------------------'
 ```
 
 Setup for using the
@@ -60,27 +72,18 @@ for jumping between workspaces. Otherwise I would need to use both
 hands everytime I need to switch. With the leader key I can jump
 between 1-5 with just the left hand.
 
-The close tap (Clotap) key, which I based on a code snippet from a
-[reddit post](https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8).
-When pressed, it will insert the closing equivivalent key and press
-`←` (left arrow). For example tapping Clotap then press `(` will
-result in the keypresses `()←`, if pressing `"` will result in `""←`.
-Really nice to have when programming, it is editor agnostic and saves
-me two keypresses (need to press NAV+j for `←`). It also removes the
-need for having specific macros for these as I had before.
-
 # Lower Layer: Left symbols/Right function keys
 ```
- // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |  !   |  @   |  #   |  $   |  %   |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
- // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |  |   |  _   |  \   |  -   |  +   |                              | F12  |      |      |      |      |        |
- // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |      |      |      |      |      |        |
- // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      |      |      |
- //                        |      |      |      |      |      |  |      |      |      |      |      |
- //                        `----------------------------------'  `----------------------------------'
+//  ,-------------------------------------------.                              ,-------------------------------------------.
+//  |        |  !   |  @   |  #   |  $   |  %   |                              |  F6  |  F7  |  F8  |  F9  | F10  |        |
+//  |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+//  |        |  |   |  _   |  \   |  -   |  +   |                              | F12  |      |      |      |      |        |
+//  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+//  |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |CLOTAP|      |      |      |      |        |
+//  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+//                         |      |      |      |      |      |  |      |      |      |      |      |
+//                         |      |      |      |      |      |  |      |      |      |      |      |
+//                         `----------------------------------'  `----------------------------------'
 ```
 
 Symbols for the left hand, function keys for the right hand.
@@ -100,18 +103,22 @@ trying to close a window.
 Left rotary encoder
 - Rotate: Skip next/previous song
 
+Clotap on the right hand.
+
+Has two Eurkey specific symbols `°` and `×` on the left hand.
+
 # Raise Layer: Left function/Right symbols + state keys
 ```
- // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |   ^  |  &   |  //   |  ~   |  ?   |        |
- // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        |      |      |      |      | F11  |                              |   =  |  {   |  }   |  [   |  ]   |        |
- // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      |      |      |      |      |      |      |  |ADJUST|      |   "  |  '   |  <   |  >   |  /   |CapsLock|
- // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
- //                        |      |      |      |      |      |  |      |      |      |      |      |
- //                        `----------------------------------'  `----------------------------------'
+//  ,-------------------------------------------.                              ,-------------------------------------------.
+//  |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
+//  |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+//  |        |      |      |      |      | F11  |                              |   =  |  {   |  }   |  [   |  ]   |   `    |
+//  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+//  |        |      |      |      |      |CLOTAP|      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
+//  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+//                         | Mute |      |      |      |      |  |      |      |      |      |Insert|
+//                         |      |      |      |      |      |  |      |      |      |      |      |
+//                         `----------------------------------'  `----------------------------------'
 ```
 
 Function keys for the left hand, symbols for the right hand. 
@@ -126,6 +133,8 @@ Left rotary encoder
 Right rotary encoder
 - Press: Toggle insert mode
 - Rotate: Scrolling between workspaces in `sway`.
+
+Clotap on the left hand.
 
 # Navigation Layer: Number keys, navigation
 ```

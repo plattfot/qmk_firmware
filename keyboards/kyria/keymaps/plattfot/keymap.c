@@ -42,6 +42,9 @@ enum layers {
 #define L_RAISE OSL(_RAISE)
 #define L_LOWER OSL(_LOWER)
 #define L_NAV   MO(_NAV)
+#define EU_TDOT RSA(KC_SLSH)
+#define EU_CDOT RALT(KC_EQUAL)
+#define EU_DEG  RALT(KC_SCLN)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -49,11 +52,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Default
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | Del    |
+ * |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  Del   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : | CLOTAP |
+ * |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  |   ;  |   '    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  | ,  < | . >  | /  ? | RShift |
+ * | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  |   ,  |   .  |   /  | RShift |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | RALT |LCTL+ |
  *                        |      |      |      |      |      |  |      |      |      |      | Space|
@@ -61,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_DEFAULT] = LAYOUT(
       KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
-      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CLO_TAP,
+      KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
       KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    KC_LEAD,  L_RAISE, L_LOWER, KC_BSPC, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                KC_MPLY,KC_LGUI,KC_LCTL, KC_SPACE, KC_LALT, KC_RCTL,  KC_ENT, L_NAV,   KC_RALT, LCTL(KC_SPACE)
     ),
@@ -74,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  |   |  _   |  \   |  -   |  +   |                              | F12  |      |      |      |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |  :   |  (   |  )   |  `   |      |ADJUST|  |      |      |      |      |      |      |      |        |
+ * |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |CLOTAP|      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -83,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT(
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
       _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     KC_F12,  _______, _______, _______, _______, _______,
-      _______, _______, KC_COLN, KC_LPRN, KC_RPRN, KC_GRV,  _______, MO_ADJT, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, _______, MO_ADJT, _______, _______, CLO_TAP, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
@@ -92,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      |      |      | F11  |                              |   =  |  {   |  }   |  [   |  ]   |        |
+ * |        |      |      |      |      | F11  |                              |   =  |  {   |  }   |  [   |  ]   |   `    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      |      |      |      |      |      |  |ADJUST|      |   "  |  '   |  <   |  >   |  /   |CapsLock|
+ * |        |      |      |      |      |CLOTAP|      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | Mute |      |      |      |      |  |      |      |      |      |Insert|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -102,8 +105,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_RAISE] = LAYOUT(
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                       KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_QUES, _______,
-      _______, _______, _______, _______, _______, KC_F11,                                      KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______,
-      _______, _______, _______, _______, _______, _______, _______, _______, MO_ADJT, _______, KC_DQUO, KC_QUOT, KC_LT,   KC_GT,   _______, KC_CAPS,
+      _______, _______, _______, _______, _______, KC_F11,                                      KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
+      _______, _______, _______, _______, _______, CLO_TAP, _______, _______, MO_ADJT, _______, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   _______, KC_CAPS,
                                  KC_MUTE, _______, _______, _______, _______, _______, _______, _______, _______, KC_INS
 
     ),
