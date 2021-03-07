@@ -28,7 +28,16 @@ enum custom_keycodes {
 // For example clo_tap and then ( will result in (|), where | is the
 // cursor. For " it will be "|" as the close equivalent key is the
 // same key.
-static bool close_tap_it = false;
+enum close_tap_modes {
+  CLO_DISABLED = 0x000,
+  CLO_PRESSED  = 0x001, // Close tap key is pressed
+  CLO_ACTIVE   = 0x010, // Close tap next keypress
+  CLO_USED     = 0x100, // Turn off when close tap key is released
+};
+
+#define CLO_RELEASE(flag) flag & ~CLO_PRESSED
+
+static enum close_tap_modes close_tap_it = CLO_DISABLED;
 
 enum layers {
     _DEFAULT,
@@ -180,19 +189,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
             case CLO_TAP:
-                close_tap_it = !close_tap_it;
+                close_tap_it = close_tap_it & CLO_ACTIVE?
+                    CLO_USED:
+                    CLO_ACTIVE|CLO_PRESSED;
                 return false;
             case KC_LEAD:
-                close_tap_it = false;
+                close_tap_it = CLO_DISABLED;
                 return true;
         }
-
-    } else if (close_tap_it &&
+    } else if (close_tap_it & CLO_ACTIVE &&
                keycode != CLO_TAP &&
                keycode != OSL(_RAISE) &&
                keycode != OSL(_LOWER) &&
                keycode != MO(_NAV)) {
-        close_tap_it = false;
+
+        close_tap_it = close_tap_it & CLO_PRESSED?
+            close_tap_it | CLO_USED:
+            CLO_DISABLED;
         switch(keycode)
         {
         case KC_LPRN:
@@ -231,6 +244,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           tap_code16(keycode);
           tap_code16(KC_LEFT);
           break;
+        }
+    } else {
+        switch (keycode) {
+            case CLO_TAP:
+                close_tap_it = close_tap_it & CLO_USED?
+                    CLO_DISABLED:
+                    CLO_RELEASE(close_tap_it);
         }
     }
 
