@@ -20,18 +20,22 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
   state->target_lcd_color = LCD_COLOR(150, saturation, 0xFF);
 
   if (state->status.layer & 0x10) {
-#ifdef MASTER_IS_ON_RIGHT
-    state->layer_text = "Backlight";
-#else
-    state->layer_text = "Mouse";
-#endif
+    state->layer_text = "Adjust";
     state->target_lcd_color = LCD_COLOR(0, saturation, 0xFF);
   } else if (state->status.layer & 0x8) {
-    state->layer_text = "Media";
+    state->layer_text = "Num/Nav";
   } else if (state->status.layer & 0x4) {
+#ifdef MASTER_IS_ON_RIGHT
     state->layer_text = "Symbol";
+#else
+    state->layer_text = "Function";
+#endif
   } else if (state->status.layer & 0x2) {
-    state->layer_text = "Game";
+#ifdef MASTER_IS_ON_RIGHT
+    state->layer_text = "Function";
+#else
+    state->layer_text = "Symbol";
+#endif
   } else {
     state->layer_text = "Default";
   }

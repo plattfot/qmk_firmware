@@ -5,3 +5,4 @@ ifeq ($(KEYBOARD),ergodox_infinity)
   BACKLIGHT_ENABLE = yes
   VISUALIZER_ENABLE = yes
 endif
+LEADER_ENABLE = yes
