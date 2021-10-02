@@ -37,8 +37,8 @@ macros for these as I had before.
 //  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 //  | LShift |   Z  |   X  |   C  |   V  |   B  | Lead | RAISE|  | LOWER|BSpace|   N  |   M  |   ,  |   .  |   /  | RShift |
 //  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
-//                         | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | RALT |Scroll|
-//                         |      |      |      |      |      |  |      |      |      |      | Lock |
+//                         | MPlay| GUI  | LCtrl| Space| LALT |  | RCtrl| Enter| NAV  | RALT | Mic  |
+//                         |      |      |      |      |      |  |      |      |      |      | Mute |
 //                         `----------------------------------'  `----------------------------------'
 ```
 
@@ -57,7 +57,7 @@ Left rotary encoder
 - Rotate: Volume control
 
 Right rotary encoder
-- Press: Scroll lock
+- Press: Mic Mute (F20)
 - Rotate: Page up/Page down. Used mouse scrolling at first. But
           scrolling only works in the window where the mouse pointer
           is. Which kind of defeated the purpose of having the scroll
@@ -76,7 +76,7 @@ between 1-5 with just the left hand.
 //  |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
 //  |        |  |   |  _   |  \   |  -   |  +   |                              | F12  |      |      |      |      |        |
 //  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-//  |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |CLOTAP|      |      |      |      |        |
+//  | Insert |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |CLOTAP|      |      |      |      |        |
 //  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
 //                         |      |      |      |      |      |  |      |      |      |      |      |
 //                         |      |      |      |      |      |  |      |      |      |      |      |
@@ -113,22 +113,19 @@ Has two Eurkey specific symbols `°` and `×` on the left hand.
 //  |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 //  |        |      |      |      |      |CLOTAP|      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
 //  `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
-//                         | Mute |      |      |      |      |  |      |      |      |      |Insert|
+//                         |      |      |      |      |      |  |      |      |      |      | Mute |
 //                         |      |      |      |      |      |  |      |      |      |      |      |
 //                         `----------------------------------'  `----------------------------------'
 ```
 
-Function keys for the left hand, symbols for the right hand. 
+Function keys for the left hand, symbols for the right hand.
 
 This layer also includes caps lock and insert.
 
 ## Notable features on this layer
 
-Left rotary encoder
-- Press: mute
-
 Right rotary encoder
-- Press: Toggle insert mode
+- Press: mute
 - Rotate: Scrolling between workspaces in `sway`.
 
 Clotap on the left hand.
