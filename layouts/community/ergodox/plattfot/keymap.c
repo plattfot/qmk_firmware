@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------| Lead |           |  BS  |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           '-------------+------+------+------+------+--------'
- *   |VolDn |VolUp | Play | LGUI | LCTL |                                       |  NAV | RAlt | SCLK | PgDn | PgUp |
+ *   |VolDn |VolUp | Play | LGUI | LCTL |                                       |  NAV | RAlt | SCLK | PgUp | PgDn |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,---------------.
  *                                        | Raise|      |       |      |  Lower |
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         CLO_TAP,  KC_Y,   KC_U,      KC_I,    KC_O,    KC_P,    _______,
                   KC_H,   KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT,
         KC_BSPC,  KC_N,   KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                          L_NAV,     KC_RALT, KC_SLCK, KC_PGDN, KC_PGUP,
+                          L_NAV,     KC_RALT, KC_SLCK, KC_PGUP, KC_PGDN,
         _______,  L_LOWER,
         _______,
         _______,  KC_RCTRL, KC_ENT
