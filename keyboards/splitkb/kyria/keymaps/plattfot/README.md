@@ -34,7 +34,7 @@ the need for having specific macros for these as I had before.
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 // | LShift |   Z  |   X  |   C  |   V  |   B  |      | RAISE|  | LOWER|      |   N  |   M  |   ,  |   .  |   /  | RShift |
 // `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
-//                        | MPlay| AltGr| LGUI |      | LAlt |  | RCtrl|      | RGUI | AltGr| Mic  |
+//                        | MPlay| AltGr| LGUI |      | LCtrl|  | LAlt |      | RGUI | AltGr| Mic  |
 //                        |      |      |      |      |      |  |      |      |      |      | Mute |
 //                        `----------------------------------'  `----------------------------------'
 ```
@@ -66,7 +66,7 @@ Right rotary encoder
 // ,-------------------------------------------.                              ,-------------------------------------------.
 // |        |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   |  0   |        |
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | LAlt   |
+// |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | RCtrl  |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 // | Insert |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
@@ -84,6 +84,9 @@ was the best way I came up with.
 
 This layer also includes insert.
 
+A LCtrl key is added on the far right as there is no other Ctrl key on
+the right half of the keyboard.
+
 ## Notable features on this layer
 
 Left rotary encoder
@@ -93,16 +96,12 @@ Clotap on the right hand.
 
 Has two Eurkey specific symbols `°` and `×` on the left hand.
 
-A LAlt key is added on the far right as there is no other Alt key on
-the right side of the keyboard. As RAlt aka AltGr does not work as a
-regular alt key.
-
 # Raise Layer: Left number/function | Right symbols
 ```
 // ,-------------------------------------------.                              ,-------------------------------------------.
 // |        |  1   |  2   |  3   |  4   |  5   |                              |   ^  |  &   |  *   |  ~   |  ?   |  Del   |
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// | LCtrl  |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
+// | LAlt   |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 // |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
@@ -123,8 +122,8 @@ Right rotary encoder
 
 Clotap on the left hand.
 
-A LCtrl key is added on the far right as there is no other Ctrl key on
-the left side of the keyboard.
+A LAlt key is added on the far left as there is no other Alt key on
+the left half of the keyboard.
 
 # Adjust Layer: RGB
 ```
