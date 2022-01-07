@@ -47,6 +47,12 @@ one on each hand to make it easier to type, by following the same
 principle as the split symbol layers. I.e hold down AltGr on the
 opposite hand that's typing.
 
+Combos are enable to easier type the three extra Swedish characters.
+
+`o`+`e` → ö
+`a`+`.` → ä
+`w`+`.` → å
+
 ## Notable features on this layer
 
 Left rotary encoder
