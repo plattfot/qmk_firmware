@@ -46,6 +46,25 @@ enum layers {
     _ADJUST,
 };
 
+enum combo_events {
+  C_OE, // ö
+  C_AE, // ä
+  C_AO, // å
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_A, KC_DOT, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {KC_W, KC_DOT, COMBO_END};
+
+combo_t key_combos[] = {
+ [C_OE] = COMBO_ACTION(oe_combo),
+ [C_AE] = COMBO_ACTION(ae_combo),
+ [C_AO] = COMBO_ACTION(ao_combo),
+};
+
+
 #define MO_ADJT MO(_ADJUST)
 #define L_RAISE OSL(_RAISE)
 #define L_LOWER OSL(_LOWER)
@@ -364,3 +383,23 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 #endif
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case C_OE:
+      if (pressed) {
+        tap_code16(RALT(KC_O));
+      }
+      break;
+    case C_AE:
+      if (pressed) {
+        tap_code16(RALT(KC_A));
+      }
+      break;
+    case C_AO:
+      if (pressed) {
+        tap_code16(RALT(KC_W));
+      }
+      break;
+  }
+}
