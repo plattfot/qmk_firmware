@@ -88,9 +88,6 @@ I merged the navigation layer and the right side of this layer. I need
 to reduce the inner keys as my thumbs started to get tired. And this
 was the best way I came up with.
 
-A LCtrl key is added on the far right as there is no other Ctrl key on
-the right half of the keyboard.
-
 This layer also includes insert.
 
 ## Notable features on this layer
@@ -127,9 +124,6 @@ Right rotary encoder
 - Rotate: Scrolling between workspaces in `sway`.
 
 Clotap on the left hand.
-
-A LAlt key is added on the far left as there is no other Alt key on
-the left half of the keyboard.
 
 # Adjust Layer: RGB
 ```
