@@ -3,8 +3,8 @@
 ![Keyboard](https://i.imgur.com/mcefoHnh.jpg)
 
 Designed to be ease of use when programming, typing in both English
-and Swedish and navigating around in a tiling window manager, in my
-case [sway](https://swaywm.org/). Uses the two rotary encoders (lower left/right thumb
+and Swedish and navigating around in a tiling window manager (in my
+case [sway](https://swaywm.org/)). Uses the two rotary encoders (lower left/right thumb
 row) as two palm buttons.
 
 This keymap avoids [Mod-tap](https://docs.qmk.fm/#/mod_tap) as they do not work for me. [Kyria](https://github.com/splitkb/kyria)
@@ -28,7 +28,7 @@ the need for having specific macros for these as I had before.
 ```
 //
 // ,-------------------------------------------.                              ,-------------------------------------------.
-// |  Esc   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | BSpace |
+// |  Del   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  | BSpace |
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
 // |  Tab   |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  |   ;  |   '    |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -72,7 +72,7 @@ Right rotary encoder
 // ,-------------------------------------------.                              ,-------------------------------------------.
 // |        |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   |  0   |        |
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | RCtrl  |
+// |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   |        |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 // | Insert |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
@@ -102,9 +102,9 @@ Has two Eurkey specific symbols `°` and `×` on the left hand.
 # Raise Layer: Left number/function | Right symbols
 ```
 // ,-------------------------------------------.                              ,-------------------------------------------.
-// |        |  1   |  2   |  3   |  4   |  5   |                              |   ^  |  &   |  *   |  ~   |  ?   |  Del   |
+// |        |  1   |  2   |  3   |  4   |  5   |                              |   ^  |  &   |  *   |  ~   |  ?   |        |
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// | LAlt   |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
+// |        |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 // |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
