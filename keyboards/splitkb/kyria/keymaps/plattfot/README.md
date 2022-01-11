@@ -74,7 +74,7 @@ Right rotary encoder
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
 // |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | RCtrl  |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-// |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |CapsLock|
+// | Insert |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
 //                        |      |      |      |      |      |  |      |      |      |      |      |
 //                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -91,7 +91,7 @@ was the best way I came up with.
 A LCtrl key is added on the far right as there is no other Ctrl key on
 the right half of the keyboard.
 
-This layer also includes caps lock.
+This layer also includes insert.
 
 ## Notable features on this layer
 
@@ -109,7 +109,7 @@ Has two Eurkey specific symbols `°` and `×` on the left hand.
 // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
 // | LAlt   |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
 // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-// | Insert |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |        |
+// |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |CapsLock|
 // `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
 //                        |      |      |      |      |      |  |      |      |      |      | Mute |
 //                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -118,7 +118,7 @@ Has two Eurkey specific symbols `°` and `×` on the left hand.
 
 Number/Function keys for the left hand, symbols for the right hand.
 
-This layer also includes insert.
+This layer also includes caps lock.
 
 ## Notable features on this layer
 
