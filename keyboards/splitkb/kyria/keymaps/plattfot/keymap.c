@@ -40,9 +40,11 @@ enum close_tap_modes {
 static enum close_tap_modes close_tap_it = CLO_DISABLED;
 
 enum layers {
-    _DEFAULT,
-    _LOWER,
-    _RAISE,
+    _BASE,
+    _L_LOWER,
+    _L_RAISE,
+    _R_LOWER,
+    _R_RAISE,
     _ADJUST,
 };
 
@@ -66,11 +68,24 @@ combo_t key_combos[] = {
 
 
 #define MO_ADJT MO(_ADJUST)
-#define L_RAISE OSL(_RAISE)
-#define L_LOWER OSL(_LOWER)
+#define L_LOWER OSL(_L_LOWER)
+#define L_RAISE OSL(_L_RAISE)
+#define R_LOWER OSL(_R_LOWER)
+#define R_RAISE OSL(_R_RAISE)
 #define EU_TDOT RSA(KC_SLSH)
 #define EU_CDOT RALT(KC_EQUAL)
 #define EU_DEG  RALT(KC_SCLN)
+
+#define OS_LSFT OSM(KC_LSFT)
+#define OS_LCTL OSM(KC_LCTL)
+#define OS_LALT OSM(KC_LALT)
+#define OS_LGUI OSM(KC_LGUI)
+
+#define OS_RSFT OSM(KC_RSFT)
+#define OS_RCTL OSM(KC_RCTL)
+#define OS_RALT OSM(KC_RALT)
+#define OS_RGUI OSM(KC_RGUI)
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -88,32 +103,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      | Mute |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_DEFAULT] = LAYOUT(
+    [_BASE] = LAYOUT(
       KC_ESC,  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
       KC_TAB,  KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    XXXXXXX,  L_RAISE, L_LOWER, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+      KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,    XXXXXXX,  L_RAISE, R_LOWER, XXXXXXX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                KC_MPLY,KC_RALT,KC_LGUI, KC_SPACE, KC_LCTL, KC_LALT,  KC_ENT, KC_RGUI, KC_RALT, KC_F20
     ),
 
 /*
  * Lower Layer: Left symbols
  *
- * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   |  0   |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | LAlt   |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |CapsLock|
- * `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        `----------------------------------'  `----------------------------------'
  */
-    [_LOWER] = LAYOUT(
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT,KC_RCTL,
-      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_CAPS,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    [_L_LOWER] = LAYOUT(
+      _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4), G(KC_5),                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______,TO(_BASE),_______, _______, _______
     ),
 /*
  * Raise Layer: Right symbols
@@ -129,11 +134,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_RAISE] = LAYOUT(
+    [_L_RAISE] = LAYOUT(
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_QUES, KC_DEL,
       KC_LALT, KC_F11,  KC_F12,  KC_F13,  KC_F14,  CLO_TAP,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
       KC_INS,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX, _______, MO_ADJT, XXXXXXX, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE
+                                 _______, _______, _______, L_LOWER, _______, _______, _______, _______, _______, KC_MUTE
+
+    ),
+
+
+/*
+ * Lower Layer: Left symbols
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   |  0   |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   | LAlt   |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |CapsLock|
+ * `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_R_LOWER] = LAYOUT(
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT,KC_RCTL,
+      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_CAPS,
+                                 _______, _______, _______, _______, _______, _______, R_RAISE, _______, _______, _______
+    ),
+/*
+ * Raise Layer: Right symbols
+ */
+    [_R_RAISE] = LAYOUT(
+      _______, _______, _______, _______, _______, _______,                                     G(KC_6), G(KC_7), G(KC_8), G(KC_9), G(KC_0), _______,
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______,TO(_BASE),_______, _______, _______, _______, _______, _______
 
     ),
 
@@ -197,8 +234,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     } else if (close_tap_it & CLO_ACTIVE &&
                keycode != CLO_TAP &&
-               keycode != OSL(_RAISE) &&
-               keycode != OSL(_LOWER)) {
+               keycode != OSL(_R_RAISE) &&
+               keycode != OSL(_R_LOWER) &&
+               keycode != OSL(_L_RAISE) &&
+               keycode != OSL(_L_LOWER)) {
 
         close_tap_it = close_tap_it & CLO_PRESSED?
             close_tap_it | CLO_USED:
@@ -284,14 +323,20 @@ static void render_status(void) {
     // Host Keyboard Layer Status
     oled_write_P(PSTR("Layer: "), false);
     switch (get_highest_layer(layer_state)) {
-        case _DEFAULT:
+        case _BASE:
             oled_write_P(PSTR("base\n"), false);
             break;
-        case _LOWER:
+        case _R_LOWER:
             oled_write_P(PSTR("<-sym|fun->\n"), false);
             break;
-        case _RAISE:
+        case _L_RAISE:
             oled_write_P(PSTR("<-fun|sym->\n"), false);
+            break;
+        case _L_LOWER:
+            oled_write_P(PSTR("<-shortcuts\n"), false);
+            break;
+        case _R_RAISE:
+            oled_write_P(PSTR("shortcuts->\n"), false);
             break;
         case _ADJUST:
             oled_write_P(PSTR("adjust\n"), false);
@@ -335,7 +380,7 @@ bool oled_task_user(void) {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         switch (get_highest_layer(layer_state)) {
-            case _LOWER:
+            case _R_LOWER:
                 // Skip/Prev song
                 if (clockwise) {
                     tap_code(KC_MNXT);
@@ -358,7 +403,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
-            case _RAISE:
+            case _R_RAISE:
                 // Scroll through the workspaces
                 if (clockwise) {
                     tap_code16(G(KC_GT));
