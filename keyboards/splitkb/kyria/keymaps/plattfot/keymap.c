@@ -46,6 +46,7 @@ enum layers {
     _R_LOWER,
     _R_RAISE,
     _ADJUST,
+    _NAV,
 };
 
 enum combo_events {
@@ -76,6 +77,7 @@ combo_t key_combos[] = {
 #define L_RAISE OSL(_L_RAISE)
 #define R_LOWER OSL(_R_LOWER)
 #define R_RAISE OSL(_R_RAISE)
+#define TGL_NAV TG(_NAV)
 #define EU_TDOT RSA(KC_SLSH)
 #define EU_CDOT RALT(KC_EQUAL)
 #define EU_DEG  RALT(KC_SCLN)
@@ -103,15 +105,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   D  |   V  |      | RAISE|  | LOWER|      |   K  |   H  |   ,  |   .  |   /  | RShift |
  * `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
- *                        | MPlay|      | LGUI |      | LCtrl|  | LAlt |      | RGUI |      | Mic  |
- *                        |      |      |      |      |      |  |      |      |      |      | Mute |
+ *                        | MPlay|      | LGUI |      | LCtrl|  | LAlt |      | RGUI |      | Tgl  |
+ *                        |      |      |      |      |      |  |      |      |      |      | Nav  |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_BASE] = LAYOUT(
       KC_DEL,  KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC,
       KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT,
       KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  L_RAISE, R_LOWER, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                               KC_MPLY,XXXXXXX,KC_LGUI, KC_SPACE, KC_LCTL, KC_LALT,  KC_ENT, KC_RGUI, XXXXXXX, KC_F20
+                               KC_MPLY,XXXXXXX,KC_LGUI, KC_SPACE, KC_LCTL, KC_LALT,  KC_ENT, KC_RGUI, XXXXXXX, TGL_NAV
     ),
 
 /*
@@ -162,9 +164,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_R_LOWER] = LAYOUT(
-      KC_INS, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT,_______,
-      _______,  EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, _______, _______, _______, _______, _______,
+      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
                                  _______, _______, _______, _______, _______, _______, R_RAISE, _______, _______, _______
     ),
 /*
@@ -194,10 +196,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_ADJUST] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, _______, _______, _______, _______,
+      _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, KC_CAPS, KC_INS,  _______, _______,
       _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
+/*
+ * Navigation
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |   →  |   ↑  |   ←  |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                              |      |  ↓   |      |      |      |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      | BASE |  | BASE |      |      |      |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ */
+    [_NAV] = LAYOUT(
+      _______, _______, _______, KC_RGHT, KC_UP,   KC_LEFT,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     _______, KC_DOWN, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    ),
+
 // /*
 //  * Layer template
 //  *
@@ -344,6 +367,9 @@ static void render_status(void) {
             break;
         case _ADJUST:
             oled_write_P(PSTR("adjust\n"), false);
+            break;
+        case _NAV:
+            oled_write_P(PSTR("navigation\n"), false);
             break;
         default:
             oled_write_P(PSTR("undefined\n"), false);
