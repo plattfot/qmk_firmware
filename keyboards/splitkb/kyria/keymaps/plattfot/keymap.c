@@ -412,46 +412,26 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         switch (get_highest_layer(layer_state)) {
             case _R_LOWER:
                 // Skip/Prev song
-                if (clockwise) {
-                    tap_code(KC_MNXT);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                } else {
-                    tap_code(KC_MPRV);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                }
+                tap_code(clockwise? KC_MNXT: KC_MPRV);
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             default:
                 // Volume control
-                if (clockwise) {
-                    tap_code(KC_VOLU);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                } else {
-                    tap_code(KC_VOLD);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                }
+                tap_code(clockwise? KC_VOLU: KC_VOLD);
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _R_RAISE:
                 // Scroll through the workspaces
-                if (clockwise) {
-                    tap_code16(G(KC_GT));
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                } else {
-                    tap_code16(G(KC_LT));
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                }
+                tap_code(clockwise? G(KC_GT): G(KC_LT));
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             default:
                 // Scrolling
-                if (clockwise) {
-                    tap_code(KC_PGDN);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                } else {
-                    tap_code(KC_PGUP);
-                    clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
-                }
+                tap_code(clockwise? KC_PGDN: KC_PGUP);
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
         }
     }
