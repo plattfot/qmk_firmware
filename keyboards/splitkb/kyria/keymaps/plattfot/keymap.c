@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4), G(KC_5),                                     _______, _______, _______, _______, _______, _______,
       _______, _______, KC_RALT, KC_LALT, KC_LCTL, _______,                                     _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, XXXXXXX, _______, TO_BASE, XXXXXXX, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                                 _______, _______, _______, _______, _______, _______, _______,_______, _______, _______
     ),
 /*
  * Raise Layer: Right symbols
@@ -412,30 +412,50 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         switch (get_highest_layer(layer_state)) {
             case _R_LOWER:
                 // Skip/Prev song
-                tap_code(clockwise? KC_MNXT: KC_MPRV);
+                if (clockwise) {
+                    tap_code(KC_MNXT);
+                } else {
+                    tap_code(KC_MPRV);
+                }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             default:
                 // Volume control
-                tap_code(clockwise? KC_VOLU: KC_VOLD);
+                if (clockwise) {
+                    tap_code(KC_VOLU);
+                } else {
+                    tap_code(KC_VOLD);
+                }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _L_RAISE:
-                // Scroll through the frames
-                tap_code(clockwise? G(KC_F): G(KC_B));
+                // Scroll through the containers
+                if (clockwise) {
+                    tap_code16(G(KC_F));
+                } else {
+                    tap_code16(G(KC_B));
+                }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             case _L_LOWER:
                 // Scroll through the workspaces
-                tap_code(clockwise? G(KC_GT): G(KC_LT));
+                if (clockwise) {
+                    tap_code16(G(KC_GT));
+                } else {
+                    tap_code16(G(KC_LT));
+                }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             default:
                 // Scrolling
-                tap_code(clockwise? KC_PGDN: KC_PGUP);
+                if (clockwise) {
+                    tap_code(KC_PGDN);
+                } else {
+                    tap_code(KC_PGUP);
+                }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
         }
