@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4), G(KC_5),                                     _______, _______, _______, _______, _______, _______,
       _______, _______, KC_RALT, KC_LALT, KC_LCTL, _______,                                     _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, XXXXXXX, _______, TO_BASE, XXXXXXX, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______,_______, _______, _______
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
  * Raise Layer: Right symbols
@@ -423,7 +423,12 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
-            case _R_RAISE:
+            case _L_RAISE:
+                // Scroll through the frames
+                tap_code(clockwise? G(KC_F): G(KC_B));
+                clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+                break;
+            case _L_LOWER:
                 // Scroll through the workspaces
                 tap_code(clockwise? G(KC_GT): G(KC_LT));
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
