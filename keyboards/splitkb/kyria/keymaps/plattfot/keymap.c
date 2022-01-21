@@ -434,7 +434,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (get_highest_layer(layer_state)) {
             case _L_SYMFU:
-                // Scroll through the containers
+                // Scroll left and right through the containers
                 if (clockwise) {
                     tap_code16(G(KC_F));
                 } else {
@@ -443,11 +443,11 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
             case _L_SHORT:
-                // Scroll through the workspaces
+                // Scroll up and down through the containers
                 if (clockwise) {
-                    tap_code16(G(KC_GT));
+                    tap_code16(G(KC_P));
                 } else {
-                    tap_code16(G(KC_LT));
+                    tap_code16(G(KC_N));
                 }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
