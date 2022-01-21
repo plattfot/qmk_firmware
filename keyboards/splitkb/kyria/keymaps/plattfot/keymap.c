@@ -445,9 +445,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             case _L_SHORT:
                 // Scroll up and down through the containers
                 if (clockwise) {
-                    tap_code16(G(KC_P));
-                } else {
                     tap_code16(G(KC_N));
+                } else {
+                    tap_code16(G(KC_P));
                 }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
