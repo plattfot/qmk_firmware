@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  ?   |        |
  * `----------------------+------+------+------|LSHORT|------|  |------| BSpc |------+------+------+----------------------'
- *                        |      |      |      | Cuts |      |  |      |      |      |      | Mute |
+ *                        |      |      |      | Cuts |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______, _______,
       _______, KC_F11,  KC_RALT, KC_LALT, KC_LCTL, CLO_TAP,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX, _______, MO_ADJT, XXXXXXX, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES, _______,
-                                 _______, _______, _______, L_SHORT, _______, _______, KC_BSPC, _______, _______, KC_MUTE
+                                 _______, _______, _______, L_SHORT, _______, _______, KC_BSPC, _______, _______, _______
 
     ),
 
