@@ -55,8 +55,6 @@ enum combo_events {
   C_AO, // å
   C_EE, // é
   C_ESC, // escape
-  C_BS, // backspace
-  C_DEL, // del
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -66,8 +64,6 @@ const uint16_t PROGMEM ae_combo[] = {KC_A, KC_DOT, COMBO_END};
 const uint16_t PROGMEM ao_combo[] = {KC_W, KC_DOT, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_DOT, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
-const uint16_t PROGMEM bs_combo[] = {KC_U, KC_Y, COMBO_END};
-const uint16_t PROGMEM del_combo[] = {KC_W, KC_F, COMBO_END};
 
 combo_t key_combos[] = {
  [C_OE] = COMBO_ACTION(oe_combo),
@@ -75,8 +71,6 @@ combo_t key_combos[] = {
  [C_AO] = COMBO_ACTION(ao_combo),
  [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
- [C_BS] = COMBO_ACTION(bs_combo),
- [C_DEL] = COMBO_ACTION(del_combo),
 };
 
 
@@ -134,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |  F11 | RAlt | LAlt | LCtrl|CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  ?   |        |
- * `----------------------+------+------+------|LSHORT|------|  |------|      |------+------+------+----------------------'
+ * `----------------------+------+------+------|LSHORT|------|  |------| BSpc |------+------+------+----------------------'
  *                        |      |      |      | Cuts |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -143,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______, _______,
       _______, KC_F11,  KC_RALT, KC_LALT, KC_LCTL, CLO_TAP,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX, _______, MO_ADJT, XXXXXXX, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES, _______,
-                                 _______, _______, _______, L_SHORT, _______, _______, _______, _______, _______, _______
+                                 _______, _______, _______, L_SHORT, _______, _______, KC_BSPC, _______, _______, _______
 
     ),
 
@@ -157,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP| RCtrl| LAlt | RAlt | F12  |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
- * `----------------------+------+------+------|      |------|  |------|RSHORT|------+------+------+----------------------'
+ * `----------------------+------+------+------| Del  |------|  |------|RSHORT|------+------+------+----------------------'
  *                        | Mic  |      |      |      |      |  |      | Cuts |      |      |      |
  *                        | Mute |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -166,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
       _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_RCTL, KC_LALT, KC_RALT, KC_F12,  _______,
       _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-                                 KC_F20,  _______, _______, _______, _______, _______, R_SHORT, _______, _______, _______
+                                 KC_F20,  _______, _______, KC_DEL,  _______, _______, R_SHORT, _______, _______, _______
     ),
 
 /*
@@ -500,16 +494,6 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_ESC:
       if (pressed) {
         tap_code16(KC_ESC);
-      }
-      break;
-    case C_BS:
-      if (pressed) {
-        tap_code16(KC_BSPC);
-      }
-      break;
-    case C_DEL:
-      if (pressed) {
-        tap_code16(KC_DEL);
       }
       break;
   }
