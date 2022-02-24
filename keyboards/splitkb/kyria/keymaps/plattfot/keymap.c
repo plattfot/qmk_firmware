@@ -43,7 +43,6 @@ enum layers {
     _BASE,
     _L_SYMFU,
     _R_SYMFU,
-    _L_SHORT,
     _R_SHORT,
     _ADJUST,
     _NAV,
@@ -75,11 +74,14 @@ combo_t key_combos[] = {
 
 
 #define TO_BASE TO(_BASE)
-#define MO_ADJT MO(_ADJUST)
-#define L_SHORT OSL(_L_SHORT)
+#define TO_LSYM TO(_L_SYMFU)
+#define TO_RSYM TO(_R_SYMFU)
+
 #define L_SYMFU OSL(_L_SYMFU)
 #define R_SYMFU OSL(_R_SYMFU)
 #define R_SHORT OSL(_R_SHORT)
+
+#define OSL_ADJ OSL(_ADJUST)
 #define TGL_NAV TG(_NAV)
 #define EU_TDOT RSA(KC_SLSH)
 #define EU_CDOT RALT(KC_EQUAL)
@@ -123,65 +125,54 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Left symbol and function Layer
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  1   |  2   |  3   |  4   |  5   |                              |   ^  |  &   |  *   |  ~   |      |        |
+ * |        |  F12 |  F9  |  F8  |  F7  |      |                              |   ^  |  &   |  *   |  ~   |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |      | RAlt |  F11 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
+ * |        |  F11 |  F3  |  F2  |  F1  |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  ?   |        |
- * `----------------------+------+------+------|LSHORT|------|  |------| BSpc |------+------+------+----------------------'
- *                        |      |      |      | Cuts |      |  |      |      |      |      |      |
+ * |        |  F10 |  F6  |  F5  |  F4  |      |      |      |  |      |      |   …  |  "   |  <   |  >   |  ?   |        |
+ * `----------------------+------+------+------|ADJUST|------|  |------| BSpc |------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_L_SYMFU] = LAYOUT(
-      _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                        KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______, _______,
-      _______, _______, _______, KC_RALT, KC_F11,  CLO_TAP,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX, _______, MO_ADJT, XXXXXXX, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES, _______,
-                                 _______, _______, _______, L_SHORT, _______, _______, KC_BSPC, _______, _______, _______
+      _______, KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,                                     KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______, _______,
+      _______, KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,                                     KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_GRV,
+      _______, KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______, XXXXXXX, _______, TO_BASE, XXXXXXX, EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES, _______,
+                                 _______, _______, _______, OSL_ADJ, _______, _______, KC_BSPC, _______, _______, _______
 
     ),
 
-
 /*
- * Right symbol and function Layer
+ * Right symbol and number Layer
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   | 0    |        |
+ * |        |  !   |  @   |  #   |  $   |  %   |                              |      |  7   |  8   |  9   |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  F12 | RAlt |      |      |        |
+ * |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  1   |  2   |  3   |  0   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
+ * |        |  °   |  :   |  (   |  )   |  ×   |      |      |  |      |      |      |  4   |  5   |  6   |      |        |
  * `----------------------+------+------+------| Del  |------|  |------|RSHORT|------+------+------+----------------------'
  *                        | Mic  |      |      |      |      |  |      | Cuts |      |      |      |
  *                        | Mute |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
-    [_R_SYMFU] = LAYOUT(
-      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_F12,  KC_RALT, _______, _______, _______,
-      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, MO_ADJT, _______, XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-                                 KC_F20,  _______, _______, KC_DEL,  _______, _______, R_SHORT, _______, _______, _______
-    ),
 
-/*
- * Left short cuts
- *
- */
-    [_L_SHORT] = LAYOUT(
-      _______, G(KC_1), G(KC_2), G(KC_3), G(KC_4), G(KC_5),                                     _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, KC_RALT, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, XXXXXXX, _______, TO_BASE, XXXXXXX, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    [_R_SYMFU] = LAYOUT(
+      _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   _______, _______,
+      _______, KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,                                     CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,    _______,
+      _______, EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT, XXXXXXX, TO_BASE, _______, XXXXXXX, _______, KC_4,    KC_5,   KC_6,   _______, _______,
+                                 KC_F20,  _______, _______, KC_DEL,  _______, _______, R_SHORT, _______, _______, _______
     ),
 
 /*
  * Right short cuts
  */
     [_R_SHORT] = LAYOUT(
-      _______, _______, _______, _______, _______, _______,                                     G(KC_6), G(KC_7), G(KC_8), G(KC_9), G(KC_0), _______,
-      _______, _______, _______, _______, _______, _______,                                     _______, _______, KC_RALT, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, XXXXXXX, TO_BASE, _______, XXXXXXX, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      _______, _______, _______, _______, _______, _______,                                     _______, G(KC_7), G(KC_8), G(KC_9), _______, _______,
+      _______, _______, _______, _______, _______, _______,                                     _______, G(KC_1), G(KC_2), G(KC_3), G(KC_0), _______,
+      _______, _______, _______, _______, _______, _______, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, G(KC_4), G(KC_5), G(KC_6), _______, _______,
+                                 _______, _______, _______, TO_RSYM, _______, _______, _______, _______, _______, _______
 
     ),
 
@@ -202,8 +193,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_ADJUST] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
       _______, RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI, RGB_MOD,                                     _______, _______, KC_CAPS, KC_INS,  _______, _______,
-      _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______, _______, _______,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+      _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD,XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, _______, _______, _______, _______, _______,
+                                 _______, _______, _______, _______, _______, _______, TO_LSYM, _______, _______, _______
     ),
 /*
  * Navigation
@@ -214,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |      |      |      |      |      |                              |      |  ↓   |      |      |      |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      | BASE |  | BASE |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ * `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -268,8 +259,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                keycode != CLO_TAP &&
                keycode != OSL(_R_SHORT) &&
                keycode != OSL(_R_SYMFU) &&
-               keycode != OSL(_L_SYMFU) &&
-               keycode != OSL(_L_SHORT)) {
+               keycode != OSL(_L_SYMFU)) {
 
         close_tap_it = close_tap_it & CLO_PRESSED?
             close_tap_it | CLO_USED:
@@ -359,13 +349,10 @@ static void render_status(void) {
             oled_write_P(PSTR("base\n"), false);
             break;
         case _R_SYMFU:
-            oled_write_P(PSTR("<-sym|fun->\n"), false);
+            oled_write_P(PSTR("<-sym|num->\n"), false);
             break;
         case _L_SYMFU:
             oled_write_P(PSTR("<-fun|sym->\n"), false);
-            break;
-        case _L_SHORT:
-            oled_write_P(PSTR("<-shortcuts\n"), false);
             break;
         case _R_SHORT:
             oled_write_P(PSTR("shortcuts->\n"), false);
@@ -445,7 +432,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
                 break;
-            case _L_SHORT:
+            case _ADJUST:
                 // Scroll up and down through the containers
                 if (clockwise) {
                     tap_code16(G(KC_N));
