@@ -59,9 +59,9 @@ enum combo_events {
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
 const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_A, KC_DOT, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_W, KC_DOT, COMBO_END};
-const uint16_t PROGMEM ee_combo[] = {KC_G, KC_DOT, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
+const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
 
 combo_t key_combos[] = {
