@@ -46,3 +46,7 @@
 // Remove the delay for the OSL keys. Not using any other tap keys.
 // Otherwise TAPPING_TERM_PER_KEY would be the way to go.
 #define TAPPING_TERM 0
+
+// From: https://getreuer.info/posts/keyboards/caps-word/index.html
+// and time out caps word after 5s
+#define CAPS_WORD_IDLE_TIMEOUT 5000

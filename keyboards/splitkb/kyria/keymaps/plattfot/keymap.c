@@ -15,6 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "features/caps_word.h"
 
 enum custom_keycodes {
     PLACEHOLDER = SAFE_RANGE,  // can always be here
@@ -55,6 +56,7 @@ enum combo_events {
   C_EE, // é
   C_ESC, // escape
   C_BASE, // to base
+  C_CAPS, // caps word
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -65,6 +67,7 @@ const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
 const uint16_t PROGMEM base_combo[] = {KC_LCTL, KC_RCTL, COMBO_END};
+const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
 combo_t key_combos[] = {
  [C_OE] = COMBO_ACTION(oe_combo),
@@ -73,6 +76,7 @@ combo_t key_combos[] = {
  [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
  [C_BASE] = COMBO_ACTION(base_combo),
+ [C_CAPS] = COMBO_ACTION(caps_combo),
 };
 
 
@@ -245,6 +249,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*   rgblight_setrgb(51, 135, 204); */
 /* } */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_caps_word(keycode, record)) { return false; }
     if (record->event.pressed) {
         switch (keycode) {
             case CLO_TAP:
@@ -316,6 +321,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     return true;
+}
+
+void matrix_scan_user(void) {
+    caps_word_task();
 }
 
 //layer_state_t layer_state_set_user(layer_state_t state) { return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST); }
@@ -489,6 +498,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_BASE:
       if (pressed) {
         layer_move(_BASE);
+      }
+      break;
+    case C_CAPS:
+      if (pressed) {
+        caps_word_set(true);
       }
       break;
   }
