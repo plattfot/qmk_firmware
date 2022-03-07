@@ -260,7 +260,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                keycode != CLO_TAP &&
                keycode != OSL(_R_SHORT) &&
                keycode != OSL(_R_SYMFU) &&
-               keycode != OSL(_L_SYMFU)) {
+               keycode != OSL(_L_SYMFU) &&
+               keycode != TO(_BASE)) {
 
         close_tap_it = close_tap_it & CLO_PRESSED?
             close_tap_it | CLO_USED:
