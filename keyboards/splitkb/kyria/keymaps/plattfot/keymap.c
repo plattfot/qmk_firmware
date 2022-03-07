@@ -384,15 +384,15 @@ static void render_status(void) {
     if (led_state.num_lock) {
         oled_write_P(PSTR("NUMLCK "), false);
     } else if (close_tap_it) {
-        oled_write_P(PSTR("Close  "), false);
+        oled_write_P(PSTR("CLOTAP "), false);
     } else {
         oled_write_P(PSTR("       "), false);
     }
 
     if (led_state.caps_lock) {
         oled_write_P(PSTR("CAPLCK "), false);
-    } else if (close_tap_it) {
-        oled_write_P(PSTR("Tap    "), false);
+    } else if (caps_word_get()) {
+        oled_write_P(PSTR("CAPWRD "), false);
     } else {
         oled_write_P(PSTR("       "), false);
     }
