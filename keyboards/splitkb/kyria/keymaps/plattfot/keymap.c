@@ -54,6 +54,7 @@ enum combo_events {
   C_AO, // å
   C_EE, // é
   C_ESC, // escape
+  C_BASE, // to base
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -63,6 +64,7 @@ const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
+const uint16_t PROGMEM base_combo[] = {KC_LCTL, KC_RCTL, COMBO_END};
 
 combo_t key_combos[] = {
  [C_OE] = COMBO_ACTION(oe_combo),
@@ -70,6 +72,7 @@ combo_t key_combos[] = {
  [C_AO] = COMBO_ACTION(ao_combo),
  [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
+ [C_BASE] = COMBO_ACTION(base_combo),
 };
 
 
@@ -479,6 +482,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_ESC:
       if (pressed) {
         tap_code16(KC_ESC);
+      }
+      break;
+    case C_BASE:
+      if (pressed) {
+        layer_move(_BASE);
       }
       break;
   }
