@@ -493,6 +493,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_ESC:
       if (pressed) {
         tap_code16(KC_ESC);
+        caps_word_set(false);
       }
       break;
     case C_BASE:
