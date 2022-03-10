@@ -503,7 +503,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       break;
     case C_CAPS:
       if (pressed) {
-        caps_word_set(true);
+        caps_word_set(!caps_word_get());
       }
       break;
   }
