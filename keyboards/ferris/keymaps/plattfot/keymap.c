@@ -55,8 +55,8 @@ const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BACKSPACE, COMBO_END};
 
-const uint16_t PROGMEM ctrl_combo[] = {KC_P, KC_T, COMBO_END};
-const uint16_t PROGMEM alt_combo[] = {KC_F, KC_S, COMBO_END};
+const uint16_t PROGMEM alt_combo[] = {KC_P, KC_T, COMBO_END};
+const uint16_t PROGMEM ctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_Q, KC_A, COMBO_END};
 
