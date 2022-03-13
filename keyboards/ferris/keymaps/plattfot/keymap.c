@@ -12,8 +12,7 @@ enum layers {
     _BASE,
     _L_SYMFU,
     _R_SYMFU,
-    _ADJUST,
-    /* _NAV, */
+    _NAV,
 };
 
 #define TO_BASE TO(_BASE)
@@ -22,8 +21,8 @@ enum layers {
 #define R_SYMFU OSL(_R_SYMFU)
 #define R_SHORT OSL(_R_SHORT)
 
-#define OSL_ADJ OSL(_ADJUST)
-/* #define TGL_NAV TG(_NAV) */
+/* #define OSL_ADJ OSL(_ADJUST) */
+#define TGL_NAV TG(_NAV)
 
 #define EU_TDOT RSA(KC_SLSH)
 #define EU_CDOT RALT(KC_EQUAL)
@@ -43,6 +42,7 @@ enum combo_events {
   C_GUI,
   C_SHIFT,
   C_TAB,
+  C_NAV, // to navigation
   C_BASE, // to base
   C_CAPS, // caps word
   COMBO_LENGTH
@@ -55,6 +55,7 @@ const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BACKSPACE, COMBO_END};
 
+const uint16_t PROGMEM nav_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM alt_combo[] = {KC_P, KC_T, COMBO_END};
 const uint16_t PROGMEM ctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_W, KC_R, COMBO_END};
@@ -74,6 +75,7 @@ combo_t key_combos[] = {
  [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
 
+ [C_NAV] = COMBO_ACTION(nav_combo),
  [C_CTRL] = COMBO_ACTION(ctrl_combo),
  [C_ALT] = COMBO_ACTION(alt_combo),
  [C_GUI] = COMBO_ACTION(gui_combo),
@@ -116,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______,
    KC_F11,  KC_F3,   KC_F2,   KC_F1,   _______,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
    KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES,
-                                     _______, OSL_ADJ, KC_DEL, _______
+                                     _______, _______, KC_DEL, TO_BASE
 
  ),
 
@@ -127,17 +129,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,             _______, KC_7,    KC_8,   KC_9,   KC_COMM,
    KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,             _______, KC_1,    KC_2,   KC_3,   KC_0,
    EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT,             _______, KC_4,    KC_5,   KC_6,   KC_DOT,
-                                    _______, _______, _______, _______
+                                    TO_BASE, _______, _______, _______
   ),
 
  /*
   * Adjustment layer
   */
  [_NAV] = LAYOUT(
-   _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______,
-   _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______,
-   _______, _______, _______, _______, _______,             _______, _______, _______, _______, _______,
-                                    _______, _______, _______, _______
+   _______, _______, KC_RGHT, KC_UP,   KC_LEFT,             _______, _______, _______, _______, _______,
+   _______, _______, _______, KC_PGUP, _______,             _______, KC_DOWN, _______, _______, _______,
+   _______, _______, _______, KC_PGDN, _______,             _______, _______, RCTL(KC_PGUP),RCTL(KC_PGDN), _______,
+                                    TO_BASE, _______, _______, TO_BASE
  ),
 /*
  * Template Layer:
@@ -185,6 +187,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     if (pressed) {
       tap_code16(KC_ESC);
       /* caps_word_set(false); */
+    }
+    break;
+  case C_NAV:
+    if (pressed) {
+      layer_move(_NAV);
     }
     break;
   case C_BASE:
