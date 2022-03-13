@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * Left symbol and function Layer
   */
  [_L_SYMFU] = LAYOUT(
-   KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,_______,
+   KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_GRV,
    KC_F11,  KC_F3,   KC_F2,   KC_F1,   _______,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
    KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES,
                                      _______, _______, KC_DEL, TO_BASE
