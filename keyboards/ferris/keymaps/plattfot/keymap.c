@@ -35,7 +35,8 @@ enum combo_events {
   C_EE, // é
   C_QUOTE, // '
   C_ESC, // escape
-  C_ENTER,
+  C_BS, // backspace
+  C_DEL, // backspace
   C_CTRL,
   C_ALT,
   C_ALTGR,
@@ -62,7 +63,8 @@ const uint16_t PROGMEM shift_combo[] = {KC_W, KC_R, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_Q, KC_A, COMBO_END};
 
 const uint16_t PROGMEM base_combo[] = {KC_J, KC_M, COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {KC_N, KC_L, COMBO_END};
+const uint16_t PROGMEM bs_combo[] = {KC_N, KC_L, COMBO_END};
+const uint16_t PROGMEM del_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM gui_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM altgr_combo[] = {KC_Y, KC_I, COMBO_END};
 const uint16_t PROGMEM quote_combo[] = {KC_SCLN, KC_O, COMBO_END};
@@ -82,7 +84,8 @@ combo_t key_combos[] = {
  [C_TAB] = COMBO_ACTION(tab_combo),
 
  [C_BASE] = COMBO_ACTION(base_combo),
- [C_ENTER] = COMBO_ACTION(enter_combo),
+ [C_BS] = COMBO_ACTION(bs_combo),
+ [C_DEL] = COMBO_ACTION(del_combo),
  [C_SHIFT] = COMBO_ACTION(shift_combo),
  [C_ALTGR] = COMBO_ACTION(altgr_combo),
  [C_QUOTE] = COMBO_ACTION(quote_combo),
@@ -101,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |------+------+------+------+------+      +------+------+------+------+------|
   * |   Z  |   X  |   C  |   D  |   V  |      |   K  |   H  |   ,  |   .  |   /  |
   * `------------------------------------. .--+------+------+--------------------'
-  *                        | LSYM | SPC  | | BSpc | RSYM |
+  *                        | LSYM | SPC  | | Enter| RSYM |
   *                        |      |      | |      |      |
   *                        `-------------' `-------------'
   */
@@ -109,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-                                   L_SYMFU, KC_SPC,  KC_BSPC, R_SYMFU
+                                   L_SYMFU, KC_SPC,  KC_ENT, R_SYMFU
  ),
  /*
   * Left symbol and function Layer
@@ -118,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_GRV,
    KC_F11,  KC_F3,   KC_F2,   KC_F1,   _______,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
    KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES,
-                                     _______, _______, KC_DEL, TO_BASE
+                                     TO_BASE, _______, _______, TO_BASE
 
  ),
 
@@ -129,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,             _______, KC_7,    KC_8,   KC_9,   KC_COMM,
    KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,             _______, KC_1,    KC_2,   KC_3,   KC_0,
    EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT,             _______, KC_4,    KC_5,   KC_6,   KC_DOT,
-                                    TO_BASE, _______, _______, _______
+                                    TO_BASE, _______, _______, TO_BASE
   ),
 
  /*
@@ -219,9 +222,14 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       tap_code16(KC_TAB);
     }
     break;
-  case C_ENTER:
+  case C_BS:
     if (pressed) {
-      tap_code16(KC_ENTER);
+      tap_code16(KC_BSPC);
+    }
+    break;
+  case C_DEL:
+    if (pressed) {
+      tap_code16(KC_DEL);
     }
     break;
   case C_SHIFT:
