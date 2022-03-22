@@ -55,6 +55,9 @@ enum combo_events {
   C_AO, // å
   C_EE, // é
   C_ESC, // escape
+  C_BS, // backspace
+  C_LBS, // left sym backspace
+  C_RBS, // right sym backspace
   C_BASE, // to base
   C_CAPS, // caps word
   COMBO_LENGTH
@@ -66,6 +69,9 @@ const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
+const uint16_t PROGMEM bs_combo[] = {KC_N, KC_L, COMBO_END};
+const uint16_t PROGMEM lbs_combo[] = {KC_LCBR, KC_AMPR, COMBO_END};
+const uint16_t PROGMEM rbs_combo[] = {KC_1, KC_7, COMBO_END};
 const uint16_t PROGMEM base_combo[] = {KC_LCTL, KC_RCTL, COMBO_END};
 const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
@@ -74,6 +80,9 @@ combo_t key_combos[] = {
  [C_AE] = COMBO_ACTION(ae_combo),
  [C_AO] = COMBO_ACTION(ao_combo),
  [C_EE] = COMBO_ACTION(ee_combo),
+ [C_BS] = COMBO_ACTION(bs_combo),
+ [C_LBS] = COMBO_ACTION(lbs_combo),
+ [C_RBS] = COMBO_ACTION(rbs_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
  [C_BASE] = COMBO_ACTION(base_combo),
  [C_CAPS] = COMBO_ACTION(caps_combo),
@@ -494,6 +503,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       if (pressed) {
         tap_code16(KC_ESC);
         caps_word_set(false);
+      }
+      break;
+    case C_BS:
+    case C_LBS:
+    case C_RBS:
+      if (pressed) {
+        tap_code16(KC_BSPC);
       }
       break;
     case C_BASE:
