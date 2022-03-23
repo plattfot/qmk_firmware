@@ -2,6 +2,7 @@
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
 #include QMK_KEYBOARD_H
+#include "plattfot.h"
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -68,7 +69,7 @@ const uint16_t PROGMEM del_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM gui_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM altgr_combo[] = {KC_Y, KC_I, COMBO_END};
 const uint16_t PROGMEM quote_combo[] = {KC_SCLN, KC_O, COMBO_END};
-/* const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END}; */
+const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
 combo_t key_combos[] = {
  [C_OE] = COMBO_ACTION(oe_combo),
@@ -90,7 +91,7 @@ combo_t key_combos[] = {
  [C_ALTGR] = COMBO_ACTION(altgr_combo),
  [C_QUOTE] = COMBO_ACTION(quote_combo),
 
- /* [C_CAPS] = COMBO_ACTION(caps_combo), */
+ [C_CAPS] = COMBO_ACTION(caps_combo),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -119,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
  [_L_SYMFU] = LAYOUT(
    KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_GRV,
-   KC_F11,  KC_F3,   KC_F2,   KC_F1,   _______,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
+   KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
    KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES,
                                      TO_BASE, _______, _______, TO_BASE
 
@@ -130,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
  [_R_SYMFU] = LAYOUT(
    KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,             _______, KC_7,    KC_8,   KC_9,   KC_COMM,
-   KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,             _______, KC_1,    KC_2,   KC_3,   KC_0,
+   KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,             CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,
    EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT,             _______, KC_4,    KC_5,   KC_6,   KC_DOT,
                                     TO_BASE, _______, _______, TO_BASE
   ),
@@ -164,6 +165,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_caps_word(keycode, record)) { return false; }
+    if (!process_close_tap(keycode, record)) { return false; }
+
+    return true;
+}
+
+void matrix_scan_user(void) {
+    caps_word_task();
+}
+
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
   case C_OE:
@@ -189,7 +201,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   case C_ESC:
     if (pressed) {
       tap_code16(KC_ESC);
-      /* caps_word_set(false); */
+      caps_word_set(false);
     }
     break;
   case C_NAV:
@@ -247,10 +259,10 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       tap_code16(KC_QUOT);
     }
     break;
-    /* case C_CAPS: */
-    /*   if (pressed) { */
-    /*     caps_word_set(!caps_word_get()); */
-    /*   } */
-    /*   break; */
+    case C_CAPS:
+      if (pressed) {
+        caps_word_set(!caps_word_get());
+      }
+      break;
   }
 }
