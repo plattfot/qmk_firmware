@@ -216,17 +216,17 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     break;
   case C_CTRL:
     if (pressed) {
-      set_oneshot_mods(MOD_BIT(KC_LCTL));
+      add_oneshot_mods(MOD_BIT(KC_LCTL));
     }
     break;
   case C_ALT:
     if (pressed) {
-      set_oneshot_mods(MOD_BIT(KC_LALT));
+      add_oneshot_mods(MOD_BIT(KC_LALT));
     }
     break;
   case C_GUI:
     if (pressed) {
-      set_oneshot_mods(MOD_BIT(KC_LGUI));
+      add_oneshot_mods(MOD_BIT(KC_LGUI));
     }
     break;
   case C_TAB:
@@ -246,12 +246,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     break;
   case C_SHIFT:
     if (pressed) {
-      set_oneshot_mods(MOD_BIT(KC_LSFT));
+      add_oneshot_mods(MOD_BIT(KC_LSFT));
     }
     break;
   case C_ALTGR:
     if (pressed) {
-      set_oneshot_mods(MOD_BIT(KC_RALT));
+      add_oneshot_mods(MOD_BIT(KC_RALT));
     }
     break;
   case C_QUOTE:
