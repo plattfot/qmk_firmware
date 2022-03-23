@@ -18,11 +18,12 @@
 
 #include QMK_KEYBOARD_H
 
-// Close tap feature based on a post from drashna [0]. It will insert
-// the closing equivalent key and move the cursor inside. For example
-// CLO_TAP and then ( will result in (|), where | is the cursor. For "
-// it will be "|" as the close equivalent key is the same key.
+// It will insert the closing equivalent key and move the cursor
+// inside. For example CLO_TAP and then ( will result in (|), where |
+// is the cursor. For " it will be "|" as the close equivalent key is
+// the same key.
 //
+// Based on a post from drashna [0] about implementing a double tap.
 // [0] https://www.reddit.com/r/olkb/comments/citkbx/comment/evajkwy
 enum close_tap_keycodes {
     CLOSE_TAP_PLACEHOLDER = SAFE_RANGE,
