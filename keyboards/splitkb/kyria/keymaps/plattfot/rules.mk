@@ -6,3 +6,4 @@ MOUSEKEY_ENABLE = no       # Disable mouse, need to save space.
 COMBO_ENABLE = yes
 
 SRC += features/caps_word.c
+SRC += features/close_tap.c

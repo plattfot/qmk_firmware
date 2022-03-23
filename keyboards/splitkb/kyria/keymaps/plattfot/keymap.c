@@ -16,29 +16,12 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "features/caps_word.h"
+#include "features/close_tap.h"
 
 enum custom_keycodes {
-    PLACEHOLDER = SAFE_RANGE,  // can always be here
-    // New keys
-    CLO_TAP,  // Close the next key press
+  PLACEHOLDER = CLOSE_TAP_SAFE_RANGE,  // can always be here
+  // New keys
 };
-
-// Close tap feature based on a post from drashna
-// https://www.reddit.com/r/olkb/comments/citkbx/double_key_press_modifier_qmkwould_work_like/ev9cue8/
-// Will insert the closing equivalent key and move the cursor inside.
-// For example clo_tap and then ( will result in (|), where | is the
-// cursor. For " it will be "|" as the close equivalent key is the
-// same key.
-enum close_tap_modes {
-  CLO_DISABLED = 0b000,
-  CLO_PRESSED  = 0b001, // Close tap key is pressed
-  CLO_ACTIVE   = 0b010, // Close tap next keypress
-  CLO_USED     = 0b100, // Turn off when close tap key is released
-};
-
-#define CLO_RELEASE(flag) flag & ~CLO_PRESSED
-
-static enum close_tap_modes close_tap_it = CLO_DISABLED;
 
 enum layers {
     _BASE,
@@ -259,73 +242,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* } */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_caps_word(keycode, record)) { return false; }
+    if (!process_close_tap(keycode, record)) { return false; }
+
     if (record->event.pressed) {
         switch (keycode) {
-            case CLO_TAP:
-                close_tap_it = close_tap_it & CLO_ACTIVE?
-                    CLO_USED:
-                    CLO_ACTIVE|CLO_PRESSED;
-                return false;
-            case QK_LEADER:
-                close_tap_it = CLO_DISABLED;
-                return true;
-        }
-    } else if (close_tap_it & CLO_ACTIVE &&
-               keycode != CLO_TAP &&
-               keycode != OSL(_R_SHORT) &&
-               keycode != OSL(_R_SYMFU) &&
-               keycode != OSL(_L_SYMFU) &&
-               keycode != OSL(_ADJUST) &&
-               keycode != TO(_BASE)) {
-
-        close_tap_it = close_tap_it & CLO_PRESSED?
-            close_tap_it | CLO_USED:
-            CLO_DISABLED;
-        switch(keycode)
-        {
-        case KC_LPRN:
-          tap_code16(KC_RPRN);
-          tap_code16(KC_LEFT);
-          break;
-        case KC_RPRN:
-          tap_code16(KC_LEFT);
-          tap_code16(KC_LPRN);
-          break;
-        case KC_LCBR:
-          tap_code16(KC_RCBR);
-          tap_code16(KC_LEFT);
-          break;
-        case KC_RCBR:
-          tap_code16(KC_LEFT);
-          tap_code16(KC_LCBR);
-          break;
-        case KC_LBRC:
-          tap_code16(KC_RBRC);
-          tap_code16(KC_LEFT);
-          break;
-        case KC_RBRC:
-          tap_code16(KC_LEFT);
-          tap_code16(KC_LBRC);
-          break;
-        case KC_LT:
-          tap_code16(KC_GT);
-          tap_code16(KC_LEFT);
-          break;
-        case KC_GT:
-          tap_code16(KC_LEFT);
-          tap_code16(KC_LT);
-          break;
-        default:
-          tap_code16(keycode);
-          tap_code16(KC_LEFT);
-          break;
-        }
-    } else {
-        switch (keycode) {
-            case CLO_TAP:
-                close_tap_it = close_tap_it & CLO_USED?
-                    CLO_DISABLED:
-                    CLO_RELEASE(close_tap_it);
+            case KC_LEAD:
+              cancel_close_tap();
+              return true;
         }
     }
 
@@ -392,7 +315,7 @@ static void render_status(void) {
     led_t led_state = host_keyboard_led_state();
     if (led_state.num_lock) {
         oled_write_P(PSTR("NUMLCK "), false);
-    } else if (close_tap_it) {
+    } else if (is_close_tap_active()) {
         oled_write_P(PSTR("CLOTAP "), false);
     } else {
         oled_write_P(PSTR("       "), false);
