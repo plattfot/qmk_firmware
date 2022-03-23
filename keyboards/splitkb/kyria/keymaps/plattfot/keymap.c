@@ -15,8 +15,7 @@
  */
 #include QMK_KEYBOARD_H
 #include "version.h"
-#include "features/caps_word.h"
-#include "features/close_tap.h"
+#include "plattfot.h"
 
 enum custom_keycodes {
   PLACEHOLDER = CLOSE_TAP_SAFE_RANGE,  // can always be here
