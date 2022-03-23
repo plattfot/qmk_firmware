@@ -55,7 +55,7 @@ const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
 const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
 const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
 const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
-const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BACKSPACE, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
 
 const uint16_t PROGMEM nav_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM alt_combo[] = {KC_P, KC_T, COMBO_END};
