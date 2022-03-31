@@ -212,6 +212,8 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
   case C_BASE:
     if (pressed) {
       layer_move(_BASE);
+      caps_word_set(false);
+      cancel_close_tap();
     }
     break;
   case C_CTRL:
