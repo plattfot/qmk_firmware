@@ -16,15 +16,13 @@
 
 #pragma once
 
-#ifdef PLT_ENABLE_CAPS_WORD
-#  include "features/caps_word.h"
-#endif
-#ifdef PLT_ENABLE_CLOSE_TAP
-#  include "features/close_tap.h"
-#endif
+#include QMK_KEYBOARD_H
 
-#ifdef COMBO_ENABLE
-#  include "layout/combo.h"
-#endif
+// Function that return the index to the base layer. Needs to be
+// defined in the keymap.c file!
+int plt_base_index(void);
 
-#include "layout/eurkey.h"
+// Function that return the index to the navigation layer. Needs to be
+// defined in the keymap.c file!
+int plt_nav_index(void);
+
