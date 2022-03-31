@@ -50,3 +50,7 @@
 // From: https://getreuer.info/posts/keyboards/caps-word/index.html
 // and time out caps word after 5s
 #define CAPS_WORD_IDLE_TIMEOUT 5000
+
+#define PLT_ENABLE_CAPS_WORD
+#define PLT_ENABLE_CLOSE_TAP
+// #define PLT_ENABLE_COMBO40

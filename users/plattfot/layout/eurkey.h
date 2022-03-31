@@ -16,15 +16,9 @@
 
 #pragma once
 
-#ifdef PLT_ENABLE_CAPS_WORD
-#  include "features/caps_word.h"
-#endif
-#ifdef PLT_ENABLE_CLOSE_TAP
-#  include "features/close_tap.h"
-#endif
+#include QMK_KEYBOARD_H
 
-#ifdef COMBO_ENABLE
-#  include "layout/combo.h"
-#endif
-
-#include "layout/eurkey.h"
+// Symbols when using the EurKey layout
+#define EU_TDOT RSA(KC_SLSH)   // …
+#define EU_CDOT RALT(KC_EQUAL) // ×
+#define EU_DEG  RALT(KC_SCLN)  // °
