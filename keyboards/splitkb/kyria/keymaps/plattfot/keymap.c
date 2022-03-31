@@ -31,46 +31,6 @@ enum layers {
     _NAV,
 };
 
-enum combo_events {
-  C_OE, // ö
-  C_AE, // ä
-  C_AO, // å
-  C_EE, // é
-  C_ESC, // escape
-  C_BS, // backspace
-  C_LBS, // left sym backspace
-  C_RBS, // right sym backspace
-  C_BASE, // to base
-  C_CAPS, // caps word
-  COMBO_LENGTH
-};
-uint16_t COMBO_LEN = COMBO_LENGTH;
-
-const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
-const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
-const uint16_t PROGMEM bs_combo[] = {KC_N, KC_L, COMBO_END};
-const uint16_t PROGMEM lbs_combo[] = {KC_LCBR, KC_AMPR, COMBO_END};
-const uint16_t PROGMEM rbs_combo[] = {KC_1, KC_7, COMBO_END};
-const uint16_t PROGMEM base_combo[] = {KC_LCTL, KC_RCTL, COMBO_END};
-const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
-
-combo_t key_combos[] = {
- [C_OE] = COMBO_ACTION(oe_combo),
- [C_AE] = COMBO_ACTION(ae_combo),
- [C_AO] = COMBO_ACTION(ao_combo),
- [C_EE] = COMBO_ACTION(ee_combo),
- [C_BS] = COMBO_ACTION(bs_combo),
- [C_LBS] = COMBO_ACTION(lbs_combo),
- [C_RBS] = COMBO_ACTION(rbs_combo),
- [C_ESC] = COMBO_ACTION(esc_combo),
- [C_BASE] = COMBO_ACTION(base_combo),
- [C_CAPS] = COMBO_ACTION(caps_combo),
-};
-
-
 #define TO_BASE TO(_BASE)
 
 #define L_SYMFU OSL(_L_SYMFU)
@@ -79,20 +39,9 @@ combo_t key_combos[] = {
 
 #define OSL_ADJ OSL(_ADJUST)
 #define TGL_NAV TG(_NAV)
-#define EU_TDOT RSA(KC_SLSH)
-#define EU_CDOT RALT(KC_EQUAL)
-#define EU_DEG  RALT(KC_SCLN)
 
-#define OS_LSFT OSM(KC_LSFT)
-#define OS_LCTL OSM(KC_LCTL)
-#define OS_LALT OSM(KC_LALT)
-#define OS_LGUI OSM(KC_LGUI)
-
-#define OS_RSFT OSM(KC_RSFT)
-#define OS_RCTL OSM(KC_RCTL)
-#define OS_RALT OSM(KC_RALT)
-#define OS_RGUI OSM(KC_RGUI)
-
+int plt_base_index(void) {return _BASE;}
+int plt_nav_index(void) {return _NAV;}
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -398,51 +347,3 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 #endif
-
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case C_OE:
-      if (pressed) {
-        tap_code16(RALT(KC_O));
-      }
-      break;
-    case C_AE:
-      if (pressed) {
-        tap_code16(RALT(KC_A));
-      }
-      break;
-    case C_AO:
-      if (pressed) {
-        tap_code16(RALT(KC_W));
-      }
-      break;
-    case C_EE:
-      if (pressed) {
-        tap_code16(RALT(KC_G));
-      }
-      break;
-    case C_ESC:
-      if (pressed) {
-        tap_code16(KC_ESC);
-        caps_word_set(false);
-      }
-      break;
-    case C_BS:
-    case C_LBS:
-    case C_RBS:
-      if (pressed) {
-        tap_code16(KC_BSPC);
-      }
-      break;
-    case C_BASE:
-      if (pressed) {
-        layer_move(_BASE);
-      }
-      break;
-    case C_CAPS:
-      if (pressed) {
-        caps_word_set(!caps_word_get());
-      }
-      break;
-  }
-}
