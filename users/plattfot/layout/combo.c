@@ -13,10 +13,6 @@
 // mods. Can kind of see this as homerow mod combos. Assumes the
 // keyboard is using Colemak DH.
 enum combo_events {
-  C_OE, // ö
-  C_AE, // ä
-  C_AO, // å
-  C_EE, // é
   C_ESC, // escape
 #ifdef PLT_ENABLE_COMBO40
   C_QUOTE, // '
@@ -38,10 +34,6 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
 
 #ifdef PLT_ENABLE_COMBO40
@@ -64,10 +56,6 @@ const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 #endif
 
 combo_t key_combos[] = {
- [C_OE] = COMBO_ACTION(oe_combo),
- [C_AE] = COMBO_ACTION(ae_combo),
- [C_AO] = COMBO_ACTION(ao_combo),
- [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
 
 #ifdef PLT_ENABLE_COMBO40
@@ -92,26 +80,6 @@ combo_t key_combos[] = {
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed)
 {
   switch(combo_index) {
-  case C_OE:
-    if (pressed) {
-      tap_code16(RALT(KC_O));
-    }
-    break;
-  case C_AE:
-    if (pressed) {
-      tap_code16(RALT(KC_A));
-    }
-    break;
-  case C_AO:
-    if (pressed) {
-      tap_code16(RALT(KC_W));
-    }
-    break;
-  case C_EE:
-    if (pressed) {
-      tap_code16(RALT(KC_G));
-    }
-    break;
   case C_ESC:
     if (pressed) {
       tap_code16(KC_ESC);
