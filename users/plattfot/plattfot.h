@@ -16,6 +16,9 @@
 
 #pragma once
 
+#ifdef PLT_ENABLE_CAPS_WORD
+#  include "features/caps_word.h"
+#endif
 #ifdef PLT_ENABLE_CLOSE_TAP
 #  include "features/close_tap.h"
 #endif
