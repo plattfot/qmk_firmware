@@ -27,7 +27,9 @@ enum combo_events {
   C_NAV, // to navigation
   C_BASE, // to base
 #endif
+#ifdef PLT_ENABLE_CAPS_WORD
   C_CAPS, // caps word
+#endif
   COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -49,7 +51,9 @@ const uint16_t PROGMEM altgr_combo[] = {KC_Y, KC_I, COMBO_END};
 const uint16_t PROGMEM quote_combo[] = {KC_SCLN, KC_O, COMBO_END};
 #endif
 
+#ifdef PLT_ENABLE_CAPS_WORD
 const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
+#endif
 
 combo_t key_combos[] = {
  [C_ESC] = COMBO_ACTION(esc_combo),
@@ -68,7 +72,9 @@ combo_t key_combos[] = {
  [C_ALTGR] = COMBO_ACTION(altgr_combo),
  [C_QUOTE] = COMBO_ACTION(quote_combo),
 #endif
+#ifdef PLT_ENABLE_CAPS_WORD
  [C_CAPS] = COMBO_ACTION(caps_combo),
+#endif
 };
 
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed)
@@ -77,7 +83,7 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
   case C_ESC:
     if (pressed) {
       tap_code16(KC_ESC);
-      caps_word_off();
+      caps_word_set(false);
     }
     break;
 #ifdef PLT_ENABLE_COMBO40
@@ -89,7 +95,9 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
   case C_BASE:
     if (pressed) {
       layer_move(plt_base_index());
-      caps_word_off();
+#ifdef PLT_ENABLE_CAPS_WORD
+      caps_word_set(false);
+#endif
 #ifdef PLT_ENABLE_CLOSE_TAP
       cancel_close_tap();
 #endif
@@ -141,11 +149,13 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
     }
     break;
 #endif
+#ifdef PLT_ENABLE_CAPS_WORD
   case C_CAPS:
     if (pressed) {
-      caps_word_toggle();
+      caps_word_set(!caps_word_get());
     }
     break;
   }
+#endif
 }
 #endif
