@@ -73,20 +73,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Left symbol and function Layer
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |  F12 |  F9  |  F8  |  F7  |      |                              |   $  |  `   |  [   |  ]   |  …   | RS RAlt|
+ * |        |  F12 |  F9  |  F8  |  F7  |      |                              |   [  |  ]   |  `   |  $   |  …   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  F11 |  F3  |  F2  |  F1  |CLOTAP|                              |   :  |  '   |  {   |  }   |  ^   |        |
+ * |        |  F11 |  F3  |  F2  |  F1  |CLOTAP|                              |   {  |  }   |  '   |  :   |  ^   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  F10 |  F6  |  F5  |  F4  |      |      | BASE |  | BASE |      |   ~  |  "   |  <   |  >   |  ?   |        |
+ * |        |  F10 |  F6  |  F5  |  F4  |      |      | BASE |  | BASE |      |   <  |  >   |  "   |  ~   |  ?   |        |
  * `----------------------+------+------+------|ADJUST|------|  |------| BSpc |------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_L_SYMFU] = LAYOUT(
-      _______, KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,                                     KC_DLR,  KC_GRV,  KC_LBRC, KC_RBRC, EU_TDOT, RS_RALT,
-      _______, KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,                                     KC_COLN, KC_QUOT, KC_LCBR, KC_RCBR, KC_CIRC, _______,
-      _______, KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, KC_TILDE,KC_DQUO, KC_LT,   KC_GT,   KC_QUES, _______,
+      _______, KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,                                     KC_LBRC, KC_RBRC, KC_GRV,  KC_DLR,  EU_TDOT, _______,
+      _______, KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,                                     KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC, _______,
+      _______, KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, KC_LT,   KC_GT,   KC_DQUO, KC_TILDE,KC_QUES, _______,
                                  _______, _______, _______, OSL_ADJ, _______, _______, KC_BSPC, _______, _______, _______
 
     ),
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Right symbol and number Layer
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * | LS RAlt|  °   |  @   |  *   |  #   |  %   |                              |      |  7   |  8   |  9   |  ,   |        |
+ * |        |  °   |  @   |  *   |  #   |  %   |                              |      |  7   |  8   |  9   |  ,   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  |   |  \   |  _   |  (   |  )   |                              |CLOTAP|  1   |  2   |  3   |  0   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
     [_R_SYMFU] = LAYOUT(
-      LS_RALT, EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
+      _______, EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
       _______, KC_PIPE, KC_BSLS, KC_UNDS, KC_LPRN, KC_RPRN,                                     CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,    _______,
       _______, KC_EXLM, KC_PLUS, KC_MINS, KC_EQUAL,KC_AMPR, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, KC_4,    KC_5,   KC_6,   KC_DOT,  _______,
                                  KC_F20,  _______, _______, KC_DEL,  _______, _______, R_SHORT, _______, _______, _______
