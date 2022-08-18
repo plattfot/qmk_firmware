@@ -97,9 +97,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |  °   |  @   |  *   |  #   |  %   |                              |      |  7   |  8   |  9   |  ,   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |  |   |  \   |  _   |  (   |  )   |                              |CLOTAP|  1   |  2   |  3   |  0   |        |
+ * |        |  |   |  _   |  -   |  (   |  )   |                              |CLOTAP|  1   |  2   |  3   |  0   |        |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |  !   |  +   |  -   |  =   |  &   |      | BASE |  | BASE |      |      |  4   |  5   |  6   |  .   |        |
+ * |        |  !   |  \   |  +   |  =   |  &   |      | BASE |  | BASE |      |      |  4   |  5   |  6   |  .   |        |
  * `----------------------+------+------+------| Del  |------|  |------|RSHORT|------+------+------+----------------------'
  *                        | Mic  |      |      |      |      |  |      | Cuts |      |      |      |
  *                        | Mute |      |      |      |      |  |      |      |      |      |      |
@@ -108,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_R_SYMFU] = LAYOUT(
       _______, EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
-      _______, KC_PIPE, KC_BSLS, KC_UNDS, KC_LPRN, KC_RPRN,                                     CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,    _______,
-      _______, KC_EXLM, KC_PLUS, KC_MINS, KC_EQUAL,KC_AMPR, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, KC_4,    KC_5,   KC_6,   KC_DOT,  _______,
+      _______, KC_PIPE, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN,                                     CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,    _______,
+      _______, KC_EXLM, KC_BSLS, KC_PLUS, KC_EQUAL,KC_AMPR, XXXXXXX, TO_BASE, TO_BASE, XXXXXXX, _______, KC_4,    KC_5,   KC_6,   KC_DOT,  _______,
                                  KC_F20,  _______, _______, KC_DEL,  _______, _______, R_SHORT, _______, _______, _______
     ),
 
