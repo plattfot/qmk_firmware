@@ -30,11 +30,6 @@ enum layers {
 #define EU_DEG  RALT(KC_SCLN)
 
 enum combo_events {
-  C_OE, // ö
-  C_AE, // ä
-  C_AO, // å
-  C_EE, // é
-  C_QUOTE, // '
   C_ESC, // escape
   C_BS, // backspace
   C_DEL, // backspace
@@ -51,13 +46,9 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_A, KC_S, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_W, KC_F, COMBO_END};
-const uint16_t PROGMEM ee_combo[] = {KC_G, KC_S, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
+const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
-const uint16_t PROGMEM nav_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM alt_combo[] = {KC_P, KC_T, COMBO_END};
 const uint16_t PROGMEM ctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM shift_combo[] = {KC_W, KC_R, COMBO_END};
@@ -68,17 +59,12 @@ const uint16_t PROGMEM bs_combo[] = {KC_N, KC_L, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM gui_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM altgr_combo[] = {KC_Y, KC_I, COMBO_END};
-const uint16_t PROGMEM quote_combo[] = {KC_SCLN, KC_O, COMBO_END};
-const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
+const uint16_t PROGMEM nav_combo[] = {KC_SCLN, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
- [C_OE] = COMBO_ACTION(oe_combo),
- [C_AE] = COMBO_ACTION(ae_combo),
- [C_AO] = COMBO_ACTION(ao_combo),
- [C_EE] = COMBO_ACTION(ee_combo),
  [C_ESC] = COMBO_ACTION(esc_combo),
+ [C_CAPS] = COMBO_ACTION(caps_combo),
 
- [C_NAV] = COMBO_ACTION(nav_combo),
  [C_CTRL] = COMBO_ACTION(ctrl_combo),
  [C_ALT] = COMBO_ACTION(alt_combo),
  [C_GUI] = COMBO_ACTION(gui_combo),
@@ -89,9 +75,7 @@ combo_t key_combos[] = {
  [C_DEL] = COMBO_ACTION(del_combo),
  [C_SHIFT] = COMBO_ACTION(shift_combo),
  [C_ALTGR] = COMBO_ACTION(altgr_combo),
- [C_QUOTE] = COMBO_ACTION(quote_combo),
-
- [C_CAPS] = COMBO_ACTION(caps_combo),
+ [C_NAV] = COMBO_ACTION(nav_combo),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -178,26 +162,6 @@ void matrix_scan_user(void) {
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
-  case C_OE:
-    if (pressed) {
-      tap_code16(RALT(KC_O));
-    }
-    break;
-  case C_AE:
-    if (pressed) {
-      tap_code16(RALT(KC_A));
-    }
-    break;
-  case C_AO:
-    if (pressed) {
-      tap_code16(RALT(KC_W));
-    }
-    break;
-  case C_EE:
-    if (pressed) {
-      tap_code16(RALT(KC_G));
-    }
-    break;
   case C_ESC:
     if (pressed) {
       tap_code16(KC_ESC);
@@ -256,15 +220,10 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
       add_oneshot_mods(MOD_BIT(KC_RALT));
     }
     break;
-  case C_QUOTE:
+  case C_CAPS:
     if (pressed) {
-      tap_code16(KC_QUOT);
+      caps_word_set(!caps_word_get());
     }
     break;
-    case C_CAPS:
-      if (pressed) {
-        caps_word_set(!caps_word_get());
-      }
-      break;
   }
 }
