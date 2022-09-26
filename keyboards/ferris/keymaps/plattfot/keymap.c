@@ -119,9 +119,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * Left symbol and function Layer
   */
  [_L_SYMFU] = LAYOUT(
-   KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_CIRC, KC_AMPR, KC_ASTR, KC_TILDE,KC_GRV,
-   KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,             KC_EQUAL,KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,
-   KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             EU_TDOT, KC_DQUO, KC_LT,   KC_GT,   KC_QUES,
+   KC_F12,  KC_F9,   KC_F8,   KC_F7,   _______,             KC_LBRC, KC_RBRC, KC_GRV,  KC_DLR,  EU_TDOT,
+   KC_F11,  KC_F3,   KC_F2,   KC_F1,   CLO_TAP,             KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC,
+   KC_F10,  KC_F6,   KC_F5,   KC_F4,   _______,             KC_LT,   KC_GT,   KC_DQUO, KC_TILDE,KC_QUES,
                                      TO_BASE, _______, _______, TO_BASE
 
  ),
@@ -130,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * Right symbol and number Layer
   */
  [_R_SYMFU] = LAYOUT(
-   KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,             _______, KC_7,    KC_8,   KC_9,   KC_COMM,
-   KC_PIPE, KC_UNDS, KC_BSLS, KC_MINS, KC_PLUS,             CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,
-   EU_DEG,  KC_COLN, KC_LPRN, KC_RPRN, EU_CDOT,             _______, KC_4,    KC_5,   KC_6,   KC_DOT,
+   EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,             _______, KC_7,    KC_8,   KC_9,   KC_COMM,
+   KC_PIPE, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN,             CLO_TAP, KC_1,    KC_2,   KC_3,   KC_0,
+   KC_EXLM, KC_BSLS, KC_PLUS, KC_EQUAL,KC_AMPR,             _______, KC_4,    KC_5,   KC_6,   KC_DOT,
                                     TO_BASE, _______, _______, TO_BASE
   ),
 
