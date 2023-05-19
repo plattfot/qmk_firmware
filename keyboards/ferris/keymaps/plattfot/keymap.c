@@ -95,10 +95,6 @@ combo_t key_combos[] = {
  [C_CAPS] = COMBO_ACTION(caps_combo),
 
  [C_CLEAR] = COMBO_ACTION(clear_combo),
- /* [C_LALTL] = COMBO(laltl_combo, OSM(MOD_LALT)), */
- /* [C_LCTRL] = COMBO(lctrl_combo, OSM(MOD_LCTL)), */
- /* [C_LGUI] = COMBO(lgui_combo, OSM(MOD_LGUI)), */
- /* [C_LSHIFT] = COMBO(lshift_combo, OSM(MOD_LSFT)), */
  [C_LALTL] = COMBO_ACTION(laltl_combo),
  [C_LCTRL] = COMBO_ACTION(lctrl_combo),
  [C_LGUI] = COMBO_ACTION(lgui_combo),
@@ -108,15 +104,10 @@ combo_t key_combos[] = {
  [C_CPU] = COMBO(cpu_combo, LCTL(KC_PGUP)),
  [C_DEL] = COMBO(del_combo, KC_DEL),
  [C_MPLY] = COMBO(mply_combo, KC_MPLY),
- /* [C_RALTL] = COMBO(raltl_combo, OSM(MOD_RALT)), */
  [C_RALTL] = COMBO_ACTION(raltl_combo),
  [C_TAB] = COMBO(tab_combo, KC_TAB),
 
  [C_RSHORT] = COMBO(rshort_combo, OSL(_R_SHORT)),
- /* [C_LALTR] = COMBO(laltr_combo, OSM(MOD_LALT)), */
- /* [C_RCTRL] = COMBO(rctrl_combo, OSM(MOD_RCTL)), */
- /* [C_RGUI] = COMBO(rgui_combo, OSM(MOD_RGUI)), */
- /* [C_RSHIFT] = COMBO(rshift_combo, OSM(MOD_RSFT)), */
  [C_LALTR] = COMBO_ACTION(laltr_combo),
  [C_RCTRL] = COMBO_ACTION(rctrl_combo),
  [C_RGUI] = COMBO_ACTION(rgui_combo),
@@ -125,7 +116,6 @@ combo_t key_combos[] = {
  [C_CPD] = COMBO(cpd_combo, RCTL(KC_PGDN)),
  [C_ENT] = COMBO(ent_combo, KC_ENT),
  [C_F20] = COMBO(micmute_combo, KC_F20),
- /* [C_RALTR] = COMBO(raltr_combo, OSM(MOD_RALT)), */
  [C_RALTR] = COMBO_ACTION(raltr_combo),
  [C_NAV] = COMBO(nav_combo, OSL(_NAV)),
 };
