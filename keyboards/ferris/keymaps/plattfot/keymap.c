@@ -35,7 +35,7 @@ enum combo_events {
   C_ESC,
   C_CAPS, // caps word
 
-  C_BASE, // to base
+  C_CLEAR, // clear state
   C_LALTL,
   C_LCTRL,
   C_LGUI,
@@ -66,7 +66,7 @@ uint16_t COMBO_LEN = COMBO_LENGTH;
 const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
-const uint16_t PROGMEM base_combo[] = {KC_B, KC_G, COMBO_END};
+const uint16_t PROGMEM clear_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM laltl_combo[] = {KC_P, KC_T, COMBO_END};
 const uint16_t PROGMEM lctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM lgui_combo[] = {KC_W, KC_R, COMBO_END};
@@ -94,7 +94,7 @@ combo_t key_combos[] = {
  [C_ESC] = COMBO_ACTION(esc_combo),
  [C_CAPS] = COMBO_ACTION(caps_combo),
 
- [C_BASE] = COMBO_ACTION(base_combo),
+ [C_CLEAR] = COMBO_ACTION(clear_combo),
  /* [C_LALTL] = COMBO(laltl_combo, OSM(MOD_LALT)), */
  /* [C_LCTRL] = COMBO(lctrl_combo, OSM(MOD_LCTL)), */
  /* [C_LGUI] = COMBO(lgui_combo, OSM(MOD_LGUI)), */
@@ -296,11 +296,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             cancel_close_tap();
         }
         break;
-    case C_BASE:
+    case C_CLEAR:
         if (pressed) {
             layer_move(_BASE);
             caps_word_set(false);
             cancel_close_tap();
+            clear_oneshot_mods();
         }
         break;
     case C_CAPS:
