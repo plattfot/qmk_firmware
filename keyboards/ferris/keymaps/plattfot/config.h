@@ -20,3 +20,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Remove the delay for the OSL keys. Not using any other tap keys.
 // Otherwise TAPPING_TERM_PER_KEY would be the way to go.
 #define TAPPING_TERM 0
+#define COMBO_ONLY_FROM_LAYER 0
