@@ -54,7 +54,7 @@ enum combo_events {
   C_RSHIFT,
 
   C_CPD, // Ctri + PgDn
-  C_ENT,
+  C_BSPC,
   C_F20, // mic mute
   C_RALTR,
   C_NAV, // to navigation
@@ -63,7 +63,7 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
 const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 
 const uint16_t PROGMEM clear_combo[] = {KC_B, KC_G, COMBO_END};
@@ -85,7 +85,7 @@ const uint16_t PROGMEM rgui_combo[] = {KC_Y, KC_I, COMBO_END};
 const uint16_t PROGMEM rshift_combo[] = {KC_SCLN, KC_O, COMBO_END};
 
 const uint16_t PROGMEM cpd_combo[] = {KC_M, KC_K, COMBO_END};
-const uint16_t PROGMEM ent_combo[] = {KC_N, KC_H, COMBO_END};
+const uint16_t PROGMEM bspc_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM micmute_combo[] = {KC_E, KC_COMM, COMBO_END};
 const uint16_t PROGMEM raltr_combo[] = {KC_I, KC_DOT, COMBO_END};
 const uint16_t PROGMEM nav_combo[] = {KC_O, KC_SLSH, COMBO_END};
@@ -114,7 +114,7 @@ combo_t key_combos[] = {
  [C_RSHIFT] = COMBO_ACTION(rshift_combo),
 
  [C_CPD] = COMBO(cpd_combo, RCTL(KC_PGDN)),
- [C_ENT] = COMBO(ent_combo, KC_ENT),
+ [C_BSPC] = COMBO(bspc_combo, KC_BSPC),
  [C_F20] = COMBO(micmute_combo, KC_F20),
  [C_RALTR] = COMBO_ACTION(raltr_combo),
  [C_NAV] = COMBO(nav_combo, OSL(_NAV)),
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   * |------+------+------+------+------+      +------+------+------+------+------|
   * |   Z  |   X  |   C  |   D  |   V  |      |   K  |   H  |   ,  |   .  |   /  |
   * `------------------------------------. .--+------+------+--------------------'
-  *                        | LSYM | SPC  | | BSPC | RSYM |
+  *                        | LSYM | SPC  | | Enter| RSYM |
   *                        |      |      | |      |      |
   *                        `-------------' `-------------'
   */
@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,                KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_G,                KC_M,    KC_N,    KC_E,    KC_I,    KC_O,
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,                KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,
-                                   L_SYMFU, KC_SPC,  KC_BSPC, R_SYMFU
+                                   L_SYMFU, KC_SPC,  KC_ENT, R_SYMFU
  ),
  /*
   * Left symbol and function Layer
