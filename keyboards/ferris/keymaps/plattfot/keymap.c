@@ -237,7 +237,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_LCTRL:
         if (pressed) {
             register_code(KC_LCTL);
-            add_oneshot_mods(MOD_BIT(KC_LCTL));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_LCTL));
+            }
         } else {
             unregister_code(KC_LCTL);
         }
@@ -245,7 +247,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_RCTRL:
         if (pressed) {
             register_code(KC_RCTL);
-            add_oneshot_mods(MOD_BIT(KC_RCTL));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_RCTL));
+            }
         } else {
             unregister_code(KC_RCTL);
         }
@@ -254,7 +258,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_LALTL:
         if (pressed) {
             register_code(KC_LALT);
-            add_oneshot_mods(MOD_BIT(KC_LALT));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_LALT));
+            }
         } else {
             unregister_code(KC_LALT);
         }
@@ -263,7 +269,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_RALTL:
         if (pressed) {
             register_code(KC_RALT);
-            add_oneshot_mods(MOD_BIT(KC_RALT));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_RALT));
+            }
         } else {
             unregister_code(KC_RALT);
         }
@@ -271,7 +279,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_LGUI:
         if (pressed) {
             register_code(KC_LGUI);
-            add_oneshot_mods(MOD_BIT(KC_LGUI));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_LGUI));
+            }
         } else {
             unregister_code(KC_LGUI);
         }
@@ -279,7 +289,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_RGUI:
         if (pressed) {
             register_code(KC_RGUI);
-            add_oneshot_mods(MOD_BIT(KC_RGUI));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_RGUI));
+            }
         } else {
             unregister_code(KC_RGUI);
         }
@@ -287,7 +299,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_LSHIFT:
         if (pressed) {
             register_code(KC_LSFT);
-            add_oneshot_mods(MOD_BIT(KC_LSFT));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_LSFT));
+            }
         } else {
             unregister_code(KC_LSFT);
         }
@@ -295,7 +309,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
     case C_RSHIFT:
         if (pressed) {
             register_code(KC_RSFT);
-            add_oneshot_mods(MOD_BIT(KC_RSFT));
+            if (!layer_state_is(_MOUSE)) {
+                add_oneshot_mods(MOD_BIT(KC_RSFT));
+            }
         } else {
             unregister_code(KC_RSFT);
         }
