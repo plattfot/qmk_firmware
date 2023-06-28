@@ -325,10 +325,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         break;
     case C_CLEAR:
         if (pressed) {
+            if (host_keyboard_led_state().num_lock) {
+                tap_code(KC_NUM_LOCK);
+            }
+            clear_oneshot_mods();
             layer_move(_BASE);
             caps_word_set(false);
             cancel_close_tap();
-            clear_oneshot_mods();
         }
         break;
     case C_CAPS:
