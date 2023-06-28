@@ -70,25 +70,25 @@ const uint16_t PROGMEM clear_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM laltl_combo[] = {KC_P, KC_T, COMBO_END};
 const uint16_t PROGMEM lctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM lgui_combo[] = {KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM lshift_combo[] = {KC_Q, KC_A, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_Q, KC_A, COMBO_END};
 
 const uint16_t PROGMEM cpu_combo[] = {KC_G, KC_V, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {KC_T, KC_D, COMBO_END};
 const uint16_t PROGMEM mply_combo[] = {KC_S, KC_C, COMBO_END};
 const uint16_t PROGMEM raltl_combo[] = {KC_R, KC_X, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_A, KC_Z, COMBO_END};
+const uint16_t PROGMEM lshift_combo[] = {KC_A, KC_Z, COMBO_END};
 
 const uint16_t PROGMEM rshort_combo[] = {KC_J, KC_M, COMBO_END};
 const uint16_t PROGMEM laltr_combo[] = {KC_L, KC_N, COMBO_END};
 const uint16_t PROGMEM rctrl_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM rgui_combo[] = {KC_Y, KC_I, COMBO_END};
-const uint16_t PROGMEM rshift_combo[] = {KC_SCLN, KC_O, COMBO_END};
+const uint16_t PROGMEM nav_combo[] = {KC_SCLN, KC_O, COMBO_END};
 
 const uint16_t PROGMEM cpd_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM micmute_combo[] = {KC_E, KC_COMM, COMBO_END};
 const uint16_t PROGMEM raltr_combo[] = {KC_I, KC_DOT, COMBO_END};
-const uint16_t PROGMEM nav_combo[] = {KC_O, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM rshift_combo[] = {KC_O, KC_SLSH, COMBO_END};
 
 combo_t key_combos[] = {
  [C_ESC] = COMBO_ACTION(esc_combo),
