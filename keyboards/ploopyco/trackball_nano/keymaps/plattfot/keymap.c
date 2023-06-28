@@ -26,6 +26,11 @@
 
 #define MOVEMENT_TIMEOUT 1000
 
+void pointing_device_init_user(void)
+{
+    pointing_device_set_cpi(600);
+}
+
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     static uint16_t movement_timer;
     // Need to track the state internally.  Relying only on the
