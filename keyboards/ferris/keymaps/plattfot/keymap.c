@@ -15,6 +15,7 @@ enum layers {
     _R_SYMFU,
     _NAV,
     _R_SHORT,
+    _MOUSE,
 };
 
 #define TO_BASE TO(_BASE)
@@ -179,6 +180,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                      _______, _______, _______, _______
 
  ),
+
+ [_MOUSE] = LAYOUT(
+    _______, _______, _______, _______, _______,             _______, _______, KC_WH_U, _______, _______,
+    _______, _______, _______, _______, _______,             _______, KC_BTN1, KC_BTN3, KC_BTN2, _______,
+    _______, _______, _______, _______, _______,             _______, KC_BTN4, KC_WH_D, KC_BTN5, _______,
+                                     _______, _______, _______, _______
+
+ ),
+
 /*
  * Template Layer:
  *
@@ -209,6 +219,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void matrix_scan_user(void) {
     caps_word_task();
+}
+
+bool led_update_user(led_t state) {
+    // Enable mouse layer when numlock is on
+    // Based on code from defiant00 [0]
+
+    // [0]https://github.com/defiant00/qmk_firmware/blob/ba467206f1/keyboards/keebio/iris/keymaps/defiant00/keymap.c#L60
+    if (state.num_lock != layer_state_is(_MOUSE)) {
+        layer_invert(_MOUSE);
+    }
+    return true;
 }
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
