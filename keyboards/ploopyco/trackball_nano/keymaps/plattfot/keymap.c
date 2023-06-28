@@ -24,7 +24,7 @@
 
 // [0] https://github.com/defiant00/qmk_firmware/blob/ba467206f1/keyboards/ploopyco/trackball_nano/keymaps/defiant00/keymap.c
 
-#define MOVEMENT_TIMEOUT 1000
+#define MOVEMENT_TIMEOUT 10000
 
 void pointing_device_init_user(void)
 {
@@ -57,7 +57,6 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     // defines a rotation.
     mouse_report.x = -y;
     mouse_report.y = x;
-
 
     return mouse_report;
 }
