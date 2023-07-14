@@ -26,3 +26,7 @@ int plt_base_index(void);
 // defined in the keymap.c file!
 int plt_nav_index(void);
 
+// Function that return the index to the shortcut layer. Needs to be
+// defined in the keymap.c file!
+int plt_shortcut_index(void);
+
