@@ -52,9 +52,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Default
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  | Insert |
+ * |  RAlt  |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |  RAlt  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  RAlt  |   A  |   R  |   S  |   T  |   G  |                              |   M  |   N  |   E  |   I  |   O  |  RAlt  |
+ * |  DEL   |   A  |   R  |   S  |   T  |   G  |                              |   M  |   N  |   E  |   I  |   O  |  BSpc  |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  | RShift |
  * `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
@@ -63,8 +63,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                        `----------------------------------'  `----------------------------------'
  */
     [_BASE] = LAYOUT(
-      _______, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_INS,
-      KC_RALT, KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_RALT,
+      KC_RALT, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_RALT,
+      KC_DEL,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_BSPC,
       KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  KC_LALT, KC_LALT, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
                                KC_MPLY,KC_LGUI,L_SYMFU, KC_SPACE, KC_LCTL, KC_RCTL,  KC_ENT, R_SYMFU, KC_LGUI, KC_F20
     ),
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
     [_R_SYMFU] = LAYOUT(
-      _______, EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
+      KC_INS,  EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
       _______, KC_PIPE, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN,                                     _______, KC_1,    KC_2,   KC_3,   KC_0,    _______,
       _______, KC_EXLM, KC_BSLS, KC_PLUS, KC_EQUAL,KC_AMPR, XXXXXXX, _______, _______, XXXXXXX, CLO_TAP, KC_4,    KC_5,   KC_6,   KC_DOT,  _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
