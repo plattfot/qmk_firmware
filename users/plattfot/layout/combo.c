@@ -22,14 +22,14 @@ enum combo_events {
   C_LALTL,
   C_LCTRL,
   C_LGUI,
-  C_TAB,
+  C_LSHIFT,
 
   // Upper right hand
   C_RSHORT,
   C_LALTR,
   C_RCTRL,
   C_RGUI,
-  C_NAV, // to navigation
+  C_RSHIFT,
 
 #ifdef PLT_ENABLE_COMBO_FULL
   // Lower left hand
@@ -37,14 +37,14 @@ enum combo_events {
   C_DEL,
   C_MPLY,
   C_RALTL,
-  C_LSHIFT,
+  C_TAB,
 
   // Lower right hand
   C_CPD, // Ctri + PgDn
   C_BSPC,
   C_F20, // mic mute
   C_RALTR,
-  C_RSHIFT,
+  C_NAV, // to navigation
 #endif
 
   COMBO_LENGTH
@@ -60,26 +60,26 @@ const uint16_t PROGMEM clear_combo[] = {KC_B, KC_G, COMBO_END};
 const uint16_t PROGMEM laltl_combo[] = {KC_P, KC_T, COMBO_END};
 const uint16_t PROGMEM lctrl_combo[] = {KC_F, KC_S, COMBO_END};
 const uint16_t PROGMEM lgui_combo[] = {KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_Q, KC_A, COMBO_END};
+const uint16_t PROGMEM lshift_combo[] = {KC_Q, KC_A, COMBO_END};
 
 const uint16_t PROGMEM rshort_combo[] = {KC_J, KC_M, COMBO_END};
 const uint16_t PROGMEM laltr_combo[] = {KC_L, KC_N, COMBO_END};
 const uint16_t PROGMEM rctrl_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM rgui_combo[] = {KC_Y, KC_I, COMBO_END};
-const uint16_t PROGMEM nav_combo[] = {KC_SCLN, KC_O, COMBO_END};
+const uint16_t PROGMEM rshift_combo[] = {KC_SCLN, KC_O, COMBO_END};
 
 #ifdef PLT_ENABLE_COMBO_FULL
 const uint16_t PROGMEM cpu_combo[] = {KC_G, KC_V, COMBO_END};
 const uint16_t PROGMEM del_combo[] = {KC_T, KC_D, COMBO_END};
 const uint16_t PROGMEM mply_combo[] = {KC_S, KC_C, COMBO_END};
 const uint16_t PROGMEM raltl_combo[] = {KC_R, KC_X, COMBO_END};
-const uint16_t PROGMEM lshift_combo[] = {KC_A, KC_Z, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_A, KC_Z, COMBO_END};
 
 const uint16_t PROGMEM cpd_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM bspc_combo[] = {KC_N, KC_H, COMBO_END};
 const uint16_t PROGMEM micmute_combo[] = {KC_E, KC_COMM, COMBO_END};
 const uint16_t PROGMEM raltr_combo[] = {KC_I, KC_DOT, COMBO_END};
-const uint16_t PROGMEM rshift_combo[] = {KC_O, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM nav_combo[] = {KC_O, KC_SLSH, COMBO_END};
 #endif
 
 combo_t key_combos[] = {
@@ -92,32 +92,50 @@ combo_t key_combos[] = {
  [C_LALTL] = COMBO_ACTION(laltl_combo),
  [C_LCTRL] = COMBO_ACTION(lctrl_combo),
  [C_LGUI] = COMBO_ACTION(lgui_combo),
- [C_TAB] = COMBO(tab_combo, KC_TAB),
+ [C_LSHIFT] = COMBO_ACTION(lshift_combo),
 
  [C_RSHORT] = COMBO_ACTION(rshort_combo),
  [C_LALTR] = COMBO_ACTION(laltr_combo),
  [C_RCTRL] = COMBO_ACTION(rctrl_combo),
  [C_RGUI] = COMBO_ACTION(rgui_combo),
- [C_NAV] = COMBO_ACTION(nav_combo),
+ [C_RSHIFT] = COMBO_ACTION(rshift_combo),
 
 #ifdef PLT_ENABLE_COMBO_FULL
  [C_CPU] = COMBO(cpu_combo, LCTL(KC_PGUP)),
  [C_DEL] = COMBO(del_combo, KC_DEL),
  [C_MPLY] = COMBO(mply_combo, KC_MPLY),
  [C_RALTL] = COMBO_ACTION(raltl_combo),
- [C_LSHIFT] = COMBO_ACTION(lshift_combo),
+ [C_TAB] = COMBO(tab_combo, KC_TAB),
 
  [C_CPD] = COMBO(cpd_combo, RCTL(KC_PGDN)),
  [C_BSPC] = COMBO(bspc_combo, KC_BSPC),
  [C_F20] = COMBO(micmute_combo, KC_F20),
  [C_RALTR] = COMBO_ACTION(raltr_combo),
- [C_RSHIFT] = COMBO_ACTION(rshift_combo),
+ [C_NAV] = COMBO_ACTION(nav_combo),
 #endif
 };
 
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed)
 {
     switch(combo_index) {
+#ifdef PLT_ENABLE_COMBO_FULL
+    case C_NAV:
+        if (pressed) {
+            set_oneshot_layer(plt_nav_index(), ONESHOT_START);
+        } else {
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
+        }
+        break;
+    case C_RALTR:
+    case C_RALTL:
+        if (pressed) {
+            register_code(KC_RALT);
+            add_oneshot_mods(MOD_BIT(KC_RALT));
+        } else {
+            unregister_code(KC_RALT);
+        }
+        break;
+#endif
     case C_LCTRL:
         if (pressed) {
             register_code(KC_LCTL);
@@ -143,16 +161,6 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
             unregister_code(KC_LALT);
         }
         break;
-#ifdef PLT_ENABLE_COMBO_FULL
-    case C_RALTR:
-    case C_RALTL:
-        if (pressed) {
-            register_code(KC_RALT);
-            add_oneshot_mods(MOD_BIT(KC_RALT));
-        } else {
-            unregister_code(KC_RALT);
-        }
-        break;
     case C_LSHIFT:
         if (pressed) {
             register_code(KC_LSFT);
@@ -169,7 +177,6 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
             unregister_code(KC_RSFT);
         }
         break;
-#endif
     case C_LGUI:
         if (pressed) {
             register_code(KC_LGUI);
@@ -189,13 +196,6 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
     case C_RSHORT:
         if (pressed) {
             set_oneshot_layer(plt_shortcut_index(), ONESHOT_START);
-        } else {
-            clear_oneshot_layer_state(ONESHOT_PRESSED);
-        }
-        break;
-    case C_NAV:
-        if (pressed) {
-            set_oneshot_layer(plt_nav_index(), ONESHOT_START);
         } else {
             clear_oneshot_layer_state(ONESHOT_PRESSED);
         }
