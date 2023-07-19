@@ -35,7 +35,8 @@ enum layers {
 #define R_SHORT OSL(_R_SHORT)
 
 #define OSL_NAV OSL(_NAV)
-#define OSM_ALT OSM(MOD_RALT)
+#define OS_LSFT OSM(MOD_LSFT)
+#define OS_RSFT OSM(MOD_RSFT)
 
 int plt_base_index(void) {return _BASE;}
 int plt_nav_index(void) {return _NAV;}
@@ -48,19 +49,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |  Nav   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |  Nav   |
- * |--------+-LSft-+-LGui-+-LCtl-+-LAlt-+--Clr-|                              |-RSrt-+-LAlt-+-RCtl-+-RGui-+-RSft-+--------|
+ * |--------+-AltGr+-LGui-+-LCtl-+-LAlt-+--Clr-|                              |-RSrt-+-LAlt-+-RCtl-+-RGui-+-AltGr+--------|
  * |  Tab   |   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  |  BSpc  |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | AltGr  |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  | AltGr  |
+ * | LShift |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  | RShift |
  * `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
  *                        | MPlay| LGui | LSYMF|      | LCtrl|  | RCtrl|      | RSYMF| RGui | MMute|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `-----------------------Esc--------'  `--------Esc-----------------------'
  */
-    [_BASE] = LAYOUT(
+ [_BASE] = LAYOUT(
       OSL_NAV, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, OSL_NAV,
       KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_BSPC,
-      OSM_ALT, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  KC_LALT, KC_LALT, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, OSM_ALT,
+      OS_LSFT, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  KC_LALT, KC_LALT, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, OS_RSFT,
                                KC_MPLY,KC_LGUI,L_SYMFU, KC_SPACE, KC_LCTL, KC_RCTL,  KC_ENT, R_SYMFU, KC_LGUI, KC_F20
     ),
 
@@ -102,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
     [_R_SYMFU] = LAYOUT(
-      KC_INS,  EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
+      _______, EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,                                     _______, KC_7,    KC_8,   KC_9,   KC_COMM, _______,
       _______, KC_PIPE, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN,                                     _______, KC_1,    KC_2,   KC_3,   KC_0,    KC_INS,
       _______, KC_EXLM, KC_BSLS, KC_PLUS, KC_EQUAL,KC_AMPR, XXXXXXX, _______, _______, XXXXXXX, CLO_TAP, KC_4,    KC_5,   KC_6,   KC_DOT,  _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
