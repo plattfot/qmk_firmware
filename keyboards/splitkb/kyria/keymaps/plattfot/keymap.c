@@ -19,6 +19,8 @@
 
 enum custom_keycodes {
   PLACEHOLDER = CLOSE_TAP_SAFE_RANGE,  // can always be here
+  OS_LSFT,
+  OS_RSFT
   // New keys
 };
 
@@ -35,8 +37,6 @@ enum layers {
 #define R_SHORT OSL(_R_SHORT)
 
 #define OSL_NAV OSL(_NAV)
-#define OS_LSFT OSM(MOD_LSFT)
-#define OS_RSFT OSM(MOD_RSFT)
 
 int plt_base_index(void) {return _BASE;}
 int plt_nav_index(void) {return _NAV;}
@@ -170,7 +170,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_caps_word(keycode, record)) { return false; }
     if (!process_close_tap(keycode, record)) { return false; }
-
+    // Workaround for OSM(MOD_LSFT) not working correctly
+    switch (keycode)
+    {
+    case OS_LSFT:
+        if (record->event.pressed) {
+            register_code(KC_LSFT);
+            add_oneshot_mods(MOD_BIT(KC_LSFT));
+        } else {
+            unregister_code(KC_LSFT);
+        }
+        return false;
+    case OS_RSFT:
+        if (record->event.pressed) {
+            register_code(KC_RSFT);
+            add_oneshot_mods(MOD_BIT(KC_RSFT));
+        } else {
+            unregister_code(KC_RSFT);
+        }
+        return false;
+    }
     return true;
 }
 
