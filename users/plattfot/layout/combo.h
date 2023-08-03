@@ -30,3 +30,7 @@ int plt_nav_index(void);
 // defined in the keymap.c file!
 int plt_shortcut_index(void);
 
+// Function that return the index to the left symbol/function
+// layer. Needs to be defined in the keymap.c file!
+int plt_left_symfunc_index(void);
+

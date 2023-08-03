@@ -31,19 +31,27 @@ enum combo_events {
   C_RGUI,
   C_RALTR,
 
+  // Lower left hand
+  C_TAB,
+  C_LNAV, // to navigation
+
+  // Lower right hand
+  C_BSPC, // key will be del when on plt_left_symfunc_index layer
+  C_RNAV, // to navigation
+
 #ifdef PLT_ENABLE_COMBO_FULL
   // Lower left hand
   C_CPU, // Ctri + PgUp
-  C_DEL,
+  /* C_TAB, */
+  /* C_LNAV*/
   C_MPLY,
-  C_TAB,
   C_LSHIFT,
 
   // Lower right hand
   C_CPD, // Ctri + PgDn
-  C_BSPC,
+  /* C_BSPC, */
+  /* C_RNAV*/
   C_F20, // mic mute
-  C_NAV, // to navigation
   C_RSHIFT,
 #endif
 
@@ -68,17 +76,23 @@ const uint16_t PROGMEM rctrl_combo[] = {KC_U, KC_E, COMBO_END};
 const uint16_t PROGMEM rgui_combo[] = {KC_Y, KC_I, COMBO_END};
 const uint16_t PROGMEM raltr_combo[] ={KC_SCLN, KC_O, COMBO_END};
 
+const uint16_t PROGMEM tab_combo[] = {KC_T, KC_D, COMBO_END};
+const uint16_t PROGMEM lnav_combo[] = {KC_S, KC_C, COMBO_END};
+
+const uint16_t PROGMEM bspc_combo[] = {KC_N, KC_H, COMBO_END};
+const uint16_t PROGMEM rnav_combo[] = {KC_E, KC_COMM, COMBO_END};
+
 #ifdef PLT_ENABLE_COMBO_FULL
 const uint16_t PROGMEM cpu_combo[] = {KC_G, KC_V, COMBO_END};
-const uint16_t PROGMEM del_combo[] = {KC_T, KC_D, COMBO_END};
-const uint16_t PROGMEM mply_combo[] = {KC_S, KC_C, COMBO_END};
-const uint16_t PROGMEM tab_combo[] = {KC_R, KC_X, COMBO_END};
+// <- tab placement ->
+// <- nav placement ->
+const uint16_t PROGMEM mply_combo[] = {KC_R, KC_X, COMBO_END};
 const uint16_t PROGMEM lshift_combo[] = {KC_A, KC_Z, COMBO_END};
 
 const uint16_t PROGMEM cpd_combo[] = {KC_M, KC_K, COMBO_END};
-const uint16_t PROGMEM bspc_combo[] = {KC_N, KC_H, COMBO_END};
-const uint16_t PROGMEM micmute_combo[] = {KC_E, KC_COMM, COMBO_END};
-const uint16_t PROGMEM nav_combo[] = {KC_I, KC_DOT, COMBO_END};
+// <- backspace placement ->
+// <- nav placement ->
+const uint16_t PROGMEM micmute_combo[] = {KC_I, KC_DOT, COMBO_END};
 const uint16_t PROGMEM rshift_combo[] = {KC_O, KC_SLSH, COMBO_END};
 #endif
 
@@ -100,17 +114,23 @@ combo_t key_combos[] = {
  [C_RGUI] = COMBO_ACTION(rgui_combo),
  [C_RALTR] = COMBO_ACTION(raltr_combo),
 
+ [C_TAB] = COMBO(tab_combo, KC_TAB),
+ [C_LNAV] = COMBO_ACTION(lnav_combo),
+
+ [C_BSPC] = COMBO_ACTION(bspc_combo),
+ [C_RNAV] = COMBO_ACTION(rnav_combo),
+
 #ifdef PLT_ENABLE_COMBO_FULL
  [C_CPU] = COMBO(cpu_combo, LCTL(KC_PGUP)),
- [C_DEL] = COMBO(del_combo, KC_DEL),
+ // <- tab ->
+ // <- nav ->
  [C_MPLY] = COMBO(mply_combo, KC_MPLY),
- [C_TAB] = COMBO(tab_combo, KC_TAB),
  [C_LSHIFT] = COMBO_ACTION(lshift_combo),
 
  [C_CPD] = COMBO(cpd_combo, RCTL(KC_PGDN)),
- [C_BSPC] = COMBO(bspc_combo, KC_BSPC),
+ // <- backspace ->
+ // <- nav ->
  [C_F20] = COMBO(micmute_combo, KC_F20),
- [C_NAV] = COMBO_ACTION(nav_combo),
  [C_RSHIFT] = COMBO_ACTION(rshift_combo),
 #endif
 };
@@ -118,14 +138,15 @@ combo_t key_combos[] = {
 __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed)
 {
     switch(combo_index) {
-#ifdef PLT_ENABLE_COMBO_FULL
-    case C_NAV:
+    case C_LNAV:
+    case C_RNAV:
         if (pressed) {
             set_oneshot_layer(plt_nav_index(), ONESHOT_START);
         } else {
             clear_oneshot_layer_state(ONESHOT_PRESSED);
         }
         break;
+#ifdef PLT_ENABLE_COMBO_FULL
     case C_LSHIFT:
         if (pressed) {
             register_code(KC_LSFT);
@@ -143,6 +164,17 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
         }
         break;
 #endif
+    case C_BSPC:
+        const uint8_t key = get_highest_layer(layer_state) == plt_left_symfunc_index()?
+            KC_DEL:
+            KC_BSPC;
+        if (pressed) {
+            register_code(key);
+        } else {
+            unregister_code(key);
+            clear_oneshot_layer_state(ONESHOT_OTHER_KEY_PRESSED);
+        }
+        break;
     case C_LCTRL:
         if (pressed) {
             register_code(KC_LCTL);
