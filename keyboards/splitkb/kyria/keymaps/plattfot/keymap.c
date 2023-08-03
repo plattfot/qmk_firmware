@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
  * |        |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |        |
- * |--------+-LGui-+-LSft-+-LCtl-+-LAlt-+--Clr-|                              |-RSrt-+-LAlt-+-RCtl-+-RSft-+-RGui-+--------|
+ * |--------+-LGui-+-LAlt-+-LCtl-+-LSft-+--Clr-|                              |-RSrt-+-LSft-+-RCtl-+-RAlt-+-RGui-+--------|
  * |        |   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  |        |
  * |--------+------+-AltGr+-Nav--+-Tab--+------+-------------.  ,-------------+------+-BSpc-+-Nav--+-AltGr+------+--------|
  * |        |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  |        |
