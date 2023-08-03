@@ -49,20 +49,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Default
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  Nav   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |  Nav   |
+ * |        |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |        |
  * |--------+-AltGr+-LGui-+-LCtl-+-LAlt-+--Clr-|                              |-RSrt-+-LAlt-+-RCtl-+-RGui-+-AltGr+--------|
- * |  Tab   |   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  |  BSpc  |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  | RShift |
+ * | LShift |   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  | RShift |
+ * |--------+------+------+-Nav--+-Tab--+------+-------------.  ,-------------+------+-BSpc-+-Nav--+------+------+--------|
+ * |        |   Z  |   X  |   C  |   D  |   V  |      | LAlt |  | LAlt |      |   K  |   H  |   ,  |   .  |   /  |        |
  * `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
  *                        | MPlay| LGui | LSYMF|      | LCtrl|  | RCtrl|      | RSYMF| RGui | MMute|
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `-----------------------Esc--------'  `--------Esc-----------------------'
  */
  [_BASE] = LAYOUT(
-      OSL_NAV, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, OSL_NAV,
-      KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    KC_BSPC,
-      OS_LSFT, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  KC_LALT, KC_LALT, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, OS_RSFT,
+      _______, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, _______,
+      OS_LSFT, KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    OS_RSFT,
+      _______, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  KC_LALT, KC_LALT, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, _______,
                                KC_MPLY,KC_LGUI,L_SYMFU, KC_SPACE, KC_LCTL, KC_RCTL,  KC_ENT, R_SYMFU, KC_LGUI, KC_F20
     ),
 
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |      |  F9  |  F8  |  F7  | F12  |                              |   [  |  ]   |  `   |  $   |  …   |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |  F10 |  F3  |  F2  |  F1  | F11  |                              |   {  |  }   |  '   |  :   |  ^   |  Del   |
- * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+-Del--+------+------+------+--------|
  * |        |      |  F6  |  F5  |  F4  |CLOTAP|      |      |  |      |      |   <  |  >   |  "   |  ~   |  ?   |        |
  * `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     [_L_SYMFU] = LAYOUT(
       _______, _______, KC_F9,   KC_F8,   KC_F7,   KC_F12,                                      KC_LBRC, KC_RBRC, KC_GRV,  KC_DLR,  EU_TDOT, _______,
-      _______, KC_F10,  KC_F3,   KC_F2,   KC_F1,   KC_F11,                                      KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC, KC_DEL,
+      _______, KC_F10,  KC_F3,   KC_F2,   KC_F1,   KC_F11,                                      KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC, _______,
       _______, _______, KC_F6,   KC_F5,   KC_F4,   CLO_TAP, XXXXXXX, _______, _______, XXXXXXX, KC_LT,   KC_GT,   KC_DQUO, KC_TILDE,KC_QUES, _______,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 
