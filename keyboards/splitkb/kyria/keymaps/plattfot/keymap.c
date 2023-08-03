@@ -40,6 +40,7 @@ enum layers {
 
 int plt_base_index(void) {return _BASE;}
 int plt_nav_index(void) {return _NAV;}
+int plt_left_symfunc_index(void) {return _L_SYMFU;}
 int plt_shortcut_index(void) {return _R_SHORT;}
 
 // clang-format off
