@@ -1,8 +1,8 @@
 ifeq ($(KEYBOARD),ergodox_infinity)
-  LCD_BACKLIGHT_ENABLE = yes
-  LCD_ENABLE = yes
+  LCD_BACKLIGHT_ENABLE = no
+  LCD_ENABLE = no
 
-  BACKLIGHT_ENABLE = yes
-  VISUALIZER_ENABLE = yes
+  BACKLIGHT_ENABLE = no
+  VISUALIZER_ENABLE = no
 endif
-LEADER_ENABLE = yes
+LEADER_ENABLE = no

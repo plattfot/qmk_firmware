@@ -52,34 +52,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: Default
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |   ESC  |   1  |   2  |   3  |   4  |   5  |      |           |      |   6  |   7  |   8  |   9  |   0  |  DEL   |
+ * |   ESC  |   1  |   2  |   3  |   4  |   5  |  6   |           |      |   6  |   7  |   8  |   9  |   0  |  DEL   |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * |   \    |   Q  |   W  |   E  |   R  |   T  | CLO  |           | CLO  |   Y  |   U  |   I  |   O  |   P  |        |
- * |--------+------+------+------+------+------|  TAP |           |  TAP |------+------+------+------+------+--------|
+ * |   M    |   Q  |   W  |   E  |   R  |   T  |  7   |           | CLO  |   Y  |   U  |   I  |   O  |   P  |        |
+ * |--------+------+------+------+------+------|      |           |  TAP |------+------+------+------+------+--------|
  * |  TAB   |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |   ;  |   '    |
- * |--------+------+------+------+------+------| Lead |           |  BS  |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------|  8   |           |  BS  |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |   /  | RShift |
  * `--------+------+------+------+------+-------------'           '-------------+------+------+------+------+--------'
  *   |VolDn |VolUp | Play | LGUI | LCTL |                                       |  NAV | RAlt | SCLK | PgUp | PgDn |
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,---------------.
- *                                        | Raise|      |       |      |  Lower |
+ *                                        |   9  |  0   |       |      |  Lower |
  *                                 ,------|------|------|       |------+--------+------.
- *                                 |      |      |      |       |      |        |      |
+ *                                 |      |      | Del  |       |      |        |      |
  *                                 | Space| LALT |------|       |------|  Ctrl  | Entr |
- *                                 |      |      |      |       |      |        |      |
+ *                                 |      |      | Bs   |       |      |        |      |
  *                                 `--------------------'       `----------------------'
  */
 [_DEFAULT] = LAYOUT_ergodox(
         // left hand
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,   KC_5,    _______,
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    CLO_TAP,
+        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,   KC_5,    KC_6,
+        KC_M,    KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    KC_7,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,   KC_G,
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,    KC_LEAD,
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,    KC_8,
         KC_VOLD,KC_VOLU,KC_MPLY,KC_LGUI, KC_LCTL,
-                                                    L_RAISE, _______,
-                                                             _______,
-                                            KC_SPC, KC_LALT, _______,
+                                                    KC_9,    KC_0,
+                                                             KC_DEL,
+                                            KC_SPC, KC_LALT, KC_BSPC,
         // right hand
         _______,   KC_6,   KC_7,      KC_8,    KC_9,    KC_0,    KC_DEL,
         CLO_TAP,  KC_Y,   KC_U,      KC_I,    KC_O,    KC_P,    _______,
@@ -353,7 +353,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /* void matrix_init_user(void) { */
 
 /* }; */
-LEADER_EXTERNS();
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
@@ -384,80 +383,5 @@ void matrix_scan_user(void) {
             break;
     }
 #endif
-    LEADER_DICTIONARY() {
-      leading = false;
-      leader_end();
-      // Sway navigation
-      SEQ_ONE_KEY(KC_1) {  // Jump to workspace 1
-        SEND_STRING(SS_LGUI("1"));
-      }
-      SEQ_ONE_KEY(KC_2) {  // Jump to workspace 2
-        SEND_STRING(SS_LGUI("2"));
-      }
-      SEQ_ONE_KEY(KC_3) {  // Jump to workspace 3
-        SEND_STRING(SS_LGUI("3"));
-      }
-      SEQ_ONE_KEY(KC_4) {  // Jump to workspace 4
-        SEND_STRING(SS_LGUI("4"));
-      }
-      SEQ_ONE_KEY(KC_5) {  // Jump to workspace 5
-        SEND_STRING(SS_LGUI("5"));
-      }
-
-      SEQ_ONE_KEY(KC_6) {  // Jump to workspace 6
-        SEND_STRING(SS_LGUI("6"));
-      }
-      SEQ_ONE_KEY(KC_7) {  // Jump to workspace 7
-        SEND_STRING(SS_LGUI("7"));
-      }
-      SEQ_ONE_KEY(KC_8) {  // Jump to workspace 8
-        SEND_STRING(SS_LGUI("8"));
-      }
-      SEQ_ONE_KEY(KC_9) {  // Jump to workspace 9
-        SEND_STRING(SS_LGUI("9"));
-      }
-      SEQ_ONE_KEY(KC_0) {  // Jump to workspace 0
-        SEND_STRING(SS_LGUI("0"));
-      }
-      SEQ_ONE_KEY(KC_G) {  // View scratch pad
-        SEND_STRING(SS_LGUI("-"));
-      }
-
-      // Sway move window
-      SEQ_TWO_KEYS(KC_M, KC_1) {  // Move to workspace 1
-        SEND_STRING(SS_LSFT(SS_LGUI("1")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_2) {  // Move to workspace 2
-        SEND_STRING(SS_LSFT(SS_LGUI("2")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_3) {  // Move to workspace 3
-        SEND_STRING(SS_LSFT(SS_LGUI("3")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_4) {  // Move to workspace 4
-        SEND_STRING(SS_LSFT(SS_LGUI("4")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_5) {  // Move to workspace 5
-        SEND_STRING(SS_LSFT(SS_LGUI("5")));
-      }
-
-      SEQ_TWO_KEYS(KC_M, KC_6) {  // Move to workspace 6
-        SEND_STRING(SS_LSFT(SS_LGUI("6")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_7) {  // Move to workspace 7
-        SEND_STRING(SS_LSFT(SS_LGUI("7")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_8) {  // Move to workspace 8
-        SEND_STRING(SS_LSFT(SS_LGUI("8")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_9) {  // Move to workspace 9
-        SEND_STRING(SS_LSFT(SS_LGUI("9")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_0) {  // Move to workspace 0
-        SEND_STRING(SS_LSFT(SS_LGUI("0")));
-      }
-      SEQ_TWO_KEYS(KC_M, KC_G) {  // Move to scratch pad
-        SEND_STRING(SS_LSFT(SS_LGUI("-")));
-      }
-    }
 };
 
