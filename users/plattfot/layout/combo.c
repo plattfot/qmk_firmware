@@ -59,7 +59,7 @@ enum combo_events {
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
 
-const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
+const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_BSPC, COMBO_END};
 #ifdef PLT_ENABLE_CAPS_WORD
 const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
 #endif
