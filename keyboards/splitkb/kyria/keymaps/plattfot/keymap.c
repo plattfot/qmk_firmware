@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  |
  * |------+------+-AltGr+-Nav--+------+-------------.  ,-------------+------+-Nav--+-AltGr+------+------|
  * |   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  |   ,  |   .  |   /  |
- * `-------------+------+------+------| Space| Tab  |  | Enter| BS   |------+------+------+-------------'
+ * `-------------+------+------+------| Space| Tab  |  | BS   | Enter|------+------+------+-------------'
  *               | MPlay|      | LSYMF|      |      |  |      |      | RSYMF|      | MMute|
  *               |      |      |      |      |      |  |      |      |      |      |      |
  *               `------+      +---------Esc--------'  `--------Esc---------+      +------'
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, XXXXXXX,
       XXXXXXX, KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,    XXXXXXX,
       XXXXXXX, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,    XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, XXXXXXX,
-                               KC_MPLY,XXXXXXX,L_SYMFU, KC_SPACE, KC_TAB,  KC_ENT,  KC_BSPC, R_SYMFU, XXXXXXX, KC_F20
+                               KC_MPLY,XXXXXXX,L_SYMFU, KC_SPACE, KC_TAB,  KC_BSPC, KC_ENT, R_SYMFU, XXXXXXX, KC_F20
     ),
 
 /*
