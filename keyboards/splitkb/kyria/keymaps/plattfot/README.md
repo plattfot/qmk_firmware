@@ -9,8 +9,13 @@ row) as two palm buttons.
 
 The base layout is [Colemak DH](https://colemakmods.github.io/mod-dh/).
 
-This keymap avoids [Mod-tap](https://docs.qmk.fm/#/mod_tap) as they do not work for me. [Kyria](https://github.com/splitkb/kyria)
-has enough thumb keys to make it work without them.
+This keymap avoids [Mod-tap](https://docs.qmk.fm/#/mod_tap) as they do not work for me.
+
+This being a 38 key keyboard using [homerow mods](https://precondition.github.io/home-row-mods) would be
+suitable.  But similar to mod-tap, they don't work for me as, having
+keys activate when release instead of when pressed feels laggy to me.
+Instead I found homerow combos works really well for modifiers.  They
+need to be sticky to avoid finger fatigue.
 
 The symbols are split into two layers, one for each hand. Then the
 layers are activated by the opposite thumb. Found that having all
@@ -28,16 +33,16 @@ the need for having specific macros for these as I had before.
 
 # Base Layer: Default
 ```
-// ,-------------------------------------------.                              ,-------------------------------------------.
-// |  Del   |   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  | BSpace |
-// |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// |  Tab   |   A  |   R  |   S  |   T  |   G  |                              |   M  |   N  |   E  |   I  |   O  |   '    |
-// |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-// | LShift |   Z  |   X  |   C  |   D  |   V  |      | RAISE|  | LOWER|      |   K  |   H  |   ,  |   .  |   /  | RShift |
-// `----------------------+------+------+------| Space|------|  |------| Enter|------+------+------+----------------------'
-//                        | MPlay|      | LGUI |      | LCtrl|  | LAlt |      | RGUI |      | Mic  |
-//                        |      |      |      |      |      |  |      |      |      |      | Mute |
-//                        `----------------------------------'  `----------------------------------'
+,----------------------------------.                              ,----------------------------------.
+|   Q  |   W  |   F  |   P  |   B  |                              |   J  |   L  |   U  |   Y  |   ;  |
+|-LGui-+-LAlt-+-LCtl-+-LSft-+--Clr-|                              |-RSrt-+-LSft-+-RCtl-+-RAlt-+-RGui-|
+|   A  |   R  |   S  |   T  |   G  Caps                        Word   M  |   N  |   E  |   I  |   O  |
+|------+------+-AltGr+-Nav--+------+-------------.  ,-------------+------+-Nav--+-AltGr+------+------|
+|   Z  |   X  |   C  |   D  |   V  |      |      |  |      |      |   K  |   H  |   ,  |   .  |   /  |
+`-------------+------+------+------| Space| Tab  |  | Enter| BS   |------+------+------+-------------'
+              | MPlay|      | LSYMF|      |      |  |      |      | RSYMF|      | MMute|
+              |      |      |      |      |      |  |      |      |      |      |      |
+              `------+      +---------Esc--------'  `--------Esc---------+      +------'
 ```
 
 Setup for using the [EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout. As it's annoying to have to
@@ -45,14 +50,9 @@ toggle us and swedish layout which shifts symbols around.
 
 AltGr is used to access the extra keys in the [EurKey](https://eurkey.steffen.bruentjen.eu/layout.html) layout. Have
 one on each hand to make it easier to type, by following the same
-principle as the split symbol layers. I.e hold down AltGr on the
+principle as the split symbol layers. E.g. press AltGr on the
 opposite hand that's typing.
 
-Combos are enable to easier type the three extra Swedish characters.
-
-`o`+`e` → ö
-`a`+`.` → ä
-`w`+`.` → å
 
 ## Notable features on this layer
 
@@ -62,34 +62,30 @@ Left rotary encoder
 
 Right rotary encoder
 - Press: Mic Mute (F20)
-- Rotate: Page up/Page down. Used mouse scrolling at first. But
-          scrolling only works in the window where the mouse pointer
-          is. Which kind of defeated the purpose of having the scroll
-          on the keyboard, as I still needed to move my hand to the
-          mouse and then I could just use the scroll on the mouse.
+- Rotate: Ctrl + Page up/Page down.  Allows for easy scroll between
+  tabs in the webbrowser.
 
-# Lower Layer: Left symbols | Right number/nav/function keys
+**Note**: I Used mouse scrolling at first for the right rotary
+encoder. But scrolling only works in the window where the mouse
+pointer is. Which kind of defeated the purpose of having the scroll on
+the keyboard, as I still needed to move my hand to the mouse and then
+I could just use the scroll on the mouse.
+
+# Lower Layer: Left symbols | Right number keys
 ```
-// ,-------------------------------------------.                              ,-------------------------------------------.
-// | Insert |  !   |  @   |  #   |  $   |  %   |                              |  6   |  7   |  8   |  9   |  0   |        |
-// |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// |        |  |   |  _   |  \   |  -   |  +   |                              |CLOTAP|  ←   |  ↑   |  ↓   |  →   |        |
-// |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-// |        |  °   |  :   |  (   |  )   |  ×   |      |ADJUST|  |      |      |  F6  |  F7  |  F8  |  F9  | F10  |        |
-// `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
-//                        |      |      |      |      |      |  |      |      |      |      |      |
-//                        |      |      |      |      |      |  |      |      |      |      |      |
-//                        `----------------------------------'  `----------------------------------'
+,----------------------------------.                              ,----------------------------------.
+|  °   |  @   |  *   |  #   |  %   |                              |      |  7   |  8   |  9   |      |
+|------+------+------+------+------|                              |------+------+------+------+------|
+|  |   |  _   |  -   |  (   |  )   |                              |      |  1   |  2   |  3   |  0   |
+|------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------|
+|  !   |  \   |  +   |  =   |  &   |      |      |  |      |      |CLOTAP|  4   |  5   |  6   |      |
+`-------------+------+------+------|      |      |  |      |      |------+------+------+-------------'
+              |      |      |      |      |      |  |      |      |      |      |      |
+              |      |      |      |      |      |  |      |      |      |      |      |
+              `------+      +--------------------'  `--------------------+      +------'
 ```
 
-Symbols for the left hand, number/navigation/function keys for the
-right hand.
-
-I merged the navigation layer and the right side of this layer. I need
-to reduce the inner keys as my thumbs started to get tired. And this
-was the best way I came up with.
-
-This layer also includes insert.
+Symbols for the left hand, numbers for the right.
 
 ## Notable features on this layer
 
@@ -98,48 +94,46 @@ Left rotary encoder
 
 Clotap on the right hand.
 
-Has two Eurkey specific symbols `°` and `×` on the left hand.
+Has one Eurkey specific symbols `°` on the left hand corner.
 
-# Raise Layer: Left number/function | Right symbols
+# Raise Layer: Left function | Right symbols
 ```
-// ,-------------------------------------------.                              ,-------------------------------------------.
-// |        |  1   |  2   |  3   |  4   |  5   |                              |   ^  |  &   |  *   |  ~   |  ?   |CapsLock|
-// |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-// |        |  F11 |  F12 |  F13 |  F14 |CLOTAP|                              |   =  |  {   |  }   |  [   |  ]   |   `    |
-// |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-// |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |      |  |ADJUST|      |   …  |  "   |  <   |  >   |  /   |        |
-// `----------------------+------+------+------|      |------|  |------|      |------+------+------+----------------------'
-//                        |      |      |      |      |      |  |      |      |      |      | Mute |
-//                        |      |      |      |      |      |  |      |      |      |      |      |
-//                        `----------------------------------'  `----------------------------------'
+,----------------------------------.                              ,----------------------------------.
+|      |  F9  |  F8  |  F7  | F12  |                              |   [  |  ]   |  `   |  $   |  …   |
+|------+------+------+------+------|                              |------+------+------+------+------|
+|  F10 |  F3  |  F2  |  F1  | F11  |                              |   {  |  }   |  '   |  :   |  ^   |
+|------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------|
+|      |  F6  |  F5  |  F4  |CLOTAP|      |      |  |      |      |   <  |  >   |  "   |  ~   |  ?   |
+`-------------+------+------+------|      |      |  |      |      |------+------+------+-------------'
+              |      |      |      |      |      |  |      |      |      |      |      |
+              |      |      |      |      |      |  |      |      |      |      |      |
+              `------+      +--------------------'  `--------------------+      +------'
 ```
 
 Number/Function keys for the left hand, symbols for the right hand.
 
-This layer also includes caps lock.
-
 ## Notable features on this layer
 
 Right rotary encoder
-- Press: mute
-- Rotate: Scrolling between workspaces in `sway`.
+- Rotate: Page Up/Down
 
 Clotap on the left hand.
 
-# Adjust Layer: RGB
+Has one Eurkey specific symbols `…` on the right hand corner.
+
+# Nav Layer
+
 ```
- //
- // ,-------------------------------------------.                              ,-------------------------------------------.
- // |        |      |      |      |      |      |                              |      |      |      |      |      |        |
- // |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- // |        | TOG  | SAI  | HUI  | VAI  | MOD  |                              |      |      |      |      |      |        |
- // |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- // |        |      | SAD  | HUD  | VAD  | RMOD |      |      |  |      |      |      |      |      |      |      |        |
- // `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- //                        |      |      |      |      |      |  |      |      |      |      |      |
- //                        |      |      |      |      |      |  |      |      |      |      |      |
- //                        `----------------------------------'  `----------------------------------'
+,----------------------------------.                              ,----------------------------------.
+|      |      |   →  |   ↑  |   ←  |                              |      |      |      |      |      |
+|------+------+------+------+------|                              |------+------+------+------+------|
+|      |      |      |      |      |                              |      |  ↓   |      |      |      |
+|------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------|
+|      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |
+`-------------+------+------+------|      |      |  |      |      |------+------+------+-------------'
+              |      |      |      |      |      |  |      |      |      |      |      |
+              |      |      |      |      |      |  |      |      |      |      |      |
+              `------+      +--------------------'  `--------------------+      +------'
 ```
 
-Right now it only contains adjustment to the underglow. Activated by
-holding down `RAISE` and `LOWER` at the same time.
+It might look a bit weird but it follows the navigation keys in Emacs.
