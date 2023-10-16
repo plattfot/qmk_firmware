@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, _______, KC_F9,   KC_F8,   KC_F7,   KC_F12,                                      KC_LBRC, KC_RBRC, KC_GRV,  KC_DLR,  EU_TDOT, XXXXXXX,
       XXXXXXX, KC_F10,  KC_F3,   KC_F2,   KC_F1,   KC_F11,                                      KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC, XXXXXXX,
       XXXXXXX, _______, KC_F6,   KC_F5,   KC_F4,   CLO_TAP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_DQUO, KC_TILDE,KC_QUES, XXXXXXX,
-                                 _______, XXXXXXX, _______, _______, _______, _______, KC_DEL,  _______, XXXXXXX, _______
+                                 _______, XXXXXXX, _______, _______, _______, KC_DEL,  _______, _______, XXXXXXX, _______
 
     ),
 
