@@ -20,6 +20,7 @@ int plt_left_symfunc_index(void) {return _L_SYMFU;}
 #define R_SYMFU OSL(_R_SYMFU)
 
 #define R_SHORT OSL(_R_SHORT)
+#define OSL_NAV OSL(_NAV)
 
 #define EU_TDOT RSA(KC_SLSH)
 #define EU_CDOT RALT(KC_EQUAL)
@@ -138,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_F12,  KC_F9,   KC_F8,   KC_F7,   KC_VOLU,             KC_LBRC, KC_RBRC, KC_GRV,  KC_DLR,  EU_TDOT,
    KC_F11,  KC_F3,   KC_F2,   KC_F1,   KC_VOLD,             KC_LCBR, KC_RCBR, KC_QUOT, KC_COLN, KC_CIRC,
    KC_F10,  KC_F6,   KC_F5,   KC_F4,   CLO_TAP,             KC_LT,   KC_GT,   KC_DQUO, KC_TILDE,KC_QUES,
-                                     TO_BASE, _______, _______, TO_BASE
+                                     TO_BASE, _______, _______, OSL_NAV
 
  ),
 
@@ -149,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    EU_DEG,  KC_AT,   KC_ASTR, KC_HASH, KC_PERC,             KC_MPRV, KC_7,    KC_8,   KC_9,   _______,
    KC_PIPE, KC_UNDS, KC_MINS, KC_LPRN, KC_RPRN,             KC_MNXT, KC_1,    KC_2,   KC_3,   KC_0,
    KC_EXLM, KC_BSLS, KC_PLUS, KC_EQUAL,KC_AMPR,             CLO_TAP, KC_4,    KC_5,   KC_6,   _______,
-                                    TO_BASE, _______, _______, TO_BASE
+                                    OSL_NAV, _______, _______, TO_BASE
   ),
 
  /*
@@ -157,8 +158,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
  [_NAV] = LAYOUT(
    _______, _______, KC_RGHT, KC_UP,   KC_LEFT,             _______, _______, _______, _______, _______,
-   _______, KC_HOME, KC_PGUP, KC_END,  _______,             _______, KC_DOWN, _______, _______, _______,
-   _______, _______, KC_PGDN, _______, _______,             _______, _______, _______, _______, _______,
+   _______, KC_LEFT, KC_RGHT, KC_DOWN, _______,             _______, KC_DOWN, KC_HOME, KC_END,  _______,
+   _______, _______, CTL_PUP, CTL_PDN,_______,              _______, _______, KC_PGUP, KC_PGDN, _______,
                                     TO_BASE, _______, _______, TO_BASE
  ),
 
