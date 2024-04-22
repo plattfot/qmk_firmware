@@ -241,7 +241,14 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
         break;
     case C_CLEAR:
         if (pressed) {
-            soft_reset_keyboard();
+            clear_oneshot_mods();
+            layer_move(plt_base_index());
+#ifdef PLT_ENABLE_CAPS_WORD
+            caps_word_set(false);
+#endif
+#ifdef PLT_ENABLE_CLOSE_TAP
+            cancel_close_tap();
+#endif
         }
         break;
 #ifdef PLT_ENABLE_CAPS_WORD
