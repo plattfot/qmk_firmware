@@ -43,6 +43,80 @@ int plt_nav_index(void) {return _NAV;}
 int plt_left_symfunc_index(void) {return _L_SYMFU;}
 int plt_shortcut_index(void) {return _R_SHORT;}
 
+enum combo_events {
+  C_ESC,
+  C_CAPS, // caps word
+  // Upper left hand
+  C_CLEAR, // clear state
+  C_LALTL,
+  C_LCTRL,
+  C_LSHIFT,
+  C_LGUI,
+
+  // Upper right hand
+  C_RSHORT,
+  C_LALTR,
+  C_RCTRL,
+  C_RSHIFT,
+  C_RGUI,
+
+  // Lower left hand
+  C_LNAV, // to navigation
+  C_RALTL,
+
+  // Lower right hand
+  C_RNAV, // to navigation
+  C_RALTR,
+
+  COMBO_LENGTH
+};
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+const uint16_t PROGMEM esc_combo[] = {KC_SPACE, KC_ENT, COMBO_END};
+const uint16_t PROGMEM caps_combo[] = {KC_G, KC_M, COMBO_END};
+
+const uint16_t PROGMEM clear_combo[] = {KC_B, KC_G, COMBO_END};
+const uint16_t PROGMEM lshift_combo[] = {KC_P, KC_T, COMBO_END};
+const uint16_t PROGMEM lctrl_combo[] = {KC_F, KC_S, COMBO_END};
+const uint16_t PROGMEM laltl_combo[] = {KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM lgui_combo[] = {KC_Q, KC_A, COMBO_END};
+
+const uint16_t PROGMEM rshort_combo[] = {KC_J, KC_M, COMBO_END};
+const uint16_t PROGMEM rshift_combo[] = {KC_L, KC_N, COMBO_END};
+const uint16_t PROGMEM rctrl_combo[] = {KC_U, KC_E, COMBO_END};
+const uint16_t PROGMEM laltr_combo[] = {KC_Y, KC_I, COMBO_END};
+const uint16_t PROGMEM rgui_combo[] = {KC_SCLN, KC_O, COMBO_END};
+
+const uint16_t PROGMEM lnav_combo[] = {KC_T, KC_D, COMBO_END};
+const uint16_t PROGMEM raltl_combo[] = {KC_S, KC_C, COMBO_END};
+
+const uint16_t PROGMEM rnav_combo[] = {KC_N, KC_H, COMBO_END};
+const uint16_t PROGMEM raltr_combo[] = {KC_E, KC_COMM, COMBO_END};
+
+combo_t key_combos[] = {
+ [C_ESC] = COMBO_ACTION(esc_combo),
+ [C_CAPS] = COMBO_ACTION(caps_combo),
+
+ [C_CLEAR] = COMBO_ACTION(clear_combo),
+ [C_LALTL] = COMBO_ACTION(laltl_combo),
+ [C_LCTRL] = COMBO_ACTION(lctrl_combo),
+ [C_LSHIFT] = COMBO_ACTION(lshift_combo),
+ [C_LGUI] = COMBO_ACTION(lgui_combo),
+
+ [C_RSHORT] = COMBO_ACTION(rshort_combo),
+ [C_LALTR] = COMBO_ACTION(laltr_combo),
+ [C_RCTRL] = COMBO_ACTION(rctrl_combo),
+ [C_RSHIFT] = COMBO_ACTION(rshift_combo),
+ [C_RGUI] = COMBO_ACTION(rgui_combo),
+
+ [C_LNAV] = COMBO_ACTION(lnav_combo),
+ [C_RALTL] = COMBO_ACTION(raltl_combo),
+
+ [C_RNAV] = COMBO_ACTION(rnav_combo),
+ [C_RALTR] = COMBO_ACTION(raltr_combo),
+};
+
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*
@@ -325,3 +399,110 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return false;
 }
 #endif
+
+__attribute__((weak)) void process_combo_event(uint16_t combo_index, bool pressed)
+{
+    switch(combo_index) {
+    case C_LNAV:
+    case C_RNAV:
+        if (pressed) {
+            set_oneshot_layer(plt_nav_index(), ONESHOT_START);
+        } else {
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
+        }
+        break;
+    case C_LSHIFT:
+        if (pressed) {
+            register_code(KC_LSFT);
+            add_oneshot_mods(MOD_BIT(KC_LSFT));
+        } else {
+            unregister_code(KC_LSFT);
+        }
+        break;
+    case C_RSHIFT:
+        if (pressed) {
+            register_code(KC_RSFT);
+            add_oneshot_mods(MOD_BIT(KC_RSFT));
+        } else {
+            unregister_code(KC_RSFT);
+        }
+        break;
+    case C_LCTRL:
+        if (pressed) {
+            register_code(KC_LCTL);
+            add_oneshot_mods(MOD_BIT(KC_LCTL));
+        } else {
+            unregister_code(KC_LCTL);
+        }
+        break;
+    case C_RCTRL:
+        if (pressed) {
+            register_code(KC_RCTL);
+            add_oneshot_mods(MOD_BIT(KC_RCTL));
+        } else {
+            unregister_code(KC_RCTL);
+        }
+        break;
+    case C_RALTR:
+    case C_RALTL:
+        if (pressed) {
+            register_code(KC_RALT);
+            add_oneshot_mods(MOD_BIT(KC_RALT));
+        } else {
+            unregister_code(KC_RALT);
+        }
+        break;
+    case C_LALTR:
+    case C_LALTL:
+        if (pressed) {
+            register_code(KC_LALT);
+            add_oneshot_mods(MOD_BIT(KC_LALT));
+        } else {
+            unregister_code(KC_LALT);
+        }
+        break;
+    case C_LGUI:
+        if (pressed) {
+            register_code(KC_LGUI);
+            add_oneshot_mods(MOD_BIT(KC_LGUI));
+        } else {
+            unregister_code(KC_LGUI);
+        }
+        break;
+    case C_RGUI:
+        if (pressed) {
+            register_code(KC_RGUI);
+            add_oneshot_mods(MOD_BIT(KC_RGUI));
+        } else {
+            unregister_code(KC_RGUI);
+        }
+        break;
+    case C_RSHORT:
+        if (pressed) {
+            set_oneshot_layer(plt_shortcut_index(), ONESHOT_START);
+        } else {
+            clear_oneshot_layer_state(ONESHOT_PRESSED);
+        }
+        break;
+    case C_ESC:
+        if (pressed) {
+            tap_code16(KC_ESC);
+            caps_word_set(false);
+            cancel_close_tap();
+        }
+        break;
+    case C_CLEAR:
+        if (pressed) {
+            clear_oneshot_mods();
+            layer_move(plt_base_index());
+            caps_word_set(false);
+            cancel_close_tap();
+        }
+        break;
+    case C_CAPS:
+        if (pressed) {
+            caps_word_set(!caps_word_get());
+        }
+        break;
+    }
+}
