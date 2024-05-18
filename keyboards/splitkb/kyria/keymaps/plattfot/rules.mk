@@ -5,3 +5,4 @@ RGBLIGHT_ENABLE = no      # Enable keyboard RGB underglow
 LEADER_ENABLE = no         # Disable the Leader Key feature
 MOUSEKEY_ENABLE = no       # Disable mouse, need to save space.
 COMBO_ENABLE = yes
+CAPS_WORD_ENABLE = yes

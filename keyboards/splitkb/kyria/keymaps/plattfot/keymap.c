@@ -487,7 +487,7 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
     case C_ESC:
         if (pressed) {
             tap_code16(KC_ESC);
-            caps_word_set(false);
+            caps_word_off();
             cancel_close_tap();
         }
         break;
@@ -495,13 +495,13 @@ __attribute__((weak)) void process_combo_event(uint16_t combo_index, bool presse
         if (pressed) {
             clear_oneshot_mods();
             layer_move(plt_base_index());
-            caps_word_set(false);
+            caps_word_off();
             cancel_close_tap();
         }
         break;
     case C_CAPS:
         if (pressed) {
-            caps_word_set(!caps_word_get());
+            caps_word_toggle();
         }
         break;
     }
