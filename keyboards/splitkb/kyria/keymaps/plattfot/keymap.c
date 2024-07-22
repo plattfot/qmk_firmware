@@ -188,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Right short cuts
  */
     [_R_SHORT] = LAYOUT(
-      XXXXXXX, _______, _______, _______, G(KC_UP),_______,                                     _______, G(KC_7), G(KC_8), G(KC_9), _______, XXXXXXX,
+      XXXXXXX, _______, _______, G(KC_RGHT), G(KC_UP),G(KC_LEFT),                              _______, G(KC_7), G(KC_8), G(KC_9), _______, XXXXXXX,
       XXXXXXX, _______, _______, _______, A(C(KC_M)), _______,                                  _______, G(KC_1), G(KC_2), G(KC_3), G(KC_0), XXXXXXX,
       XXXXXXX, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, G(KC_4), G(KC_5), G(KC_6), _______, XXXXXXX,
                                  _______, _______, _______, _______, _______, _______, _______, _______, XXXXXXX, _______
